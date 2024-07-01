@@ -1,0 +1,35 @@
+{
+  "name": "xefi/faker-numbers-strings",
+  "type": "library",
+  "description": "Numbers and strings extension for Faker",
+  "keywords": [
+    ""
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gautier Deleglise"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "xefi/faker": "^1.0",
+    "psr/container": "^2.0"
+  },
+  "require-dev": {},
+  "autoload": {
+    "psr-4": {
+      "Xefi\\FakerNumbersStrings\\": "src/"
+    }
+  },
+  "extra": {
+    "faker": {
+      "providers": [
+        "Xefi\\FakerNumbersStrings\\ServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "sort-packages": true
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "xefi/faker",
+  "type": "library",
+  "description": "Faker allows you to generate realistic fake data for your php applications",
+  "keywords": [
+    ""
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gautier Deleglise"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "psr/container": "^2.0"
+  },
+  "require-dev": {},
+  "autoload": {
+    "psr-4": {
+      "Xefi\\Faker\\": "src/"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
