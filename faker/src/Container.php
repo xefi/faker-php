@@ -2,24 +2,22 @@
 
 namespace Xefi\Faker;
 
+use Closure;
 use Xefi\Faker\Extensions\Extension;
+use Xefi\Faker\Extensions\Traits\HasExtensions;
 use Xefi\Faker\Manifests\PackageManifest;
+use Xefi\Faker\Strategies\Traits\HasStrategies;
 
 class Container
 {
-    /**
-     * The faker extensions
-     *
-     * @var array
-     */
-    protected array $extensions;
+    use HasStrategies, HasExtensions;
 
     /**
      * The container application bootstrappers.
      *
      * @var array
      */
-    protected static $bootstrappers = [];
+    protected static array $bootstrappers = [];
 
     /**
      * Create the container instance
@@ -31,13 +29,15 @@ class Container
         // @TODO: here this might not work (basePath / manifest path)
         (new PackageManifest(getcwd(), $this->getCachedPackagesPath()))->build();
 
+        // @TODO: here load package manifest packages
+
         $this->bootstrap();
     }
 
     /**
      * Register a console "starting" bootstrapper.
      *
-     * @param  \Closure  $callback
+     * @param Closure $callback
      * @return void
      */
     public static function starting(Closure $callback): void
@@ -57,52 +57,11 @@ class Container
         }
     }
 
-    /**
-     * Resolve an array of extensions through the container.
-     *
-     * @param  array  $extensions
-     * @return $this
-     */
-    public function resolveExtensions(array $extensions)
-    {
-        foreach ($extensions as $command) {
-            $this->resolve($command);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Add an extension, resolving through the application.
-     *
-     * @param  \Xefi\Faker\Extensions\Extension|string  $extension
-     * @return \Xefi\Faker\Extensions\Extension
-     */
-    public function resolve(\Xefi\Faker\Extensions\Extension|string $extension): Extension
-    {
-        if ($extension instanceof Extension) {
-            return $this->add($extension);
-        }
-
-        return $this->add(new $extension);
-    }
-
-    /**
-     * Add an extension to the container.
-     *
-     * @param  \Xefi\Faker\Extensions\Extension  $extension
-     * @return \Xefi\Faker\Extensions\Extension
-     */
-    public function add(Extension $extension): Container
-    {
-        $this->extensions[$extension->getName()] = $extension;
-
-        return $extension;
-    }
 
     /**
      * Get the path to the cached packages.php file.
      *
+     * @TODO: might not be a good idea to put here
      * @return string
      */
     public function getCachedPackagesPath()
@@ -127,6 +86,7 @@ class Container
         }
 
         // @TODO: ici a revoir --> maybe call directement les extensions sans passer par l'objet
+        // @TODO: ajouter les stratégies
         return new $this->extensions[$method];
     }
 }

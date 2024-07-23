@@ -6,7 +6,7 @@ use Xefi\Faker\Providers\Provider as BaseServiceProvider;
 use Xefi\FakerNumbersStrings\Extensions\NumberExtension;
 use Xefi\FakerNumbersStrings\Extensions\StringExtension;
 
-class ServiceProvider extends BaseServiceProvider
+class NumbersStringsServiceProvider extends BaseServiceProvider
 {
     public function boot(): void
     {

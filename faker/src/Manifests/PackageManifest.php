@@ -47,6 +47,35 @@ class PackageManifest
         $this->vendorPath = $basePath.'/vendor';
         $this->manifestPath = $manifestPath;
     }
+
+    /**
+     * Get all of the service provider class names for all packages.
+     *
+     * @return array
+     */
+    public function providers()
+    {
+        return $this->config('providers');
+    }
+
+    /**
+     * Get all of the values for all packages for the given configuration name.
+     *
+     * @param  string  $key
+     * @return array
+     */
+    public function config($key)
+    {
+        return array_filter(
+            array_map(
+                function($configuration) use ($key) {
+                    return (array) ($configuration[$key] ?? []);
+                },
+                $this->getManifest()
+            )
+        );
+    }
+
     /**
      * Get the current package manifest.
      *
@@ -76,8 +105,7 @@ class PackageManifest
         $packages = [];
 
         if (is_file($path = $this->vendorPath.'/composer/installed.json')) {
-            // @TODO: files n'existe pas, faire un file get content
-            $installed = json_decode($this->files->get($path), true);
+            $installed = json_decode(file_get_contents($path), true);
 
             $packages = $installed['packages'] ?? $installed;
         }

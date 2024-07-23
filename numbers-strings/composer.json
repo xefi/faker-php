@@ -25,7 +25,7 @@
   "extra": {
     "faker": {
       "providers": [
-        "Xefi\\FakerNumbersStrings\\ServiceProvider"
+        "Xefi\\FakerNumbersStrings\\NumbersStringServiceProvider"
       ]
     }
   },
