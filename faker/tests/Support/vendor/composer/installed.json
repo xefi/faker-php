@@ -1,0 +1,22 @@
+{
+    "packages": [
+        {
+            "name": "autoload-needed",
+            "extra": {
+                "faker": {
+                    "providers": [
+                        "Xefi\\Faker\\Tests\\Support\\TestServiceProvider"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "common-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            }
+        }
+    ]
+}

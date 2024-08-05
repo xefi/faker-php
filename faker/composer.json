@@ -15,10 +15,17 @@
     "php": "^8.0",
     "psr/container": "^2.0"
   },
-  "require-dev": {},
+  "require-dev": {
+    "phpunit/phpunit": "^11"
+  },
   "autoload": {
     "psr-4": {
       "Xefi\\Faker\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Xefi\\Faker\\Tests\\": "tests/"
     }
   },
   "config": {

@@ -4,10 +4,12 @@ namespace Xefi\Faker\Extensions;
 
 class Extension
 {
-    private string $name;
+    protected string $name;
 
     /**
      * Returns the extension name.
+     *
+     * @return string
      */
     public function getName(): string
     {

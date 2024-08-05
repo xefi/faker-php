@@ -83,16 +83,17 @@ class PackageManifest
      */
     protected function getManifest()
     {
-        if (! is_null($this->manifest)) {
+        if (! empty($this->manifest)) {
             return $this->manifest;
         }
+
 
         if (! is_file($this->manifestPath)) {
             $this->build();
         }
 
         return $this->manifest = is_file($this->manifestPath) ?
-            require $this->manifestPath : [];
+            (require $this->manifestPath) : [];
     }
 
     /**

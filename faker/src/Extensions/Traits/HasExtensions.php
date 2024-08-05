@@ -35,7 +35,7 @@ trait HasExtensions
      * @param  \Xefi\Faker\Extensions\Extension|string  $extension
      * @return \Xefi\Faker\Extensions\Extension
      */
-    public function resolve(\Xefi\Faker\Extensions\Extension|string $extension): Extension
+    public function resolve(\Xefi\Faker\Extensions\Extension|string $extension): Container
     {
         if ($extension instanceof Extension) {
             return $this->addExtension($extension);
@@ -54,6 +54,16 @@ trait HasExtensions
     {
         self::$extensions[$extension->getName()] = $extension;
 
-        return $extension;
+        return $this;
+    }
+
+    /**
+     * Get the container extensions.
+     *
+     * @return array
+     */
+    public function getExtensions(): array
+    {
+        return self::$extensions;
     }
 }

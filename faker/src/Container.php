@@ -6,6 +6,7 @@ use Closure;
 use Xefi\Faker\Extensions\Extension;
 use Xefi\Faker\Extensions\Traits\HasExtensions;
 use Xefi\Faker\Manifests\PackageManifest;
+use Xefi\Faker\Providers\ProviderRepository;
 use Xefi\Faker\Strategies\Traits\HasStrategies;
 
 class Container
@@ -20,18 +21,69 @@ class Container
     protected static array $bootstrappers = [];
 
     /**
+     * The base path of the application
+     *
+     * @var string
+     */
+    protected static string $basePath = './';
+
+    /**
+     * The manifest path where the providers will be stored
+     *
+     * @var string
+     */
+    protected static string $manifestPath = 'packages.php';
+
+    /**
      * Create the container instance
      *
      * @return void
      */
     public function __construct()
     {
-        // @TODO: here this might not work (basePath / manifest path)
-        (new PackageManifest(getcwd(), $this->getCachedPackagesPath()))->build();
-
-        // @TODO: here load package manifest packages
+        $this->registerConfiguredProviders();
 
         $this->bootstrap();
+    }
+
+    /**
+     * Set the manifest path
+     *
+     * @param string $manifestPath
+     * @return void
+     */
+    public static function manifestPath(string $manifestPath) {
+        self::$manifestPath = $manifestPath;
+    }
+
+    /**
+     * Set the base path
+     *
+     * @param string $basePath
+     * @return void
+     */
+    public static function basePath(string $basePath) {
+        self::$basePath = $basePath;
+    }
+
+    /**
+     * Register all of the configured providers.
+     *
+     * @return void
+     */
+    protected function registerConfiguredProviders()
+    {
+        $packageManifest = new PackageManifest(self::$basePath, self::$manifestPath);
+
+        $providers = $packageManifest->providers();
+
+        $collapsedProviders = [];
+        foreach ($providers as $values) {
+            $collapsedProviders[] = $values;
+        }
+
+        (new ProviderRepository())
+            ->load(array_merge([], ...$collapsedProviders));
     }
 
     /**
@@ -57,18 +109,6 @@ class Container
         }
     }
 
-
-    /**
-     * Get the path to the cached packages.php file.
-     *
-     * @TODO: might not be a good idea to put here
-     * @return string
-     */
-    public function getCachedPackagesPath()
-    {
-        return 'bootstrap/cache/packages.php';
-    }
-
     /**
      * Dynamically call the extension.
      *
@@ -85,8 +125,11 @@ class Container
             ));
         }
 
+        // @TODO: ici passer par les generators et les rendre multiples
         // @TODO: ici a revoir --> maybe call directement les extensions sans passer par l'objet
         // @TODO: ajouter les stratégies
         return new $this->extensions[$method];
     }
 }
+
+// @TODO: throw un warning si une extension est register 2 fois / méthode
