@@ -11,16 +11,15 @@ class UniqueStrategy extends Strategy
     /**
      * Handle the given strategy
      *
-     * @return mixed
+     * @return bool
      */
-    public function handle(Closure $callback)
+    public function pass($generatedValue): bool
     {
-        do {
-            $generatedValue = $callback();
+        if (in_array($generatedValue, $this->tries, true)) {
+            return false;
+        }
 
-            $this->tries[] = $generatedValue;
-        } while (in_array($generatedValue, $this->tries, true));
-
-        return $generatedValue;
+        $this->tries[] = $generatedValue;
+        return true;
     }
 }

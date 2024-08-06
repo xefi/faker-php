@@ -28,8 +28,12 @@ class ProviderRepository
      * @param  string  $provider
      * @return \Xefi\Faker\Providers\Provider
      */
-    public function createProvider($provider)
+    public function createProvider($provider): Provider
     {
+        if (is_object($provider)){
+            return $provider;
+        }
+
         return new $provider();
     }
 }

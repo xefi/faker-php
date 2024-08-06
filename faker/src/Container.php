@@ -41,9 +41,11 @@ class Container
      */
     public function __construct()
     {
-        $this->registerConfiguredProviders();
+        if (!$this->areExtensionsInitialized()) {
+            $this->registerConfiguredProviders();
 
-        $this->bootstrap();
+            $this->bootstrap();
+        }
     }
 
     /**
@@ -53,7 +55,7 @@ class Container
      * @return void
      */
     public static function manifestPath(string $manifestPath) {
-        self::$manifestPath = $manifestPath;
+        static::$manifestPath = $manifestPath;
     }
 
     /**
@@ -63,7 +65,7 @@ class Container
      * @return void
      */
     public static function basePath(string $basePath) {
-        self::$basePath = $basePath;
+        static::$basePath = $basePath;
     }
 
     /**
@@ -73,7 +75,7 @@ class Container
      */
     protected function registerConfiguredProviders()
     {
-        $packageManifest = new PackageManifest(self::$basePath, self::$manifestPath);
+        $packageManifest = new PackageManifest(static::$basePath, static::$manifestPath);
 
         $providers = $packageManifest->providers();
 
@@ -110,6 +112,34 @@ class Container
     }
 
     /**
+     * Reset the bootstrappers
+     *
+     * @return void
+     */
+    public function forgetBootstrappers(): void
+    {
+        static::$bootstrappers = [];
+    }
+
+    /**
+     * @param $method
+     * @return mixed
+     */
+    public function run($method, $parameters)
+    {
+        do {
+            $generatedValue = $this->callExtensionMethod($method, $parameters);
+        } while(!$this->passStrategies($generatedValue));
+
+
+        // Here we assume the container has done his job and reset the strategies
+        // in case the user wants to run the method again on another extension
+        $this->forgetStrategies();
+
+        return $generatedValue;
+    }
+
+    /**
      * Dynamically call the extension.
      *
      * @param  string  $method
@@ -125,11 +155,9 @@ class Container
             ));
         }
 
-        // @TODO: ici passer par les generators et les rendre multiples
-        // @TODO: ici a revoir --> maybe call directement les extensions sans passer par l'objet
-        // @TODO: ajouter les stratégies
-        return new $this->extensions[$method];
+        // @TODO: unit tests
+        return $this->run($method, $parameters);
     }
 }
 
-// @TODO: throw un warning si une extension est register 2 fois / méthode
+// @TODO: generate mixin ?

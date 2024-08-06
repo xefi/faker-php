@@ -3,9 +3,10 @@
 
 use Xefi\Faker\Container;
 use Xefi\Faker\Manifests\PackageManifest;
-use Xefi\Faker\Tests\Support\Extensions\TestExtension;
+use Xefi\Faker\Tests\Support\Extensions\NumberTestExtension;
+use Xefi\Faker\Tests\Unit\TestCase;
 
-final class PackageManifestTest extends \Xefi\Faker\Tests\Unit\TestCase
+final class PackageManifestTest extends TestCase
 {
     public function testAssetLoading()
     {

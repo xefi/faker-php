@@ -9,7 +9,7 @@ abstract class Strategy
     /**
      * Handle the given strategy
      *
-     * @return mixed
+     * @return bool
      */
-    abstract public function handle(Closure $callback);
+    abstract public function pass($generatedValue): bool;
 }

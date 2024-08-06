@@ -4,18 +4,15 @@ namespace Xefi\Faker\Tests\Unit;
 
 use Xefi\Faker\Container;
 use Xefi\Faker\Manifests\PackageManifest;
-use Xefi\Faker\Tests\Support\Extensions\TestExtension;
+use Xefi\Faker\Tests\Support\Extensions\NumberTestExtension;
+use Xefi\Faker\Tests\Support\Extensions\StringTestExtension;
 
 final class ContainerTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        Container::basePath(__DIR__.'/../Support');
-        Container::manifestPath('/tmp/packages.php');
-    }
-
     public function testManifestGenerated(): void
     {
+        @unlink('/tmp/packages.php');
+
         new Container();
 
         $this->assertFileExists('/tmp/packages.php');
@@ -25,10 +22,15 @@ final class ContainerTest extends TestCase
 
     public function testExtensionsCorrectlyRegistered(): void
     {
+        @unlink('/tmp/packages.php');
+
         $container = new Container();
 
         $this->assertEquals(
-            ['test-extension' => new TestExtension],
+            [
+                'number-test-extension' => new NumberTestExtension,
+                'string-test-extension' => new StringTestExtension
+            ],
             $container->getExtensions()
         );
 
