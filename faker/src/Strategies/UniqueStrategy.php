@@ -2,24 +2,32 @@
 
 namespace Xefi\Faker\Strategies;
 
-use Closure;
+use Xefi\Faker\Seeds\HasSeeds;
 
 class UniqueStrategy extends Strategy
 {
-    protected array $tries = [];
+    use HasSeeds;
+
+    /**
+     * The element already tried
+     *
+     * @var array
+     */
+    protected array $tried = [];
 
     /**
      * Handle the given strategy
      *
+     * @param $generatedValue
      * @return bool
      */
     public function pass($generatedValue): bool
     {
-        if (in_array($generatedValue, $this->tries, true)) {
+        if (in_array($generatedValue, $this->tried, true)) {
             return false;
         }
 
-        $this->tries[] = $generatedValue;
+        $this->tried[] = $generatedValue;
         return true;
     }
 }

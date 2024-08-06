@@ -2,6 +2,7 @@
 
 namespace Xefi\Faker\Strategies\Traits;
 
+use Xefi\Faker\Strategies\Strategy;
 use Xefi\Faker\Strategies\UniqueStrategy;
 
 trait HasStrategies
@@ -11,10 +12,17 @@ trait HasStrategies
      *
      * @var array
      */
-    protected array $strategies;
+    protected array $strategies = [];
 
-    public function unique() {
-        $this->strategies[] = new UniqueStrategy;
+    /**
+     * Add a unique strategy
+     *
+     * @param string $seed
+     * @param int $maxRetries
+     * @return $this
+     */
+    public function unique(string $seed = '') {
+        $this->strategies[] = UniqueStrategy::forSeed($seed);
 
         return $this;
     }
@@ -44,5 +52,15 @@ trait HasStrategies
     public function forgetStrategies(): void
     {
         $this->strategies = [];
+    }
+
+    /**
+     * Returns the current strategies for the container
+     *
+     * @return array
+     */
+    public function getStrategies(): array
+    {
+        return $this->strategies;
     }
 }

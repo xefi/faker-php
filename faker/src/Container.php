@@ -3,6 +3,7 @@
 namespace Xefi\Faker;
 
 use Closure;
+use Xefi\Faker\Exceptions\MaximumTriesReached;
 use Xefi\Faker\Extensions\Extension;
 use Xefi\Faker\Extensions\Traits\HasExtensions;
 use Xefi\Faker\Manifests\PackageManifest;
@@ -127,8 +128,13 @@ class Container
      */
     public function run($method, $parameters)
     {
+        $tries = 0;
         do {
             $generatedValue = $this->callExtensionMethod($method, $parameters);
+
+            if (++$tries > 20000) {
+                throw new MaximumTriesReached(sprintf('Maximum tries of %d reached without finding a value', 20000));
+            }
         } while(!$this->passStrategies($generatedValue));
 
 
@@ -148,16 +154,9 @@ class Container
      */
     public function __call($method, $parameters)
     {
-        if (!isset($this->extensions[$method])) {
-            throw new \BadMethodCallException(sprintf(
-                'Method [%s] does not exist.',
-                $method
-            ));
-        }
-
-        // @TODO: unit tests
         return $this->run($method, $parameters);
     }
 }
 
+// @TODO: how to handle multi language ???? !!!!!!!!
 // @TODO: generate mixin ?

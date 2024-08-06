@@ -2,6 +2,7 @@
 
 namespace Xefi\Faker\Extensions\Traits;
 
+use http\Exception\BadMethodCallException;
 use http\Exception\RuntimeException;
 use Xefi\Faker\Container;
 use Xefi\Faker\Extensions\Extension;
@@ -123,9 +124,9 @@ trait HasExtensions
      */
     public function callExtensionMethod(string $method, array $parameters = []) {
         if (!isset(static::$extensionsMethods[$method])) {
-            throw new RuntimeException(sprintf('The %s method does not exist', $method));
+            throw new \BadMethodCallException(sprintf('The %s method does not exist', $method));
         }
 
-        return static::$extensions[static::$extensionsMethods[$method]]($parameters);
+        return (static::$extensions[static::$extensionsMethods[$method]])->$method(...$parameters);
     }
 }
