@@ -2,7 +2,7 @@
 
 namespace Extensions;
 
-use Xefi\Faker\Container;
+use Xefi\Faker\Container\Container;
 use Xefi\Faker\Tests\Unit\TestCase;
 
 class ExtensionTest extends TestCase

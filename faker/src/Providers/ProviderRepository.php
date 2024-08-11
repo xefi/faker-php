@@ -2,8 +2,6 @@
 
 namespace Xefi\Faker\Providers;
 
-use Xefi\Faker\Container;
-
 class ProviderRepository
 {
     /**

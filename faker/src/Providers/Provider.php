@@ -2,7 +2,7 @@
 
 namespace Xefi\Faker\Providers;
 
-use Xefi\Faker\Container;
+use Xefi\Faker\Container\Container;
 
 class Provider
 {

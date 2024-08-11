@@ -1,18 +1,18 @@
 <?php
 
-namespace Xefi\Faker;
+namespace Xefi\Faker\Container;
 
 use Closure;
+use Xefi\Faker\Container\Traits\HasExtensions;
+use Xefi\Faker\Container\Traits\HasLocale;
+use Xefi\Faker\Container\Traits\HasStrategies;
 use Xefi\Faker\Exceptions\MaximumTriesReached;
-use Xefi\Faker\Extensions\Extension;
-use Xefi\Faker\Extensions\Traits\HasExtensions;
 use Xefi\Faker\Manifests\PackageManifest;
 use Xefi\Faker\Providers\ProviderRepository;
-use Xefi\Faker\Strategies\Traits\HasStrategies;
 
 class Container
 {
-    use HasStrategies, HasExtensions;
+    use HasStrategies, HasExtensions, HasLocale;
 
     /**
      * The container application bootstrappers.
@@ -158,5 +158,5 @@ class Container
     }
 }
 
-// @TODO: how to handle multi language ???? !!!!!!!!
 // @TODO: generate mixin ?
+// @TODO: handle regenerate manifests

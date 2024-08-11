@@ -6,8 +6,6 @@ use ReflectionClass;
 
 class Extension
 {
-    protected string $name;
-
     /**
      * Returns the extension name.
      *
@@ -15,7 +13,7 @@ class Extension
      */
     public function getName(): string
     {
-        return $this->name ??
+        return
             // Here we convert the class name to kebab case
             strtolower(
                 preg_replace('/([a-z])([A-Z])/', '$1-$2', (

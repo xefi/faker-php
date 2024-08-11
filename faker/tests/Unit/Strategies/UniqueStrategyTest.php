@@ -2,7 +2,6 @@
 
 namespace Strategies;
 
-use Xefi\Faker\Container;
 use Xefi\Faker\Exceptions\MaximumTriesReached;
 use Xefi\Faker\Faker;
 use Xefi\Faker\Strategies\UniqueStrategy;

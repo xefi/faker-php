@@ -2,7 +2,7 @@
 
 namespace Xefi\Faker\Tests\Unit;
 
-use Xefi\Faker\Container;
+use Xefi\Faker\Container\Container;
 use Xefi\Faker\Strategies\UniqueStrategy;
 
 class TestCase extends \PHPUnit\Framework\TestCase

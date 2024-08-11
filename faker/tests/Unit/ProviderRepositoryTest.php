@@ -1,10 +1,6 @@
 <?php declare(strict_types=1);
 
 
-use Xefi\Faker\Container;
-use Xefi\Faker\Manifests\PackageManifest;
-use Xefi\Faker\Tests\Support\Extensions\NumberTestExtension;
-use Xefi\Faker\Tests\Support\Extensions\StringTestExtension;
 use Xefi\Faker\Tests\Unit\TestCase;
 
 final class ProviderRepositoryTest extends TestCase

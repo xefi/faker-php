@@ -1,8 +1,7 @@
 <?php
 
-namespace Xefi\Faker\Strategies\Traits;
+namespace Xefi\Faker\Container\Traits;
 
-use Xefi\Faker\Strategies\Strategy;
 use Xefi\Faker\Strategies\UniqueStrategy;
 
 trait HasStrategies

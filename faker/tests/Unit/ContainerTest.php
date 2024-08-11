@@ -2,8 +2,7 @@
 
 namespace Xefi\Faker\Tests\Unit;
 
-use Xefi\Faker\Container;
-use Xefi\Faker\Manifests\PackageManifest;
+use Xefi\Faker\Container\Container;
 use Xefi\Faker\Tests\Support\Extensions\NumberTestExtension;
 use Xefi\Faker\Tests\Support\Extensions\StringTestExtension;
 
