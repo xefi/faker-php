@@ -88,7 +88,7 @@ class PackageManifest
         }
 
 
-        if (! is_file($this->manifestPath)) {
+        if ($this->shouldRecompile()) {
             $this->build();
         }
 
@@ -125,6 +125,18 @@ class PackageManifest
     }
 
     /**
+     * Determine if the manifest should be compiled.
+     *
+     * @return bool
+     */
+    public function shouldRecompile():bool
+    {
+        return !is_file($this->manifestPath) ||
+            // We check here if the manifest has been generated before changing the installed.json composer file
+            filemtime($this->manifestPath) <= filemtime($this->vendorPath.'/composer/installed.json');
+    }
+
+    /**
      * Write the given manifest array to disk.
      *
      * @param  array  $manifest
@@ -132,7 +144,7 @@ class PackageManifest
      *
      * @throws \Exception
      */
-    protected function write(array $manifest)
+    protected function write(array $manifest):void
     {
         if (! is_writable($dirname = dirname($this->manifestPath))) {
             throw new Exception("The {$dirname} directory must be present and writable.");

@@ -159,4 +159,3 @@ class Container
 }
 
 // @TODO: generate mixin ?
-// @TODO: handle regenerate manifests

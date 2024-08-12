@@ -17,4 +17,23 @@ final class PackageManifestTest extends TestCase
         $this->assertNotContains(['common-package' => []], $manifest->providers());
         unlink('/tmp/packages.php');
     }
+
+    public function testShouldRecompile()
+    {
+        @unlink('/tmp/packages.php');
+        $manifest = new PackageManifest(__DIR__.'/../Support', '/tmp/packages.php');
+        $manifest->build();
+
+        $this->assertFalse($manifest->shouldRecompile());
+
+        // Test on current time
+        touch(__DIR__.'/../Support/vendor/composer/installed.json');
+        $this->assertTrue($manifest->shouldRecompile());
+
+        // Test on future
+        touch(__DIR__.'/../Support/vendor/composer/installed.json', time() + 1);
+        $this->assertTrue($manifest->shouldRecompile());
+
+        unlink('/tmp/packages.php');
+    }
 }
