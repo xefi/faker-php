@@ -21,7 +21,7 @@ trait HasExtensions
      *
      * @var array
      */
-    protected static array $extensionsMethods;
+    protected static array $extensionsMethods = [];
 
     /**
      * Resolve an array of extensions through the container.
@@ -136,6 +136,16 @@ trait HasExtensions
     public function getExtensions(): array
     {
         return static::$extensions;
+    }
+
+    /**
+     * Get the container extensions methods.
+     *
+     * @return array
+     */
+    public function getExtensionMethods(): array
+    {
+        return static::$extensionsMethods;
     }
 
     /**

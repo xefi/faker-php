@@ -23,6 +23,7 @@ final class PackageManifestTest extends TestCase
         @unlink('/tmp/packages.php');
         $manifest = new PackageManifest(__DIR__.'/../Support', '/tmp/packages.php');
         $manifest->build();
+        touch(__DIR__.'/../Support/vendor/composer/installed.json', time() - 1);
 
         $this->assertFalse($manifest->shouldRecompile());
 

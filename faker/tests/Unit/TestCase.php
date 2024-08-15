@@ -10,7 +10,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected function setUp(): void
     {
         Container::basePath(__DIR__.'/../Support');
-        Container::manifestPath('/tmp/packages.php');
+        Container::packageManifestPath('/tmp/packages.php');
+        Container::containerMixinManifestPath('/tmp/ContainerMixin.php');
     }
 
     protected function tearDown(): void
@@ -20,7 +21,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $container->forgetBootstrappers();
 
         $container::basePath('./');
-        $container::manifestPath('packages.php');
+        $container::packageManifestPath('packages.php');
+        $container::containerMixinManifestPath('./vendor/xefi/faker/src/Container/ContainerMixin.php');
 
         (new UniqueStrategy)->forgetSeeds();
     }

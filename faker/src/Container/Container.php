@@ -7,9 +7,13 @@ use Xefi\Faker\Container\Traits\HasExtensions;
 use Xefi\Faker\Container\Traits\HasLocale;
 use Xefi\Faker\Container\Traits\HasStrategies;
 use Xefi\Faker\Exceptions\MaximumTriesReached;
+use Xefi\Faker\Manifests\ContainerMixinManifest;
 use Xefi\Faker\Manifests\PackageManifest;
 use Xefi\Faker\Providers\ProviderRepository;
 
+/**
+ * @mixin ContainerMixin
+ */
 class Container
 {
     use HasStrategies, HasExtensions, HasLocale;
@@ -33,30 +37,51 @@ class Container
      *
      * @var string
      */
-    protected static string $manifestPath = 'packages.php';
+    protected static string $packageManifestPath = 'packages.php';
+
+    /**
+     * The manifest path where the providers will be stored
+     *
+     * @var string
+     */
+    protected static string $containerMixinManifestPath = './vendor/xefi/faker/src/Container/ContainerMixin.php';
 
     /**
      * Create the container instance
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(bool $shouldBuildContainerMixin = true)
     {
         if (!$this->areExtensionsInitialized()) {
             $this->registerConfiguredProviders();
 
             $this->bootstrap();
         }
+
+        if ($shouldBuildContainerMixin) {
+            $this->buildContainerMixinManifest();
+        }
     }
 
     /**
-     * Set the manifest path
+     * Set the package manifest path
      *
      * @param string $manifestPath
      * @return void
      */
-    public static function manifestPath(string $manifestPath) {
-        static::$manifestPath = $manifestPath;
+    public static function packageManifestPath(string $manifestPath) {
+        static::$packageManifestPath = $manifestPath;
+    }
+
+    /**
+     * Set the container mixin manifest path
+     *
+     * @param string $manifestPath
+     * @return void
+     */
+    public static function containerMixinManifestPath(string $containerMixinManifestPath) {
+        static::$containerMixinManifestPath = $containerMixinManifestPath;
     }
 
     /**
@@ -70,13 +95,22 @@ class Container
     }
 
     /**
+     * Build container mixin manifest
+     */
+    protected function buildContainerMixinManifest()
+    {
+        $containerMixinManifest = new ContainerMixinManifest(static::$basePath, static::$containerMixinManifestPath);
+        $containerMixinManifest->buildIfShould($this->getExtensionMethods(), $this->getExtensions());
+    }
+
+    /**
      * Register all of the configured providers.
      *
      * @return void
      */
     protected function registerConfiguredProviders()
     {
-        $packageManifest = new PackageManifest(static::$basePath, static::$manifestPath);
+        $packageManifest = new PackageManifest(static::$basePath, static::$packageManifestPath);
 
         $providers = $packageManifest->providers();
 
@@ -157,5 +191,3 @@ class Container
         return $this->run($method, $parameters);
     }
 }
-
-// @TODO: generate mixin ?
