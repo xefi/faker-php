@@ -3,7 +3,10 @@
   "type": "library",
   "description": "Faker allows you to generate realistic fake data for your php applications",
   "keywords": [
-    ""
+    "faker",
+    "data",
+    "seeding",
+    "fixtures"
   ],
   "license": "MIT",
   "authors": [
