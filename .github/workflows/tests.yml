@@ -42,7 +42,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer i -W --prefer-dist --no-progress
+        run: composer i --prefer-dist --no-progress
 
       - name: Run test suite
         run: vendor/bin/phpunit
