@@ -1,5 +1,5 @@
 {
-  "name": "xefi/faker",
+  "name": "xefi/faker-php",
   "type": "library",
   "description": "Faker allows you to generate realistic fake data for your php applications",
   "keywords": [
