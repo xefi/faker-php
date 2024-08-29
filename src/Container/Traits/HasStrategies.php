@@ -7,29 +7,32 @@ use Xefi\Faker\Strategies\UniqueStrategy;
 trait HasStrategies
 {
     /**
-     * The current instance strategies
+     * The current instance strategies.
      *
      * @var array
      */
     protected array $strategies = [];
 
     /**
-     * Add a unique strategy
+     * Add a unique strategy.
      *
      * @param string $seed
-     * @param int $maxRetries
+     * @param int    $maxRetries
+     *
      * @return $this
      */
-    public function unique(string $seed = '') {
+    public function unique(string $seed = '')
+    {
         $this->strategies[] = UniqueStrategy::forSeed($seed);
 
         return $this;
     }
 
     /**
-     * Determine if a generated value passes the strategies
+     * Determine if a generated value passes the strategies.
      *
      * @param $generatedValue
+     *
      * @return bool
      */
     public function passStrategies($generatedValue): bool
@@ -44,7 +47,7 @@ trait HasStrategies
     }
 
     /**
-     * Reset the registered strategies
+     * Reset the registered strategies.
      *
      * @return void
      */
@@ -54,7 +57,7 @@ trait HasStrategies
     }
 
     /**
-     * Returns the current strategies for the container
+     * Returns the current strategies for the container.
      *
      * @return array
      */

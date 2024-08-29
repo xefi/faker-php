@@ -16,7 +16,7 @@ class UniqueStrategyTest extends TestCase
         $container = $faker->unique();
 
         $this->assertEquals(
-            [new UniqueStrategy],
+            [new UniqueStrategy()],
             $container->getStrategies()
         );
     }

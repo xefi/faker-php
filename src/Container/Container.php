@@ -16,7 +16,9 @@ use Xefi\Faker\Providers\ProviderRepository;
  */
 class Container
 {
-    use HasStrategies, HasExtensions, HasLocale;
+    use HasStrategies;
+    use HasExtensions;
+    use HasLocale;
 
     /**
      * The container application bootstrappers.
@@ -26,28 +28,28 @@ class Container
     protected static array $bootstrappers = [];
 
     /**
-     * The base path of the application
+     * The base path of the application.
      *
      * @var string
      */
     protected static string $basePath = './';
 
     /**
-     * The manifest path where the providers will be stored
+     * The manifest path where the providers will be stored.
      *
      * @var string
      */
     protected static string $packageManifestPath = 'packages.php';
 
     /**
-     * The manifest path where the providers will be stored
+     * The manifest path where the providers will be stored.
      *
      * @var string
      */
     protected static string $containerMixinManifestPath = './vendor/xefi/faker/src/Container/ContainerMixin.php';
 
     /**
-     * Create the container instance
+     * Create the container instance.
      *
      * @return void
      */
@@ -65,37 +67,43 @@ class Container
     }
 
     /**
-     * Set the package manifest path
+     * Set the package manifest path.
      *
      * @param string $manifestPath
+     *
      * @return void
      */
-    public static function packageManifestPath(string $manifestPath) {
+    public static function packageManifestPath(string $manifestPath)
+    {
         static::$packageManifestPath = $manifestPath;
     }
 
     /**
-     * Set the container mixin manifest path
+     * Set the container mixin manifest path.
      *
      * @param string $manifestPath
+     *
      * @return void
      */
-    public static function containerMixinManifestPath(string $containerMixinManifestPath) {
+    public static function containerMixinManifestPath(string $containerMixinManifestPath)
+    {
         static::$containerMixinManifestPath = $containerMixinManifestPath;
     }
 
     /**
-     * Set the base path
+     * Set the base path.
      *
      * @param string $basePath
+     *
      * @return void
      */
-    public static function basePath(string $basePath) {
+    public static function basePath(string $basePath)
+    {
         static::$basePath = $basePath;
     }
 
     /**
-     * Build container mixin manifest
+     * Build container mixin manifest.
      */
     protected function buildContainerMixinManifest()
     {
@@ -127,6 +135,7 @@ class Container
      * Register a console "starting" bootstrapper.
      *
      * @param Closure $callback
+     *
      * @return void
      */
     public static function starting(Closure $callback): void
@@ -147,7 +156,7 @@ class Container
     }
 
     /**
-     * Reset the bootstrappers
+     * Reset the bootstrappers.
      *
      * @return void
      */
@@ -158,6 +167,7 @@ class Container
 
     /**
      * @param $method
+     *
      * @return mixed
      */
     public function run($method, $parameters)
@@ -169,8 +179,7 @@ class Container
             if (++$tries > 20000) {
                 throw new MaximumTriesReached(sprintf('Maximum tries of %d reached without finding a value', 20000));
             }
-        } while(!$this->passStrategies($generatedValue));
-
+        } while (!$this->passStrategies($generatedValue));
 
         // Here we assume the container has done his job and reset the strategies
         // in case the user wants to run the method again on another extension
@@ -182,8 +191,9 @@ class Container
     /**
      * Dynamically call the extension.
      *
-     * @param  string  $method
-     * @param  array  $parameters
+     * @param string $method
+     * @param array  $parameters
+     *
      * @return mixed
      */
     public function __call($method, $parameters)

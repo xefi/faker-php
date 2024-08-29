@@ -9,16 +9,17 @@ class UniqueStrategy extends Strategy
     use HasSeeds;
 
     /**
-     * The element already tried
+     * The element already tried.
      *
      * @var array
      */
     protected array $tried = [];
 
     /**
-     * Handle the given strategy
+     * Handle the given strategy.
      *
      * @param $generatedValue
+     *
      * @return bool
      */
     public function pass($generatedValue): bool
@@ -28,6 +29,7 @@ class UniqueStrategy extends Strategy
         }
 
         $this->tried[] = $generatedValue;
+
         return true;
     }
 }

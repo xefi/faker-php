@@ -1,7 +1,7 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
-use Xefi\Faker\Manifests\PackageManifest;
 use Xefi\Faker\Tests\Unit\TestCase;
 
 final class ContainerMixinManifestTest extends TestCase
@@ -13,7 +13,7 @@ final class ContainerMixinManifestTest extends TestCase
         $container = new \Xefi\Faker\Container\Container();
         $container->forgetExtensions();
         $container->resolveExtensions([
-            \Xefi\Faker\Tests\Support\Extensions\MixinTestExtension::class
+            \Xefi\Faker\Tests\Support\Extensions\MixinTestExtension::class,
         ]);
     }
 
@@ -63,7 +63,6 @@ final class ContainerMixinManifestTest extends TestCase
         $manifest = new \Xefi\Faker\Manifests\ContainerMixinManifest(__DIR__.'/../Support', '/tmp/ContainerMixin.php');
         $manifest->build($container->getExtensionMethods(), $container->getExtensions());
         touch(__DIR__.'/../Support/vendor/composer/installed.json', time() - 1);
-
 
         $this->assertFalse($manifest->shouldRecompile());
 

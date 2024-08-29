@@ -1,11 +1,11 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 use Xefi\Faker\Tests\Unit\TestCase;
 
 final class ProviderRepositoryTest extends TestCase
 {
-
     public function testCreateProvider()
     {
         $repo = new \Xefi\Faker\Providers\ProviderRepository();
@@ -25,7 +25,7 @@ final class ProviderRepositoryTest extends TestCase
 
         $repo = new \Xefi\Faker\Providers\ProviderRepository();
         $repo->load([
-            $testServiceProvider
+            $testServiceProvider,
         ]);
     }
 }

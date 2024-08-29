@@ -9,7 +9,7 @@ class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
         (new \Xefi\Faker\Container\Container())->resolveExtensions([
             \Xefi\Faker\Tests\Support\Extensions\EnEnExtensionTest::class,
             \Xefi\Faker\Tests\Support\Extensions\EnUsExtensionTest::class,
-            \Xefi\Faker\Tests\Support\Extensions\FrFrExtensionTest::class
+            \Xefi\Faker\Tests\Support\Extensions\FrFrExtensionTest::class,
         ]);
     }
 
@@ -17,12 +17,11 @@ class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
     {
         $this->assertEquals(
             [
-                'locales' =>
-                    [
-                        'en-EN' => new \Xefi\Faker\Tests\Support\Extensions\EnEnExtensionTest(new \Random\Randomizer()),
-                        'en-US' => new \Xefi\Faker\Tests\Support\Extensions\EnUsExtensionTest(new \Random\Randomizer()),
-                        'fr-FR' => new \Xefi\Faker\Tests\Support\Extensions\FrFrExtensionTest(new \Random\Randomizer()),
-                    ]
+                'locales' => [
+                    'en-EN' => new \Xefi\Faker\Tests\Support\Extensions\EnEnExtensionTest(new \Random\Randomizer()),
+                    'en-US' => new \Xefi\Faker\Tests\Support\Extensions\EnUsExtensionTest(new \Random\Randomizer()),
+                    'fr-FR' => new \Xefi\Faker\Tests\Support\Extensions\FrFrExtensionTest(new \Random\Randomizer()),
+                ],
             ],
             (new \Xefi\Faker\Container\Container())->getExtensions()['locale-extension-test']
         );
