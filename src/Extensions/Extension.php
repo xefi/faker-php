@@ -2,10 +2,18 @@
 
 namespace Xefi\Faker\Extensions;
 
+use Random\Randomizer;
 use ReflectionClass;
 
 class Extension
 {
+    protected Randomizer $randomizer;
+
+    public function __construct(Randomizer $randomizer)
+    {
+        $this->randomizer = $randomizer;
+    }
+
     /**
      * Returns the extension name.
      *
