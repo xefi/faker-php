@@ -19,9 +19,9 @@ class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
             [
                 'locales' =>
                     [
-                        'en-EN' => new \Xefi\Faker\Tests\Support\Extensions\EnEnExtensionTest(),
-                        'en-US' => new \Xefi\Faker\Tests\Support\Extensions\EnUsExtensionTest(),
-                        'fr-FR' => new \Xefi\Faker\Tests\Support\Extensions\FrFrExtensionTest(),
+                        'en-EN' => new \Xefi\Faker\Tests\Support\Extensions\EnEnExtensionTest(new \Random\Randomizer()),
+                        'en-US' => new \Xefi\Faker\Tests\Support\Extensions\EnUsExtensionTest(new \Random\Randomizer()),
+                        'fr-FR' => new \Xefi\Faker\Tests\Support\Extensions\FrFrExtensionTest(new \Random\Randomizer()),
                     ]
             ],
             (new \Xefi\Faker\Container\Container())->getExtensions()['locale-extension-test']

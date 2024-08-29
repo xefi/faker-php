@@ -13,17 +13,4 @@ class TestCase extends \PHPUnit\Framework\TestCase
         Container::packageManifestPath('/tmp/packages.php');
         Container::containerMixinManifestPath('/tmp/ContainerMixin.php');
     }
-
-    protected function tearDown(): void
-    {
-        $container = new Container();
-        $container->forgetExtensions();
-        $container->forgetBootstrappers();
-
-        $container::basePath('./');
-        $container::packageManifestPath('packages.php');
-        $container::containerMixinManifestPath('./vendor/xefi/faker/src/Container/ContainerMixin.php');
-
-        (new UniqueStrategy)->forgetSeeds();
-    }
 }

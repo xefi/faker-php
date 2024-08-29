@@ -2,6 +2,7 @@
 
 namespace Xefi\Faker\Tests\Unit;
 
+use Random\Randomizer;
 use Xefi\Faker\Container\Container;
 use Xefi\Faker\Tests\Support\Extensions\NumberTestExtension;
 use Xefi\Faker\Tests\Support\Extensions\StringTestExtension;
@@ -27,8 +28,8 @@ final class ContainerTest extends TestCase
 
         $this->assertEquals(
             [
-                'number-test-extension' => new NumberTestExtension,
-                'string-test-extension' => new StringTestExtension
+                'number-test-extension' => new NumberTestExtension(new Randomizer()),
+                'string-test-extension' => new StringTestExtension(new Randomizer())
             ],
             $container->getExtensions()
         );

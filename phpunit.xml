@@ -5,6 +5,7 @@
          colors="true"
          displayDetailsOnTestsThatTriggerWarnings="true"
          displayDetailsOnTestsThatTriggerDeprecations="true"
+         backupStaticProperties="true"
 >
     <testsuites>
         <testsuite name="Unit">

@@ -2,6 +2,7 @@
 
 namespace Xefi\Faker\Container\Traits;
 
+use Random\Randomizer;
 use ReflectionClass;
 use Xefi\Faker\Container\Container;
 use Xefi\Faker\Extensions\Extension;
@@ -46,7 +47,7 @@ trait HasExtensions
      */
     protected function resolve(\Xefi\Faker\Extensions\Extension|string $extension): Container
     {
-        $instance = $extension instanceof Extension ? $extension : new $extension;
+        $instance = $extension instanceof Extension ? $extension : new $extension(new Randomizer);
 
         // If the extension supports locale variations
         if (in_array(
