@@ -11,14 +11,14 @@ use Xefi\Faker\Extensions\Traits\HasLocale;
 trait HasExtensions
 {
     /**
-     * The faker extensions
+     * The faker extensions.
      *
      * @var array
      */
     protected static array $extensions = [];
 
     /**
-     * The extensions methods linked to extension name
+     * The extensions methods linked to extension name.
      *
      * @var array
      */
@@ -27,7 +27,8 @@ trait HasExtensions
     /**
      * Resolve an array of extensions through the container.
      *
-     * @param  array  $extensions
+     * @param array $extensions
+     *
      * @return $this
      */
     public function resolveExtensions(array $extensions)
@@ -43,11 +44,12 @@ trait HasExtensions
      * Add an extension, resolving through the application.
      *
      * @param Extension|string $extension
+     *
      * @return Container
      */
     protected function resolve(\Xefi\Faker\Extensions\Extension|string $extension): Container
     {
-        $instance = $extension instanceof Extension ? $extension : new $extension(new Randomizer);
+        $instance = $extension instanceof Extension ? $extension : new $extension(new Randomizer());
 
         // If the extension supports locale variations
         if (in_array(
@@ -63,7 +65,8 @@ trait HasExtensions
     /**
      * Add an extension to the container.
      *
-     * @param  \Xefi\Faker\Extensions\Extension  $extension
+     * @param \Xefi\Faker\Extensions\Extension $extension
+     *
      * @return \Xefi\Faker\Extensions\Extension
      */
     protected function addExtension(Extension $extension): Container
@@ -94,14 +97,15 @@ trait HasExtensions
     /**
      * Add an extension to the container.
      *
-     * @param  \Xefi\Faker\Extensions\Extension  $extension
+     * @param \Xefi\Faker\Extensions\Extension $extension
+     *
      * @return \Xefi\Faker\Extensions\Extension
      */
     protected function addLocaleExtension(Extension $extension): Container
     {
         if (!isset(static::$extensions[$extension->getName()])) {
             static::$extensions[$extension->getName()] = [
-                'locales' => []
+                'locales' => [],
             ];
         }
 
@@ -150,7 +154,7 @@ trait HasExtensions
     }
 
     /**
-     * See if the extensions has already been set
+     * See if the extensions has already been set.
      *
      * @return bool
      */
@@ -171,13 +175,15 @@ trait HasExtensions
     }
 
     /**
-     * Resolve the method called to extensions
+     * Resolve the method called to extensions.
      *
      * @param string $method
-     * @param array $parameters
+     * @param array  $parameters
+     *
      * @return mixed
      */
-    public function callExtensionMethod(string $method, array $parameters = []) {
+    public function callExtensionMethod(string $method, array $parameters = [])
+    {
         if (!isset(static::$extensionsMethods[$method])) {
             throw new \BadMethodCallException(sprintf('The %s method does not exist', $method));
         }
@@ -187,8 +193,7 @@ trait HasExtensions
         // We assume we here have multiple extensions declined by locale, we will try
         // to get the extension with the current locale, defaulting to first element
         if (is_array($extension) && isset($extension['locales'])) {
-
-            if(!isset($extension['locales'][$this->getLocale()])) {
+            if (!isset($extension['locales'][$this->getLocale()])) {
                 trigger_error(sprintf('[XEFI FAKER] The \'%s\' method does not exist for locale \'%s\' defaulting to \'en-US\'', $method, $this->getLocale()), E_USER_WARNING);
             }
 

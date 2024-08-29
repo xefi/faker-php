@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Xefi\Faker\Tests\Unit;
 
@@ -29,7 +31,7 @@ final class ContainerTest extends TestCase
         $this->assertEquals(
             [
                 'number-test-extension' => new NumberTestExtension(new Randomizer()),
-                'string-test-extension' => new StringTestExtension(new Randomizer())
+                'string-test-extension' => new StringTestExtension(new Randomizer()),
             ],
             $container->getExtensions()
         );

@@ -10,6 +10,7 @@ trait HasSeeds
      * Get or create an instance for the given seed.
      *
      * @param string $seed
+     *
      * @return static
      */
     public static function forSeed(string $seed, ...$parameters): static
@@ -18,11 +19,12 @@ trait HasSeeds
     }
 
     /**
-     * Forget all the registered seeds
+     * Forget all the registered seeds.
      *
      * @return void
      */
-    public function forgetSeeds() {
+    public function forgetSeeds()
+    {
         static::$seeds = [];
     }
 }

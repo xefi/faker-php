@@ -7,7 +7,8 @@ class ProviderRepository
     /**
      * Register the application service providers.
      *
-     * @param  array  $providers
+     * @param array $providers
+     *
      * @return void
      */
     public function load(array $providers)
@@ -19,16 +20,16 @@ class ProviderRepository
         }
     }
 
-
     /**
      * Create a new provider instance.
      *
-     * @param  string  $provider
+     * @param string $provider
+     *
      * @return \Xefi\Faker\Providers\Provider
      */
     public function createProvider($provider): Provider
     {
-        if (is_object($provider)){
+        if (is_object($provider)) {
             return $provider;
         }
 

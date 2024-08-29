@@ -9,7 +9,8 @@ class Provider
     /**
      * Register the package's custom Faker extensions.
      *
-     * @param  array  $extensions
+     * @param array $extensions
+     *
      * @return void
      */
     public function extensions(array $extensions)

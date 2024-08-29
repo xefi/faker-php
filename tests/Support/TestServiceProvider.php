@@ -12,7 +12,7 @@ class TestServiceProvider extends Provider
     {
         $this->extensions([
             NumberTestExtension::class,
-            StringTestExtension::class
+            StringTestExtension::class,
         ]);
     }
 }

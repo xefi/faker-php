@@ -6,8 +6,8 @@ use Xefi\Faker\Extensions\Extension;
 
 class StringTestExtension extends Extension
 {
-
-    public function returnHello() {
+    public function returnHello()
+    {
         return 'hello';
     }
 }

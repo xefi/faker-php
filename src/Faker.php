@@ -3,7 +3,6 @@
 namespace Xefi\Faker;
 
 use Xefi\Faker\Container\Container;
-use Xefi\Faker\Container\Traits\HasLocale;
 
 /**
  * @mixin Container
@@ -11,7 +10,7 @@ use Xefi\Faker\Container\Traits\HasLocale;
 class Faker
 {
     /**
-     * The current locale format (BCP 47 Code)
+     * The current locale format (BCP 47 Code).
      *
      * @var string
      */
@@ -25,6 +24,6 @@ class Faker
     public function __call(string $method, array $parameters)
     {
         // We simply redirect calls to container to create a new container for each faker call
-        return (new Container)->locale($this->locale)->{$method}(...$parameters);
+        return (new Container())->locale($this->locale)->{$method}(...$parameters);
     }
 }
