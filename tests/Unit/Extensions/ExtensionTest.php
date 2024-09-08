@@ -35,7 +35,7 @@ class ExtensionTest extends TestCase
         $elements = range(1, 100);
 
         $method = (new ReflectionClass(Extension::class))->getMethod('pickArrayRandomElements');
-        $result = $method->invoke(new Extension(new Randomizer), $elements, 5);
+        $result = $method->invoke(new Extension(new Randomizer()), $elements, 5);
 
         $this->assertCount(
             5,
@@ -53,7 +53,7 @@ class ExtensionTest extends TestCase
         $elements = range(1, 100);
 
         $method = (new ReflectionClass(Extension::class))->getMethod('pickArrayRandomElement');
-        $result = $method->invoke(new Extension(new Randomizer), $elements);
+        $result = $method->invoke(new Extension(new Randomizer()), $elements);
 
         $this->assertIsNotArray($result);
         $this->assertGreaterThanOrEqual(1, $result);
