@@ -42,6 +42,6 @@ class Extension
 
     protected function pickArrayRandomElement(array $array)
     {
-        return $this->pickArrayRandomElement($array)[0];
+        return $this->pickArrayRandomElements($array)[0];
     }
 }
