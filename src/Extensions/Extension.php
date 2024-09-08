@@ -32,4 +32,14 @@ class Extension
                 )
             );
     }
+
+    protected function pickArrayRandomElements(array $array, int $elements = 1) {
+        $keys = $this->randomizer->pickArrayKeys($array, $elements);
+
+        return array_intersect_key($array, array_flip($keys));
+    }
+
+    protected function pickArrayRandomElement(array $array) {
+        return $this->pickArrayRandomElement($array)[0];
+    }
 }
