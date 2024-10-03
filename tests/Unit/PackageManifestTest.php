@@ -12,7 +12,9 @@ final class PackageManifestTest extends TestCase
         @unlink('/tmp/packages.php');
         $manifest = new PackageManifest(__DIR__.'/../Support', '/tmp/packages.php');
         $this->assertEquals(
-            ['autoload-needed' => [\Xefi\Faker\Tests\Support\TestServiceProvider::class]],
+            [
+                'autoload-needed' => [\Xefi\Faker\Tests\Support\TestServiceProvider::class]
+            ],
             $manifest->providers()
         );
         $this->assertNotContains(['common-package' => []], $manifest->providers());

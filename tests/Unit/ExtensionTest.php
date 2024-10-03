@@ -1,6 +1,6 @@
 <?php
 
-namespace Extensions;
+namespace Xefi\Faker\Tests\Unit;
 
 use Random\Randomizer;
 use ReflectionClass;

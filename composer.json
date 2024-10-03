@@ -34,5 +34,12 @@
   },
   "config": {
     "sort-packages": true
+  },
+  "extra": {
+    "faker": {
+      "providers": [
+        "Xefi\\Faker\\FakerServiceProvider"
+      ]
+    }
   }
 }

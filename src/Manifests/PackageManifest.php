@@ -3,6 +3,7 @@
 namespace Xefi\Faker\Manifests;
 
 use Exception;
+use Xefi\Faker\FakerServiceProvider;
 
 class PackageManifest
 {
