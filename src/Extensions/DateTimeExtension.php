@@ -28,19 +28,4 @@ class DateTimeExtension extends Extension
     {
         return $this->randomizer->getInt($this->formatTimestamp($fromTimestamp), $this->formatTimestamp($toTimestamp));
     }
-
-    public function dateTimeBetween(DateTime|int|string $from = '-30 years', DateTime|int|string $to = 'now'): DateTime
-    {
-        $fromTimestamp = $this->formatTimestamp($from);
-        $toTimestamp = $this->formatTimestamp($to);
-
-        // @TODO: a tester
-        if ($fromTimestamp > $toTimestamp) {
-            throw new \InvalidArgumentException('Start date must be anterior to end date.');
-        }
-
-        $timestamp = $this->randomizer->getInt($fromTimestamp, $toTimestamp);
-
-        return new \DateTime('@'.$timestamp);
-    }
 }

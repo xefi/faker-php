@@ -28,8 +28,6 @@ final class DatetimeExtensionTest extends TestCase
     {
         $faker = new Container(false);
 
-        $results = [];
-
         $this->expectException(\ValueError::class);
         $faker->timestamp(5000, 0);
     }
