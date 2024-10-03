@@ -1,7 +1,6 @@
 <?php
-namespace Xefi\Faker\Extensions;
 
-use Xefi\Faker\Extensions\Extension;
+namespace Xefi\Faker\Extensions;
 
 class StringsExtension extends Extension
 {
@@ -33,12 +32,12 @@ class StringsExtension extends Extension
         return chr($this->randomizer->getInt(97, 122));
     }
 
-    public function shuffle(array|string $needle) : array|string
+    public function shuffle(array|string $needle): array|string
     {
         return $this->{'shuffle'.gettype($needle)}($needle);
     }
 
-    public function shuffleString(string $needle) : string
+    public function shuffleString(string $needle): string
     {
         return $this->randomizer->shuffleBytes($needle);
     }
@@ -51,14 +50,14 @@ class StringsExtension extends Extension
     public function convertCharacters(string $string): string
     {
         $patterns = [
-            '#' => fn() => $this->randomizer->getInt(0, 9),
-            '?' => fn() => $this->letter(),
+            '#' => fn () => $this->randomizer->getInt(0, 9),
+            '?' => fn () => $this->letter(),
         ];
 
         // Here we dynamically define the wildcard to take another option
-        $patterns['*'] = fn() => $this->pickArrayRandomElement($patterns)();
+        $patterns['*'] = fn () => $this->pickArrayRandomElement($patterns)();
 
-        for($i = 0; $i < strlen($string); $i++) {
+        for ($i = 0; $i < strlen($string); $i++) {
             $string[$i] = isset($patterns[$string[$i]]) ? $patterns[$string[$i]]() : $string[$i];
         }
 

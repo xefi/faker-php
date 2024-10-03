@@ -1,7 +1,6 @@
 <?php
-namespace Xefi\Faker\Extensions;
 
-use Xefi\Faker\Extensions\Extension;
+namespace Xefi\Faker\Extensions;
 
 class LoremExtension extends Extension
 {
@@ -29,10 +28,10 @@ class LoremExtension extends Extension
         'praemium', 'regnum', 'sacrificium', 'scientia', 'sermo', 'signum', 'species', 'spes', 'tenebrae',
         'terrae', 'usus', 'ventus', 'victor', 'villa', 'votum', 'vulgaris', 'aeger', 'aquaeductus', 'bona',
         'celeritas', 'corona', 'credo', 'cubiculum', 'decus', 'delirium', 'dens', 'digitus', 'educatio', 'exemplum',
-        'fidelitas', 'flos'
+        'fidelitas', 'flos',
     ];
 
-    public function word() : string
+    public function word(): string
     {
         return $this->pickArrayRandomElement($this->latinWords);
     }

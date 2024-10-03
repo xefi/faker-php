@@ -6,7 +6,6 @@ use Random\Randomizer;
 use ReflectionClass;
 use Xefi\Faker\Container\Container;
 use Xefi\Faker\Extensions\Extension;
-use Xefi\Faker\Tests\Unit\TestCase;
 
 class ExtensionTest extends TestCase
 {

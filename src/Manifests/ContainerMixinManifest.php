@@ -93,7 +93,7 @@ class ContainerMixinManifest
                     if ($type instanceof \ReflectionUnionType) {
                         $type = new Intersection(
                             array_map(
-                                fn($type) => $typeResolver->resolve($type),
+                                fn ($type) => $typeResolver->resolve($type),
                                 $type->getTypes()
                             )
                         );

@@ -1,9 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Xefi\Faker\Tests\Unit;
-
-use Xefi\Faker\Tests\Unit\TestCase;
 
 final class ContainerMixinManifestTest extends TestCase
 {

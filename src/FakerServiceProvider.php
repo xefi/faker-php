@@ -11,7 +11,6 @@ use Xefi\Faker\Providers\Provider;
 
 class FakerServiceProvider extends Provider
 {
-
     public function boot(): void
     {
         $this->extensions([
@@ -19,7 +18,7 @@ class FakerServiceProvider extends Provider
             LoremExtension::class,
             NumbersExtension::class,
             StringsExtension::class,
-            HashExtension::class
+            HashExtension::class,
         ]);
     }
 }

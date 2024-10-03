@@ -1,9 +1,9 @@
 <?php
+
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
 use ReflectionClass;
 use Xefi\Faker\Container\Container;
-use Xefi\Faker\Faker;
 
 final class LoremExtensionTest extends TestCase
 {

@@ -1,7 +1,6 @@
 <?php
-namespace Xefi\Faker\Extensions;
 
-use Xefi\Faker\Extensions\Extension;
+namespace Xefi\Faker\Extensions;
 
 class NumbersExtension extends Extension
 {
@@ -20,7 +19,7 @@ class NumbersExtension extends Extension
         return $this->randomizer->getFloat($min, $max);
     }
 
-    public function float(int $min, int $max, int $decimals = 1, ): float
+    public function float(int $min, int $max, int $decimals = 1): float
     {
         return $this->numberBetween($min, $max) / max(10 * $decimals, 1);
     }

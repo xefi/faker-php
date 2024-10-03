@@ -1,8 +1,8 @@
 <?php
+
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
 use Xefi\Faker\Container\Container;
-use Xefi\Faker\Faker;
 
 final class NumbersExtensionTest extends TestCase
 {
