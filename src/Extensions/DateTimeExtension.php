@@ -19,12 +19,13 @@ class DateTimeExtension extends Extension
         return strtotime($timestamp);
     }
 
-    public function dateTime(DateTime|int|string $fromTimestamp = '-30 tears', DateTime|int|string $toTimestamp = 'now'):DateTime
+    public function dateTime(DateTime|int|string $fromTimestamp = '-30 tears', DateTime|int|string $toTimestamp = 'now'): DateTime
     {
         return new DateTime('@'.$this->timestamp($fromTimestamp, $toTimestamp));
     }
 
-    public function timestamp(DateTime|int|string $fromTimestamp = '-30 tears', DateTime|int|string $toTimestamp = 'now'):int {
+    public function timestamp(DateTime|int|string $fromTimestamp = '-30 tears', DateTime|int|string $toTimestamp = 'now'): int
+    {
         return $this->randomizer->getInt($this->formatTimestamp($fromTimestamp), $this->formatTimestamp($toTimestamp));
     }
 
@@ -33,7 +34,6 @@ class DateTimeExtension extends Extension
         $fromTimestamp = $this->formatTimestamp($from);
         $toTimestamp = $this->formatTimestamp($to);
 
-
         // @TODO: a tester
         if ($fromTimestamp > $toTimestamp) {
             throw new \InvalidArgumentException('Start date must be anterior to end date.');
@@ -41,6 +41,6 @@ class DateTimeExtension extends Extension
 
         $timestamp = $this->randomizer->getInt($fromTimestamp, $toTimestamp);
 
-        return new \DateTime('@' . $timestamp);
+        return new \DateTime('@'.$timestamp);
     }
 }

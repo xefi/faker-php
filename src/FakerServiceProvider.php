@@ -20,7 +20,7 @@ class FakerServiceProvider extends Provider
             NumbersExtension::class,
             StringsExtension::class,
             HashExtension::class,
-            DateTimeExtension::class
+            DateTimeExtension::class,
         ]);
     }
 }
