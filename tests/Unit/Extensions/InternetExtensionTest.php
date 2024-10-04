@@ -2,7 +2,6 @@
 
 namespace Extensions;
 
-use DateTime;
 use ReflectionClass;
 use Xefi\Faker\Container\Container;
 use Xefi\Faker\Tests\Unit\Extensions\TestCase;

@@ -2,35 +2,38 @@
 
 namespace Xefi\Faker\Extensions;
 
-use DateTime;
-
 class InternetExtension extends Extension
 {
     protected $tld = ['com', 'biz', 'info', 'net', 'org', 'edu', 'gov', 'mil', 'co', 'io'];
 
-    public function sdl() : string {
+    public function sdl(): string
+    {
         return $this->randomizer->getBytesFromString(
             implode(range('a', 'z')),
             $this->randomizer->getInt(5, 10)
         );
     }
 
-    public function tld() : string {
+    public function tld(): string
+    {
         return $this->pickArrayRandomElement($this->tld);
     }
 
-    public function domain(): string {
+    public function domain(): string
+    {
         return sprintf('%s.%s', $this->sdl(), $this->tld());
     }
 
-    public function ipv4(): string {
+    public function ipv4(): string
+    {
         return long2ip($this->randomizer->getInt(0, 1) === 0 ? $this->randomizer->getInt(-2147483648, -2) : $this->randomizer->getInt(16777216, 2147483647));
     }
 
-    public function ipv6(): string {
+    public function ipv6(): string
+    {
         $res = [];
 
-        for ($i = 0; $i < 8; ++$i) {
+        for ($i = 0; $i < 8; $i++) {
             $res[] = dechex($this->randomizer->getInt(0, 65535));
         }
 
