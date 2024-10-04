@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Xefi\Faker\Tests\Unit\TestCase;
+namespace Xefi\Faker\Tests\Unit;
 
 final class ContainerMixinManifestTest extends TestCase
 {

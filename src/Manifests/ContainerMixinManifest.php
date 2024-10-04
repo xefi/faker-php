@@ -7,6 +7,7 @@ use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Serializer;
 use phpDocumentor\Reflection\DocBlock\Tags\Method;
 use phpDocumentor\Reflection\TypeResolver;
+use phpDocumentor\Reflection\Types\Intersection;
 use phpDocumentor\Reflection\Types\Mixed_;
 
 class ContainerMixinManifest
@@ -81,11 +82,29 @@ class ContainerMixinManifest
             $reflectionMethod = new \ReflectionMethod($extension, $methodName);
 
             $parameters = [];
+            $typeResolver = new TypeResolver();
 
             foreach ($reflectionMethod->getParameters() as $parameter) {
+                $type = new Mixed_();
+
+                if ($parameter->hasType()) {
+                    $type = $parameter->getType();
+
+                    if ($type instanceof \ReflectionUnionType) {
+                        $type = new Intersection(
+                            array_map(
+                                fn ($type) => $typeResolver->resolve($type),
+                                $type->getTypes()
+                            )
+                        );
+                    } else {
+                        $type = $typeResolver->resolve($type->getName());
+                    }
+                }
+
                 $parameters[] = new DocBlock\Tags\MethodParameter(
                     name: $parameter->getName(),
-                    type: $parameter->hasType() ? (new TypeResolver())->resolve($parameter->getType()->getName()) : new Mixed_(),
+                    type: $type,
                     defaultValue: $parameter->isDefaultValueAvailable() ? $parameter->getDefaultValue() : null
                 );
             }
