@@ -46,4 +46,16 @@ class Extension
 
         return reset($elements);
     }
+
+    protected function pickArrayRandomKeys(array $array, int $elements = 1)
+    {
+        return $this->randomizer->pickArrayKeys($array, $elements);
+    }
+
+    protected function pickArrayRandomKey(array $array)
+    {
+        $elements = $this->pickArrayRandomKeys($array);
+
+        return reset($elements);
+    }
 }
