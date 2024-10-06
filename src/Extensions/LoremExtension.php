@@ -43,6 +43,6 @@ class LoremExtension extends Extension
 
     public function sentence(int $words = 6)
     {
-        return implode(' ', $this->words($words));
+        return ucfirst(implode(' ', $this->words($words)));
     }
 }

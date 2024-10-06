@@ -55,7 +55,7 @@ final class LoremExtensionTest extends TestCase
         $this->assertCount(40, $words);
 
         foreach ($words as $word) {
-            $this->assertContains($word, $this->latinWords);
+            $this->assertContains(strtolower($word), $this->latinWords);
         }
     }
 }
