@@ -26,18 +26,12 @@ class InternetExtension extends Extension
 
     public function ipv4(): string
     {
-        return long2ip($this->randomizer->getInt(0, 1) === 0 ? $this->randomizer->getInt(-2147483648, -2) : $this->randomizer->getInt(16777216, 2147483647));
+        return long2ip($this->randomizer->getInt(0, PHP_INT_MAX));
     }
 
     public function ipv6(): string
     {
-        $res = [];
-
-        for ($i = 0; $i < 8; $i++) {
-            $res[] = dechex($this->randomizer->getInt(0, 65535));
-        }
-
-        return implode(':', $res);
+        return inet_ntop($this->randomizer->getBytes(16));
     }
 
     public function macAddress()
