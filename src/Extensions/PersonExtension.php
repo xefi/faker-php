@@ -25,7 +25,7 @@ class PersonExtension extends Extension
 
     protected $titleFemale = ['Mrs.', 'Ms.', 'Miss', 'Dr.', 'Prof.'];
 
-    public function name(string|null $gender = null) : string
+    public function name(string|null $gender = null): string
     {
         return sprintf('%s %s', $this->firstName($gender), $this->lastName());
     }
@@ -40,7 +40,7 @@ class PersonExtension extends Extension
             return $this->pickArrayRandomElement($this->firstNameFemale);
         }
 
-        return $this->pickArrayRandomElement($this->randomizer->getInt(0, 1) === 0 ? $this->firstNameFemale: $this->firstNameMale);
+        return $this->pickArrayRandomElement($this->randomizer->getInt(0, 1) === 0 ? $this->firstNameFemale : $this->firstNameMale);
     }
 
     public function lastName(): string
@@ -58,6 +58,6 @@ class PersonExtension extends Extension
             return $this->pickArrayRandomElement($this->titleFemale);
         }
 
-        return $this->pickArrayRandomElement($this->randomizer->getInt(0, 1) === 0 ? $this->titleFemale: $this->titleMale);
+        return $this->pickArrayRandomElement($this->randomizer->getInt(0, 1) === 0 ? $this->titleFemale : $this->titleMale);
     }
 }
