@@ -7,6 +7,7 @@ class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
         parent::setUp();
 
         (new \Xefi\Faker\Container\Container())->resolveExtensions([
+            \Xefi\Faker\Tests\Support\Extensions\NullLocaleExtensionTest::class,
             \Xefi\Faker\Tests\Support\Extensions\EnEnExtensionTest::class,
             \Xefi\Faker\Tests\Support\Extensions\EnUsExtensionTest::class,
             \Xefi\Faker\Tests\Support\Extensions\FrFrExtensionTest::class,
@@ -18,6 +19,7 @@ class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
         $this->assertEquals(
             [
                 'locales' => [
+                    null => new \Xefi\Faker\Tests\Support\Extensions\NullLocaleExtensionTest(new \Random\Randomizer()),
                     'en-EN' => new \Xefi\Faker\Tests\Support\Extensions\EnEnExtensionTest(new \Random\Randomizer()),
                     'en-US' => new \Xefi\Faker\Tests\Support\Extensions\EnUsExtensionTest(new \Random\Randomizer()),
                     'fr-FR' => new \Xefi\Faker\Tests\Support\Extensions\FrFrExtensionTest(new \Random\Randomizer()),
@@ -30,7 +32,7 @@ class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
     public function testCallingDefaultExtension()
     {
         $this->assertEquals(
-            'en-US',
+            null,
             (new \Xefi\Faker\Faker())->returnLocale()
         );
     }
@@ -62,5 +64,32 @@ class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
             'en-US',
             $faker->locale('en-US')->returnLocale()
         );
+    }
+
+    public function testUsingNotExistingLocaleFallingBackToNullLocale()
+    {
+        $faker = new Xefi\Faker\Faker('not-existing-locale');
+        $this->assertEquals(
+            null,
+            $faker->returnLocale()
+        );
+    }
+
+    public function testUsingNotExistingLocaleWithoutNullLocale()
+    {
+        $container = new \Xefi\Faker\Container\Container();
+        $container->forgetExtensions();
+        $container->forgetBootstrappers();
+        $container->resolveExtensions([
+            \Xefi\Faker\Tests\Support\Extensions\EnEnExtensionTest::class,
+            \Xefi\Faker\Tests\Support\Extensions\EnUsExtensionTest::class,
+            \Xefi\Faker\Tests\Support\Extensions\FrFrExtensionTest::class,
+        ]);
+
+        $this->expectException(\Xefi\Faker\Exceptions\NoExtensionLocaleFound::class);
+        $this->expectExceptionMessage('Locale \'not-existing-locale\' and \'null\' for method \'returnLocale\' was not found');
+
+        $faker = new Xefi\Faker\Faker('not-existing-locale');
+        $faker->returnLocale();
     }
 }
