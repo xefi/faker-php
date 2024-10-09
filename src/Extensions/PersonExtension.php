@@ -6,18 +6,10 @@ use Xefi\Faker\Extensions\Traits\HasLocale;
 
 class PersonExtension extends Extension
 {
-    // @TODO: base locale ?
     use HasLocale;
 
-    /**
-     * The extension locale (BCP 47 Code).
-     *
-     * @return string | null
-     */
-    public function getLocale(): string|null
-    {
-        return null;
-    }
+    public const GENDER_MALE = 'M';
+    public const GENDER_FEMALE = 'F';
 
     protected $firstNameMale = [
         'John',
@@ -33,23 +25,39 @@ class PersonExtension extends Extension
 
     protected $titleFemale = ['Mrs.', 'Ms.', 'Miss', 'Dr.', 'Prof.'];
 
-    /**
-     * @param string|null $gender 'male', 'female' or null for any
-     *
-     * @return string
-     *
-     * @example 'John Doe'
-     */
-    public function name($gender = null)
+    public function name(string|null $gender = null) : string
+    {
+        return sprintf('%s %s', $this->firstName($gender), $this->lastName());
+    }
+
+    public function firstName(string|null $gender = null): string
     {
         if ($gender === static::GENDER_MALE) {
-            $format = static::randomElement(static::$maleNameFormats);
-        } elseif ($gender === static::GENDER_FEMALE) {
-            $format = static::randomElement(static::$femaleNameFormats);
-        } else {
-            $format = static::randomElement(array_merge(static::$maleNameFormats, static::$femaleNameFormats));
+            return $this->pickArrayRandomElement($this->firstNameMale);
         }
 
-        return $this->generator->parse($format);
+        if ($gender === static::GENDER_FEMALE) {
+            return $this->pickArrayRandomElement($this->firstNameFemale);
+        }
+
+        return $this->pickArrayRandomElement($this->randomizer->getInt(0, 1) === 0 ? $this->firstNameFemale: $this->firstNameMale);
+    }
+
+    public function lastName(): string
+    {
+        return $this->pickArrayRandomElement($this->lastName);
+    }
+
+    public function title($gender = null)
+    {
+        if ($gender === static::GENDER_MALE) {
+            return $this->pickArrayRandomElement($this->titleMale);
+        }
+
+        if ($gender === static::GENDER_FEMALE) {
+            return $this->pickArrayRandomElement($this->titleFemale);
+        }
+
+        return $this->pickArrayRandomElement($this->randomizer->getInt(0, 1) === 0 ? $this->titleFemale: $this->titleMale);
     }
 }

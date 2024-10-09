@@ -7,6 +7,7 @@ use Xefi\Faker\Extensions\HashExtension;
 use Xefi\Faker\Extensions\HtmlExtension;
 use Xefi\Faker\Extensions\LoremExtension;
 use Xefi\Faker\Extensions\NumbersExtension;
+use Xefi\Faker\Extensions\PersonExtension;
 use Xefi\Faker\Extensions\StringsExtension;
 use Xefi\Faker\Providers\Provider;
 
@@ -21,6 +22,7 @@ class FakerServiceProvider extends Provider
             StringsExtension::class,
             HashExtension::class,
             DateTimeExtension::class,
+            PersonExtension::class
         ]);
     }
 }
