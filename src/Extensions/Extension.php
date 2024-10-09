@@ -34,10 +34,11 @@ class Extension
     }
 
     /**
-     * Return a given number of random elements from the given array
+     * Return a given number of random elements from the given array.
      *
      * @param array $array
-     * @param int $elements
+     * @param int   $elements
+     *
      * @return array
      */
     protected function pickArrayRandomElements(array $array, int $elements = 1): array
@@ -48,9 +49,10 @@ class Extension
     }
 
     /**
-     * Return a random element from the given array
+     * Return a random element from the given array.
      *
      * @param array $array
+     *
      * @return mixed
      */
     protected function pickArrayRandomElement(array $array): mixed

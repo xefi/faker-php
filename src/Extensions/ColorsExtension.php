@@ -7,7 +7,7 @@ class ColorsExtension extends Extension
     protected array $safeColorNames = [
         'Black', 'Maroon', 'Green', 'Navy', 'Olive',
         'Purple', 'Teal', 'Lime', 'Blue', 'Silver',
-        'Gray', 'Yellow', 'Fuchsia', 'Aqua', 'White'
+        'Gray', 'Yellow', 'Fuchsia', 'Aqua', 'White',
     ];
 
     protected array $colorNames = [
@@ -39,11 +39,12 @@ class ColorsExtension extends Extension
         'SlateBlue', 'SlateGray', 'Snow', 'SpringGreen', 'SteelBlue',
         'Tan', 'Teal', 'Thistle', 'Tomato', 'Turquoise',
         'Violet', 'Wheat', 'White', 'WhiteSmoke', 'Yellow',
-        'YellowGreen'
+        'YellowGreen',
     ];
 
     /**
      * @example 'blue'
+     *
      * @return string
      */
     public function safeColorName(): string
@@ -53,6 +54,7 @@ class ColorsExtension extends Extension
 
     /**
      * @example 'Fuchsia'
+     *
      * @return string
      */
     public function colorName(): string
@@ -62,29 +64,32 @@ class ColorsExtension extends Extension
 
     /**
      * @example '#aa5533'
+     *
      * @return string
      */
     public function safeHexColor(): string
     {
-        $rand = "";
+        $rand = '';
         for ($i = 0; $i < 3; $i++) {
             $rand .= str_repeat(dechex($this->randomizer->getInt(0, 15)), 2);
         }
 
-        return '#' . $rand;
+        return '#'.$rand;
     }
 
     /**
      * @example '#d67da0'
+     *
      * @return string
      */
     public function hexColor(): string
     {
-        return '#' . bin2hex($this->randomizer->getBytes(3));
+        return '#'.bin2hex($this->randomizer->getBytes(3));
     }
 
     /**
      * @example [0 => 31, 1 => 244, 2 => 208]
+     *
      * @return array
      */
     public function rgbColorAsArray(): array
@@ -99,6 +104,7 @@ class ColorsExtension extends Extension
 
     /**
      * @example '237,147,91'
+     *
      * @return string
      */
     public function rgbColor(): string
@@ -108,15 +114,17 @@ class ColorsExtension extends Extension
 
     /**
      * @example 'rgb(213,75,159)'
+     *
      * @return string
      */
     public function rgbCssColor(): string
     {
-        return 'rgb(' . $this->rgbColor() . ')';
+        return 'rgb('.$this->rgbColor().')';
     }
 
     /**
      * @example '[0 => 31, 1 => 244, 2 => 248, 3 => 0.81]'
+     *
      * @return array
      */
     public function rgbaColorAsArray(): array
@@ -133,6 +141,7 @@ class ColorsExtension extends Extension
 
     /**
      * @example '164,75,242,0.96'
+     *
      * @return string
      */
     public function rgbaColor(): string
@@ -142,15 +151,17 @@ class ColorsExtension extends Extension
 
     /**
      * @example 'rgba(155,242,48,0.61)'
+     *
      * @return string
      */
     public function rgbaCssColor(): string
     {
-        return 'rgba(' . $this->rgbaColor() . ')';
+        return 'rgba('.$this->rgbaColor().')';
     }
 
     /**
      * @example [0 => 31, 1 => 80, 2 => 50]
+     *
      * @return array
      */
     public function hslColorAsArray(): array
@@ -166,6 +177,7 @@ class ColorsExtension extends Extension
 
     /**
      * @example '12,2,71'
+     *
      * @return string
      */
     public function hslColor(): string
@@ -175,15 +187,17 @@ class ColorsExtension extends Extension
 
     /**
      * @example 'hsl(57,82,56)'
+     *
      * @return string
      */
     public function hslCssColor(): string
     {
-        return 'hsl(' . $this->hslColor() . ')';
+        return 'hsl('.$this->hslColor().')';
     }
 
     /**
      * @example [0 => 31, 1 => 80, 2 => 50, 3 => 0.07]
+     *
      * @return array
      */
     public function hslaColorAsArray(): array
@@ -200,6 +214,7 @@ class ColorsExtension extends Extension
 
     /**
      * @example '12,2,71,0.32'
+     *
      * @return string
      */
     public function hslaColor(): string
@@ -209,10 +224,11 @@ class ColorsExtension extends Extension
 
     /**
      * @example 'hsl(57,82,56,0.91)'
+     *
      * @return string
      */
     public function hslaCssColor(): string
     {
-        return 'hsla(' . $this->hslaColor() . ')';
+        return 'hsla('.$this->hslaColor().')';
     }
 }
