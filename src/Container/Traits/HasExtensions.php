@@ -196,7 +196,6 @@ trait HasExtensions
         if (is_array($extension) && isset($extension['locales'])) {
             if (!isset($extension['locales'][$this->getLocale()]) && !isset($extension['locales'][null])) {
                 throw new NoExtensionLocaleFound(sprintf('Locale \'%s\' and \'null\' for method \'%s\' was not found', $this->getLocale(), $method));
-
             }
             $extension = $extension['locales'][$this->getLocale()] ?? $extension['locales'][null];
         }

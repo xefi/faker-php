@@ -19,7 +19,7 @@ class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
         $this->assertEquals(
             [
                 'locales' => [
-                    null => new \Xefi\Faker\Tests\Support\Extensions\NullLocaleExtensionTest(new \Random\Randomizer()),
+                    null    => new \Xefi\Faker\Tests\Support\Extensions\NullLocaleExtensionTest(new \Random\Randomizer()),
                     'en-EN' => new \Xefi\Faker\Tests\Support\Extensions\EnEnExtensionTest(new \Random\Randomizer()),
                     'en-US' => new \Xefi\Faker\Tests\Support\Extensions\EnUsExtensionTest(new \Random\Randomizer()),
                     'fr-FR' => new \Xefi\Faker\Tests\Support\Extensions\FrFrExtensionTest(new \Random\Randomizer()),

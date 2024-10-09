@@ -9,7 +9,7 @@ trait HasLocale
      *
      * @return string | null
      */
-    public function getLocale(): string | null
+    public function getLocale(): string|null
     {
         return null;
     }
