@@ -71,6 +71,8 @@ class ContainerMixinManifest
      */
     public function build(array $extensionMethods, array $extensions)
     {
+        $tags = [];
+
         foreach ($extensionMethods as $methodName => $extensionName) {
             $extension = $extensions[$extensionName];
 
