@@ -12,6 +12,9 @@
   "authors": [
     {
       "name": "Gautier Deleglise"
+    },
+    {
+      "name": "Martin Soenen"
     }
   ],
   "require": {

@@ -5,6 +5,7 @@ namespace Xefi\Faker\Container\Traits;
 use Random\Randomizer;
 use ReflectionClass;
 use Xefi\Faker\Container\Container;
+use Xefi\Faker\Exceptions\NoExtensionLocaleFound;
 use Xefi\Faker\Extensions\Extension;
 use Xefi\Faker\Extensions\Traits\HasLocale;
 
@@ -193,11 +194,10 @@ trait HasExtensions
         // We assume we here have multiple extensions declined by locale, we will try
         // to get the extension with the current locale, defaulting to first element
         if (is_array($extension) && isset($extension['locales'])) {
-            if (!isset($extension['locales'][$this->getLocale()])) {
-                trigger_error(sprintf('[XEFI FAKER] The \'%s\' method does not exist for locale \'%s\' defaulting to \'en-US\'', $method, $this->getLocale()), E_USER_WARNING);
+            if (!isset($extension['locales'][$this->getLocale()]) && !isset($extension['locales'][null])) {
+                throw new NoExtensionLocaleFound(sprintf('Locale \'%s\' and \'null\' for method \'%s\' was not found', $this->getLocale(), $method));
             }
-
-            $extension = $extension['locales'][$this->getLocale()] ?? $extension['locales']['en-US'];
+            $extension = $extension['locales'][$this->getLocale()] ?? $extension['locales'][null];
         }
 
         return $extension->$method(...$parameters);
