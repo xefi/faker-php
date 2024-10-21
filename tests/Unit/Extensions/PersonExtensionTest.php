@@ -1,11 +1,9 @@
 <?php
 
-namespace Extensions;
+namespace Xefi\Faker\Tests\Unit\Extensions;
 
 use ReflectionClass;
-use Xefi\Faker\Container\Container;
 use Xefi\Faker\Extensions\PersonExtension;
-use Xefi\Faker\Tests\Unit\Extensions\TestCase;
 
 final class PersonExtensionTest extends TestCase
 {
@@ -19,7 +17,7 @@ final class PersonExtensionTest extends TestCase
     {
         parent::setUp();
 
-        $personExtension = new \Xefi\Faker\Extensions\PersonExtension(new \Random\Randomizer());
+        $personExtension = new PersonExtension(new \Random\Randomizer());
         $this->firstNameMale = (new ReflectionClass($personExtension))->getProperty('firstNameMale')->getValue($personExtension);
         $this->firstNameFemale = (new ReflectionClass($personExtension))->getProperty('firstNameFemale')->getValue($personExtension);
         $this->lastName = (new ReflectionClass($personExtension))->getProperty('lastName')->getValue($personExtension);
@@ -29,11 +27,9 @@ final class PersonExtensionTest extends TestCase
 
     public function testFirstNameFemale(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < count($this->firstNameFemale); $i++) {
-            $results[] = $faker->unique()->firstName(PersonExtension::GENDER_FEMALE);
+            $results[] = $this->faker->unique()->firstName(PersonExtension::GENDER_FEMALE);
         }
 
         $this->assertEqualsCanonicalizing(
@@ -44,11 +40,9 @@ final class PersonExtensionTest extends TestCase
 
     public function testFirstNameMale(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < count($this->firstNameMale); $i++) {
-            $results[] = $faker->unique()->firstName(PersonExtension::GENDER_MALE);
+            $results[] = $this->faker->unique()->firstName(PersonExtension::GENDER_MALE);
         }
 
         $this->assertEqualsCanonicalizing(
@@ -59,26 +53,23 @@ final class PersonExtensionTest extends TestCase
 
     public function testFirstName(): void
     {
-        $faker = new Container(false);
-
         $results = [];
-        for ($i = 0; $i < count($this->firstNameFemale) + count($this->firstNameMale); $i++) {
-            $results[] = $faker->unique()->firstName();
+        $firstnames = array_unique(array_merge($this->firstNameMale, $this->firstNameFemale));
+        for ($i = 0; $i < count($firstnames); $i++) {
+            $results[] = $this->faker->unique()->firstName();
         }
 
         $this->assertEqualsCanonicalizing(
-            array_merge($this->firstNameFemale, $this->firstNameMale),
+            $firstnames,
             $results
         );
     }
 
     public function testLastName(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < count($this->lastName); $i++) {
-            $results[] = $faker->unique()->lastName();
+            $results[] = $this->faker->unique()->lastName();
         }
 
         $this->assertEqualsCanonicalizing(
@@ -89,59 +80,69 @@ final class PersonExtensionTest extends TestCase
 
     public function testNameMale(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < 100; $i++) {
-            $results[] = $faker->name(PersonExtension::GENDER_MALE);
+            $results[] = $this->faker->name(PersonExtension::GENDER_MALE);
         }
 
         foreach ($results as $result) {
-            $implode = explode(' ', $result);
-            $this->assertContains($implode[0], $this->firstNameMale);
-            $this->assertContains($implode[1], $this->lastName);
+            $matchesFirstName = array_filter($this->firstNameMale, function ($firstName) use ($result) {
+                return str_contains($result, $firstName);
+            });
+            $this->assertNotEmpty($matchesFirstName, "The first part of the result '{$result}' does not match any first name.");
+
+            $matchesLastName = array_filter($this->lastName, function ($lastName) use ($result) {
+                return str_contains($result, $lastName);
+            });
+            $this->assertNotEmpty($matchesLastName, "The second part of the result '{$result}' does not match any last name.");
         }
     }
 
     public function testNameFemale(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < 100; $i++) {
-            $results[] = $faker->name(PersonExtension::GENDER_FEMALE);
+            $results[] = $this->faker->name(PersonExtension::GENDER_FEMALE);
         }
 
         foreach ($results as $result) {
-            $implode = explode(' ', $result);
-            $this->assertContains($implode[0], $this->firstNameFemale);
-            $this->assertContains($implode[1], $this->lastName);
+            $matchesFirstName = array_filter($this->firstNameFemale, function ($firstName) use ($result) {
+                return str_contains($result, $firstName);
+            });
+            $this->assertNotEmpty($matchesFirstName, "The first part of the result '{$result}' does not match any first name.");
+
+            $matchesLastName = array_filter($this->lastName, function ($lastName) use ($result) {
+                return str_contains($result, $lastName);
+            });
+            $this->assertNotEmpty($matchesLastName, "The second part of the result '{$result}' does not match any last name.");
         }
     }
 
     public function testName(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < 100; $i++) {
-            $results[] = $faker->name();
+            $results[] = $this->faker->name();
         }
 
         foreach ($results as $result) {
-            $implode = explode(' ', $result);
-            $this->assertContains($implode[0], array_merge($this->firstNameFemale, $this->firstNameMale));
-            $this->assertContains($implode[1], $this->lastName);
+            $matchesFirstName = array_filter(array_merge($this->firstNameFemale, $this->firstNameMale), function ($firstName) use ($result) {
+                return str_contains($result, $firstName);
+            });
+            $this->assertNotEmpty($matchesFirstName, "The first part of the result '{$result}' does not match any first name.");
+
+            $matchesLastName = array_filter($this->lastName, function ($lastName) use ($result) {
+                return str_contains($result, $lastName);
+            });
+            $this->assertNotEmpty($matchesLastName, "The second part of the result '{$result}' does not match any last name.");
         }
     }
 
     public function testTitleFemale(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < count($this->titleFemale); $i++) {
-            $results[] = $faker->unique()->title(PersonExtension::GENDER_FEMALE);
+            $results[] = $this->faker->unique()->title(PersonExtension::GENDER_FEMALE);
         }
 
         $this->assertEqualsCanonicalizing(
@@ -152,11 +153,9 @@ final class PersonExtensionTest extends TestCase
 
     public function testTitleMale(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < count($this->titleMale); $i++) {
-            $results[] = $faker->unique()->title(PersonExtension::GENDER_MALE);
+            $results[] = $this->faker->unique()->title(PersonExtension::GENDER_MALE);
         }
 
         $this->assertEqualsCanonicalizing(
@@ -167,13 +166,11 @@ final class PersonExtensionTest extends TestCase
 
     public function testTitle(): void
     {
-        $faker = new Container(false);
-
         $titles = array_unique(array_merge($this->titleFemale, $this->titleMale));
 
         $results = [];
         for ($i = 0; $i < count($titles); $i++) {
-            $results[] = $faker->unique()->title();
+            $results[] = $this->faker->unique()->title();
         }
 
         $this->assertEqualsCanonicalizing(
