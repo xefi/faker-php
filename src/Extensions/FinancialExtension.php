@@ -5,7 +5,7 @@ namespace Xefi\Faker\Extensions;
 use Xefi\Faker\Calculators\Iban;
 use Xefi\Faker\Extensions\Traits\HasLocale;
 
-class PaymentExtension extends Extension
+class FinancialExtension extends Extension
 {
     use HasLocale;
 

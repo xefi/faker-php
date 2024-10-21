@@ -3,11 +3,11 @@
 namespace Xefi\Faker;
 
 use Xefi\Faker\Extensions\DateTimeExtension;
+use Xefi\Faker\Extensions\FinancialExtension;
 use Xefi\Faker\Extensions\HashExtension;
 use Xefi\Faker\Extensions\HtmlExtension;
 use Xefi\Faker\Extensions\LoremExtension;
 use Xefi\Faker\Extensions\NumbersExtension;
-use Xefi\Faker\Extensions\PaymentExtension;
 use Xefi\Faker\Extensions\PersonExtension;
 use Xefi\Faker\Extensions\StringsExtension;
 use Xefi\Faker\Providers\Provider;
@@ -24,7 +24,7 @@ class FakerServiceProvider extends Provider
             HashExtension::class,
             DateTimeExtension::class,
             PersonExtension::class,
-            PaymentExtension::class,
+            FinancialExtension::class,
         ]);
     }
 }
