@@ -8,11 +8,9 @@ final class NumbersExtensionTest extends TestCase
 {
     public function testDigit(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < 10; $i++) {
-            $results[] = $faker->unique()->digit();
+            $results[] = $this->faker->unique()->digit();
         }
 
         $this->assertEqualsCanonicalizing(
@@ -23,11 +21,9 @@ final class NumbersExtensionTest extends TestCase
 
     public function testNumberBetweenWithUniqueValues(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < 100; $i++) {
-            $results[] = $faker->unique()->numberBetween(1, 100);
+            $results[] = $this->faker->unique()->numberBetween(1, 100);
         }
 
         $this->assertEqualsCanonicalizing(
@@ -38,11 +34,9 @@ final class NumbersExtensionTest extends TestCase
 
     public function testNumberBetweenWithRandomValues(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < 100; $i++) {
-            $results[] = $faker->numberBetween(1, 100);
+            $results[] = $this->faker->numberBetween(1, 100);
         }
 
         foreach ($results as $result) {
@@ -53,11 +47,9 @@ final class NumbersExtensionTest extends TestCase
 
     public function testFloatBetweenWithRandomValues(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < 100; $i++) {
-            $results[] = $faker->floatBetween(1, 100);
+            $results[] = $this->faker->floatBetween(1, 100);
         }
 
         foreach ($results as $result) {
