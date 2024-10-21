@@ -5,7 +5,7 @@ namespace Extensions;
 use Xefi\Faker\Calculators\Iban;
 use Xefi\Faker\Tests\Unit\Extensions\TestCase;
 
-final class PaymentExtensionTest extends TestCase
+final class FinancialExtensionTest extends TestCase
 {
     #[RepeatedTest(5)]
     public function testIban()
