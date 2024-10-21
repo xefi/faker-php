@@ -2,8 +2,6 @@
 
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
-use Xefi\Faker\Container\Container;
-
 final class StringsExtensionTest extends TestCase
 {
     public function testLetter(): void

@@ -283,7 +283,7 @@ final class IbanTest extends TestCase
         ];
 
         // 0-200
-        for ($i = 0; $i < 200; ++$i) {
+        for ($i = 0; $i < 200; $i++) {
             $return[] = [(string) $i, $i % 97];
         }
 

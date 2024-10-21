@@ -11,7 +11,8 @@ class PaymentExtension extends Extension
 
     /**
      * @param string|null $countryCode
-     * @param string|null $format [{d} => digit, {l} => letter, {a} => any]
+     * @param string|null $format      [{d} => digit, {l} => letter, {a} => any]
+     *
      * @return string
      */
     public function iban(string $countryCode = null, string $format = null): string
@@ -29,16 +30,15 @@ class PaymentExtension extends Extension
         }
 
         while (($pos = strpos($format, '{d}')) !== false) {
-            $format = substr_replace($format, (string)$this->randomizer->getInt(0, 9), $pos, 3);
+            $format = substr_replace($format, (string) $this->randomizer->getInt(0, 9), $pos, 3);
         }
 
         while (($pos = strpos($format, '{l}')) !== false) {
             $format = substr_replace($format, $this->randomizer->getBytesFromString(implode(range('A', 'Z')), 1), $pos, 3);
         }
 
-        $checksum = Iban::checksum($countryCode . '00' . $format);
+        $checksum = Iban::checksum($countryCode.'00'.$format);
 
-        return $countryCode . $checksum . $format;
+        return $countryCode.$checksum.$format;
     }
-
 }

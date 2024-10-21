@@ -5,14 +5,14 @@ namespace Xefi\Faker\Calculators;
 class Iban
 {
     /**
-     * Generates IBAN Checksum
+     * Generates IBAN Checksum.
      *
      * @return string Checksum (numeric string)
      */
     public static function checksum(string $iban): string
     {
         // Move first four digits to end and set checksum to '00'
-        $checkString = substr($iban, 4) . substr($iban, 0, 2) . '00';
+        $checkString = substr($iban, 4).substr($iban, 0, 2).'00';
 
         // Replace all letters with their number equivalents
         $checkString = preg_replace_callback(
@@ -30,17 +30,17 @@ class Iban
     }
 
     /**
-     * Converts letter to number
+     * Converts letter to number.
      *
      * @return int
      */
-    public static function alphaToNumber(string $char) : int
+    public static function alphaToNumber(string $char): int
     {
         return ord($char) - 55;
     }
 
     /**
-     * Calculates mod97 on a numeric string
+     * Calculates mod97 on a numeric string.
      *
      * @param string $number Numeric string
      *
@@ -50,7 +50,7 @@ class Iban
     {
         $checksum = (int) $number[0];
 
-        for ($i = 1, $size = strlen($number); $i < $size; ++$i) {
+        for ($i = 1, $size = strlen($number); $i < $size; $i++) {
             $checksum = (10 * $checksum + (int) $number[$i]) % 97;
         }
 
@@ -58,7 +58,7 @@ class Iban
     }
 
     /**
-     * Checks whether an IBAN has a valid checksum
+     * Checks whether an IBAN has a valid checksum.
      *
      * @return bool
      */

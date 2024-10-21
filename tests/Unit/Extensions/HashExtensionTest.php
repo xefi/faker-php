@@ -2,8 +2,6 @@
 
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
-use Xefi\Faker\Container\Container;
-
 final class HashExtensionTest extends TestCase
 {
     public function testSha1(): void

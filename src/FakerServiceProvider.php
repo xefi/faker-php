@@ -24,7 +24,7 @@ class FakerServiceProvider extends Provider
             HashExtension::class,
             DateTimeExtension::class,
             PersonExtension::class,
-            PaymentExtension::class
+            PaymentExtension::class,
         ]);
     }
 }

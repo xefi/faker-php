@@ -3,7 +3,6 @@
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
 use ReflectionClass;
-use Xefi\Faker\Container\Container;
 
 final class LoremExtensionTest extends TestCase
 {

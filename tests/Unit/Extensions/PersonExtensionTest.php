@@ -1,8 +1,8 @@
 <?php
+
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
 use ReflectionClass;
-use Xefi\Faker\Container\Container;
 use Xefi\Faker\Extensions\PersonExtension;
 
 final class PersonExtensionTest extends TestCase
@@ -86,12 +86,12 @@ final class PersonExtensionTest extends TestCase
         }
 
         foreach ($results as $result) {
-            $matchesFirstName = array_filter($this->firstNameMale, function($firstName) use ($result) {
+            $matchesFirstName = array_filter($this->firstNameMale, function ($firstName) use ($result) {
                 return str_contains($result, $firstName);
             });
             $this->assertNotEmpty($matchesFirstName, "The first part of the result '{$result}' does not match any first name.");
 
-            $matchesLastName = array_filter($this->lastName, function($lastName) use ($result) {
+            $matchesLastName = array_filter($this->lastName, function ($lastName) use ($result) {
                 return str_contains($result, $lastName);
             });
             $this->assertNotEmpty($matchesLastName, "The second part of the result '{$result}' does not match any last name.");
@@ -106,12 +106,12 @@ final class PersonExtensionTest extends TestCase
         }
 
         foreach ($results as $result) {
-            $matchesFirstName = array_filter($this->firstNameFemale, function($firstName) use ($result) {
+            $matchesFirstName = array_filter($this->firstNameFemale, function ($firstName) use ($result) {
                 return str_contains($result, $firstName);
             });
             $this->assertNotEmpty($matchesFirstName, "The first part of the result '{$result}' does not match any first name.");
 
-            $matchesLastName = array_filter($this->lastName, function($lastName) use ($result) {
+            $matchesLastName = array_filter($this->lastName, function ($lastName) use ($result) {
                 return str_contains($result, $lastName);
             });
             $this->assertNotEmpty($matchesLastName, "The second part of the result '{$result}' does not match any last name.");
@@ -126,12 +126,12 @@ final class PersonExtensionTest extends TestCase
         }
 
         foreach ($results as $result) {
-            $matchesFirstName = array_filter(array_merge($this->firstNameFemale, $this->firstNameMale), function($firstName) use ($result) {
+            $matchesFirstName = array_filter(array_merge($this->firstNameFemale, $this->firstNameMale), function ($firstName) use ($result) {
                 return str_contains($result, $firstName);
             });
             $this->assertNotEmpty($matchesFirstName, "The first part of the result '{$result}' does not match any first name.");
 
-            $matchesLastName = array_filter($this->lastName, function($lastName) use ($result) {
+            $matchesLastName = array_filter($this->lastName, function ($lastName) use ($result) {
                 return str_contains($result, $lastName);
             });
             $this->assertNotEmpty($matchesLastName, "The second part of the result '{$result}' does not match any last name.");
