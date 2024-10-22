@@ -3,11 +3,9 @@
 namespace Xefi\Faker\Container\Traits;
 
 use Random\Randomizer;
-use ReflectionClass;
 use Xefi\Faker\Container\Container;
 use Xefi\Faker\Exceptions\NoExtensionLocaleFound;
 use Xefi\Faker\Extensions\Extension;
-use Xefi\Faker\Extensions\Traits\HasLocale;
 
 trait HasExtensions
 {
