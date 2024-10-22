@@ -25,7 +25,7 @@ class ColorsExtension extends Extension
         'Linum', 'Magenta', 'CaeruleusMedius', 'OrchisMedius', 'Mocassin',
         'Aurantiacus', 'Ruber', 'Prunum', 'Peruviana', 'CaeruleusRegius',
         'Salmoneus', 'FuscusArenosus', 'CaeruleusCaelum', 'Nix', 'Turcicus',
-        'Violaceus', 'AlbusFumosus'
+        'Violaceus', 'AlbusFumosus',
     ];
 
     public function safeColorName(): string
