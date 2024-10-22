@@ -2,71 +2,42 @@
 
 namespace Xefi\Faker\Extensions;
 
+use Xefi\Faker\Extensions\Traits\HasLocale;
+
 class ColorsExtension extends Extension
 {
+    use HasLocale;
+
     protected array $safeColorNames = [
-        'Black', 'Maroon', 'Green', 'Navy', 'Olive',
-        'Purple', 'Teal', 'Lime', 'Blue', 'Silver',
-        'Gray', 'Yellow', 'Fuchsia', 'Aqua', 'White',
+        'Niger', 'Castaneus', 'Viridis', 'Navalis', 'Oliva',
+        'Purpureus', 'CaeruleusMarinus', 'Lima', 'Caeruleus', 'Argenteus',
+        'Canus', 'Flavus', 'Fuchsia', 'Aqua', 'Albus',
     ];
 
     protected array $colorNames = [
-        'AliceBlue', 'AntiqueWhite', 'Aqua', 'Aquamarine', 'Azure',
-        'Beige', 'Bisque', 'Black', 'BlanchedAlmond', 'Blue',
-        'BlueViolet', 'Brown', 'BurlyWood', 'CadetBlue', 'Chartreuse',
-        'Chocolate', 'Coral', 'CornflowerBlue', 'Cornsilk', 'Crimson',
-        'Cyan', 'DarkBlue', 'DarkCyan', 'DarkGoldenRod', 'DarkGray',
-        'DarkGreen', 'DarkKhaki', 'DarkMagenta', 'DarkOliveGreen', 'Darkorange',
-        'DarkOrchid', 'DarkRed', 'DarkSalmon', 'DarkSeaGreen', 'DarkSlateBlue',
-        'DarkSlateGray', 'DarkTurquoise', 'DarkViolet', 'DeepPink', 'DeepSkyBlue',
-        'DimGray', 'DimGrey', 'DodgerBlue', 'FireBrick', 'FloralWhite',
-        'ForestGreen', 'Fuchsia', 'Gainsboro', 'GhostWhite', 'Gold',
-        'GoldenRod', 'Gray', 'Green', 'GreenYellow', 'HoneyDew',
-        'HotPink', 'IndianRed', 'Indigo', 'Ivory', 'Khaki',
-        'Lavender', 'LavenderBlush', 'LawnGreen', 'LemonChiffon', 'LightBlue',
-        'LightCoral', 'LightCyan', 'LightGoldenRodYellow', 'LightGray', 'LightGreen',
-        'LightPink', 'LightSalmon', 'LightSeaGreen', 'LightSkyBlue', 'LightSlateGray',
-        'LightSteelBlue', 'LightYellow', 'Lime', 'LimeGreen', 'Linen',
-        'Magenta', 'Maroon', 'MediumAquaMarine', 'MediumBlue', 'MediumOrchid',
-        'MediumPurple', 'MediumSeaGreen', 'MediumSlateBlue', 'MediumSpringGreen', 'MediumTurquoise',
-        'MediumVioletRed', 'MidnightBlue', 'MintCream', 'MistyRose', 'Moccasin',
-        'NavajoWhite', 'Navy', 'OldLace', 'Olive', 'OliveDrab',
-        'Orange', 'OrangeRed', 'Orchid', 'PaleGoldenRod', 'PaleGreen',
-        'PaleTurquoise', 'PaleVioletRed', 'PapayaWhip', 'PeachPuff', 'Peru',
-        'Pink', 'Plum', 'PowderBlue', 'Purple', 'Red',
-        'RosyBrown', 'RoyalBlue', 'SaddleBrown', 'Salmon', 'SandyBrown',
-        'SeaGreen', 'SeaShell', 'Sienna', 'Silver', 'SkyBlue',
-        'SlateBlue', 'SlateGray', 'Snow', 'SpringGreen', 'SteelBlue',
-        'Tan', 'Teal', 'Thistle', 'Tomato', 'Turquoise',
-        'Violet', 'Wheat', 'White', 'WhiteSmoke', 'Yellow',
-        'YellowGreen',
+        'Niger', 'Castaneus', 'Viridis', 'Navalis', 'Oliva',
+        'Purpureus', 'CaeruleusMarinus', 'Lima', 'Caeruleus', 'Argenteus',
+        'Canus', 'Flavus', 'Fuchsia', 'Aqua', 'Albus',
+        'Beige', 'Chocolatum', 'Corallium', 'Cyanus', 'Crimsonus',
+        'CaeruleusFuscus', 'AurantiacusFuscus', 'Latericius', 'ViridisMarinus', 'AlbusFloralis',
+        'ViridisSilvestris', 'Aurum', 'Roseus', 'Indicum', 'Khaki',
+        'Lavandula', 'CaeruleusLevis', 'CoralliumLeve', 'ViridisLevis', 'SalmoneusLevis',
+        'Linum', 'Magenta', 'CaeruleusMedius', 'OrchisMedius', 'Mocassin',
+        'Aurantiacus', 'Ruber', 'Prunum', 'Peruviana', 'CaeruleusRegius',
+        'Salmoneus', 'FuscusArenosus', 'CaeruleusCaelum', 'Nix', 'Turcicus',
+        'Violaceus', 'AlbusFumosus'
     ];
 
-    /**
-     * @example 'blue'
-     *
-     * @return string
-     */
     public function safeColorName(): string
     {
         return $this->pickArrayRandomElement($this->safeColorNames);
     }
 
-    /**
-     * @example 'Fuchsia'
-     *
-     * @return string
-     */
     public function colorName(): string
     {
         return $this->pickArrayRandomElement($this->colorNames);
     }
 
-    /**
-     * @example '#aa5533'
-     *
-     * @return string
-     */
     public function safeHexColor(): string
     {
         $rand = '';
@@ -77,21 +48,11 @@ class ColorsExtension extends Extension
         return '#'.$rand;
     }
 
-    /**
-     * @example '#d67da0'
-     *
-     * @return string
-     */
     public function hexColor(): string
     {
         return '#'.bin2hex($this->randomizer->getBytes(3));
     }
 
-    /**
-     * @example [0 => 31, 1 => 244, 2 => 208]
-     *
-     * @return array
-     */
     public function rgbColorAsArray(): array
     {
         $colors = [];
@@ -102,31 +63,16 @@ class ColorsExtension extends Extension
         return $colors;
     }
 
-    /**
-     * @example '237,147,91'
-     *
-     * @return string
-     */
     public function rgbColor(): string
     {
         return implode(',', $this->rgbColorAsArray());
     }
 
-    /**
-     * @example 'rgb(213,75,159)'
-     *
-     * @return string
-     */
     public function rgbCssColor(): string
     {
         return 'rgb('.$this->rgbColor().')';
     }
 
-    /**
-     * @example '[0 => 31, 1 => 244, 2 => 248, 3 => 0.81]'
-     *
-     * @return array
-     */
     public function rgbaColorAsArray(): array
     {
         $colors = [];
@@ -139,31 +85,16 @@ class ColorsExtension extends Extension
         return $colors;
     }
 
-    /**
-     * @example '164,75,242,0.96'
-     *
-     * @return string
-     */
     public function rgbaColor(): string
     {
         return implode(',', $this->rgbaColorAsArray());
     }
 
-    /**
-     * @example 'rgba(155,242,48,0.61)'
-     *
-     * @return string
-     */
     public function rgbaCssColor(): string
     {
         return 'rgba('.$this->rgbaColor().')';
     }
 
-    /**
-     * @example [0 => 31, 1 => 80, 2 => 50]
-     *
-     * @return array
-     */
     public function hslColorAsArray(): array
     {
         $colors = [];
@@ -175,31 +106,16 @@ class ColorsExtension extends Extension
         return $colors;
     }
 
-    /**
-     * @example '12,2,71'
-     *
-     * @return string
-     */
     public function hslColor(): string
     {
         return implode(',', $this->hslColorAsArray());
     }
 
-    /**
-     * @example 'hsl(57,82,56)'
-     *
-     * @return string
-     */
     public function hslCssColor(): string
     {
         return 'hsl('.$this->hslColor().')';
     }
 
-    /**
-     * @example [0 => 31, 1 => 80, 2 => 50, 3 => 0.07]
-     *
-     * @return array
-     */
     public function hslaColorAsArray(): array
     {
         $colors = [];
@@ -212,21 +128,11 @@ class ColorsExtension extends Extension
         return $colors;
     }
 
-    /**
-     * @example '12,2,71,0.32'
-     *
-     * @return string
-     */
     public function hslaColor(): string
     {
         return implode(',', $this->hslaColorAsArray());
     }
 
-    /**
-     * @example 'hsl(57,82,56,0.91)'
-     *
-     * @return string
-     */
     public function hslaCssColor(): string
     {
         return 'hsla('.$this->hslaColor().')';
