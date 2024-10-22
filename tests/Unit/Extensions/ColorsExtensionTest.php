@@ -3,7 +3,6 @@
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
 use Random\Randomizer;
-use Xefi\Faker\Container\Container;
 use Xefi\Faker\Extensions\ColorsExtension;
 
 final class ColorsExtensionTest extends TestCase
@@ -90,7 +89,8 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testRgbColor(): void
-    {$regex = '/^(\d+),(\d+),(\d+)$/';
+    {
+        $regex = '/^(\d+),(\d+),(\d+)$/';
 
         for ($i = 0; $i < 100; $i++) {
             $color = $this->faker->unique()->rgbColor();
@@ -111,7 +111,8 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testRgbCssColor(): void
-    {$regex = '/^rgb\((\d+),(\d+),(\d+)\)$/';
+    {
+        $regex = '/^rgb\((\d+),(\d+),(\d+)\)$/';
 
         for ($i = 0; $i < 100; $i++) {
             $color = $this->faker->unique()->rgbCssColor();
@@ -161,7 +162,8 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testRgbaColor(): void
-    {$regex = '/^(\d+),(\d+),(\d+),([01]|0\.\d+)$/';
+    {
+        $regex = '/^(\d+),(\d+),(\d+),([01]|0\.\d+)$/';
 
         for ($i = 0; $i < 100; $i++) {
             $color = $this->faker->unique()->rgbaColor();
@@ -186,7 +188,8 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testRgbaCssColor(): void
-    {$regex = '/^rgba\((\d+),(\d+),(\d+),([01]|0\.\d+)\)$/';
+    {
+        $regex = '/^rgba\((\d+),(\d+),(\d+),([01]|0\.\d+)\)$/';
 
         for ($i = 0; $i < 100; $i++) {
             $color = $this->faker->unique()->rgbaCssColor();
@@ -236,7 +239,8 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testHslColor(): void
-    {$regex = '/^(\d+),(\d+),(\d+)$/';
+    {
+        $regex = '/^(\d+),(\d+),(\d+)$/';
 
         for ($i = 0; $i < 100; $i++) {
             $color = $this->faker->unique()->hslColor();
@@ -257,7 +261,8 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testHslCssColor(): void
-    {$regex = '/^hsl\((\d+),(\d+),(\d+)\)$/';
+    {
+        $regex = '/^hsl\((\d+),(\d+),(\d+)\)$/';
 
         for ($i = 0; $i < 100; $i++) {
             $color = $this->faker->unique()->hslCssColor();
@@ -309,7 +314,8 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testHslaColor(): void
-    {$regex = '/^(\d+),(\d+),(\d+),([01]|0\.\d+)$/';
+    {
+        $regex = '/^(\d+),(\d+),(\d+),([01]|0\.\d+)$/';
 
         for ($i = 0; $i < 100; $i++) {
             $color = $this->faker->unique()->hslaColor();
@@ -334,7 +340,8 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testHslaCssColor(): void
-    {$regex = '/^hsla\((\d+),(\d+),(\d+),([01]|0\.\d+)\)$/';
+    {
+        $regex = '/^hsla\((\d+),(\d+),(\d+),([01]|0\.\d+)\)$/';
 
         for ($i = 0; $i < 100; $i++) {
             $color = $this->faker->unique()->hslaCssColor();
