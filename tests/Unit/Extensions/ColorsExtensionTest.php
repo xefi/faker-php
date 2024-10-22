@@ -22,11 +22,9 @@ final class ColorsExtensionTest extends TestCase
 
     public function testSafeColorName(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < count($this->safeColorNames); $i++) {
-            $results[] = $faker->unique()->safeColorName();
+            $results[] = $this->faker->unique()->safeColorName();
         }
 
         $this->assertEqualsCanonicalizing(
@@ -37,11 +35,9 @@ final class ColorsExtensionTest extends TestCase
 
     public function testColorName(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < count($this->colorNames); $i++) {
-            $results[] = $faker->unique()->colorName();
+            $results[] = $this->faker->unique()->colorName();
         }
 
         $this->assertEqualsCanonicalizing(
@@ -52,10 +48,8 @@ final class ColorsExtensionTest extends TestCase
 
     public function testSafeHexColor(): void
     {
-        $faker = new Container(false);
-
         for ($i = 0; $i < 100; $i++) {
-            $color = $faker->unique()->safeHexColor();
+            $color = $this->faker->unique()->safeHexColor();
 
             $this->assertStringStartsWith('#', $color);
             $this->assertTrue(ctype_xdigit(substr($color, 1)));
@@ -65,10 +59,8 @@ final class ColorsExtensionTest extends TestCase
 
     public function testHexColor(): void
     {
-        $faker = new Container(false);
-
         for ($i = 0; $i < 100; $i++) {
-            $color = $faker->unique()->hexColor();
+            $color = $this->faker->unique()->hexColor();
 
             $this->assertStringStartsWith('#', $color);
             $this->assertTrue(ctype_xdigit(substr($color, 1)));
@@ -78,10 +70,8 @@ final class ColorsExtensionTest extends TestCase
 
     public function testRgbColorAsArray(): void
     {
-        $faker = new Container(false);
-
         for ($i = 0; $i < 100; $i++) {
-            $color = $faker->unique()->rgbColorAsArray();
+            $color = $this->faker->unique()->rgbColorAsArray();
 
             $this->assertCount(3, $color);
 
@@ -100,12 +90,10 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testRgbColor(): void
-    {
-        $faker = new Container(false);
-        $regex = '/^(\d+),(\d+),(\d+)$/';
+    {$regex = '/^(\d+),(\d+),(\d+)$/';
 
         for ($i = 0; $i < 100; $i++) {
-            $color = $faker->unique()->rgbColor();
+            $color = $this->faker->unique()->rgbColor();
             preg_match($regex, $color, $matches);
 
             /// Red
@@ -123,12 +111,10 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testRgbCssColor(): void
-    {
-        $faker = new Container(false);
-        $regex = '/^rgb\((\d+),(\d+),(\d+)\)$/';
+    {$regex = '/^rgb\((\d+),(\d+),(\d+)\)$/';
 
         for ($i = 0; $i < 100; $i++) {
-            $color = $faker->unique()->rgbCssColor();
+            $color = $this->faker->unique()->rgbCssColor();
             preg_match($regex, $color, $matches);
 
             // String
@@ -151,10 +137,8 @@ final class ColorsExtensionTest extends TestCase
 
     public function testRgbaColorAsArray(): void
     {
-        $faker = new Container(false);
-
         for ($i = 0; $i < 100; $i++) {
-            $color = $faker->unique()->rgbaColorAsArray();
+            $color = $this->faker->unique()->rgbaColorAsArray();
 
             $this->assertCount(4, $color);
 
@@ -177,12 +161,10 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testRgbaColor(): void
-    {
-        $faker = new Container(false);
-        $regex = '/^(\d+),(\d+),(\d+),([01]|0\.\d+)$/';
+    {$regex = '/^(\d+),(\d+),(\d+),([01]|0\.\d+)$/';
 
         for ($i = 0; $i < 100; $i++) {
-            $color = $faker->unique()->rgbaColor();
+            $color = $this->faker->unique()->rgbaColor();
             preg_match($regex, $color, $matches);
 
             /// Red
@@ -204,12 +186,10 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testRgbaCssColor(): void
-    {
-        $faker = new Container(false);
-        $regex = '/^rgba\((\d+),(\d+),(\d+),([01]|0\.\d+)\)$/';
+    {$regex = '/^rgba\((\d+),(\d+),(\d+),([01]|0\.\d+)\)$/';
 
         for ($i = 0; $i < 100; $i++) {
-            $color = $faker->unique()->rgbaCssColor();
+            $color = $this->faker->unique()->rgbaCssColor();
             preg_match($regex, $color, $matches);
 
             // String
@@ -236,10 +216,8 @@ final class ColorsExtensionTest extends TestCase
 
     public function testHslColorAsArray(): void
     {
-        $faker = new Container(false);
-
         for ($i = 0; $i < 100; $i++) {
-            $color = $faker->unique()->hslColorAsArray();
+            $color = $this->faker->unique()->hslColorAsArray();
 
             $this->assertCount(3, $color);
 
@@ -258,12 +236,10 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testHslColor(): void
-    {
-        $faker = new Container(false);
-        $regex = '/^(\d+),(\d+),(\d+)$/';
+    {$regex = '/^(\d+),(\d+),(\d+)$/';
 
         for ($i = 0; $i < 100; $i++) {
-            $color = $faker->unique()->hslColor();
+            $color = $this->faker->unique()->hslColor();
             preg_match($regex, $color, $matches);
 
             // HUE
@@ -281,12 +257,10 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testHslCssColor(): void
-    {
-        $faker = new Container(false);
-        $regex = '/^hsl\((\d+),(\d+),(\d+)\)$/';
+    {$regex = '/^hsl\((\d+),(\d+),(\d+)\)$/';
 
         for ($i = 0; $i < 100; $i++) {
-            $color = $faker->unique()->hslCssColor();
+            $color = $this->faker->unique()->hslCssColor();
 
             preg_match($regex, $color, $matches);
 
@@ -310,10 +284,8 @@ final class ColorsExtensionTest extends TestCase
 
     public function testHslaColorAsArray(): void
     {
-        $faker = new Container(false);
-
         for ($i = 0; $i < 100; $i++) {
-            $color = $faker->unique()->hslaColorAsArray();
+            $color = $this->faker->unique()->hslaColorAsArray();
 
             $this->assertIsArray($color);
             $this->assertCount(4, $color);
@@ -337,12 +309,10 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testHslaColor(): void
-    {
-        $faker = new Container(false);
-        $regex = '/^(\d+),(\d+),(\d+),([01]|0\.\d+)$/';
+    {$regex = '/^(\d+),(\d+),(\d+),([01]|0\.\d+)$/';
 
         for ($i = 0; $i < 100; $i++) {
-            $color = $faker->unique()->hslaColor();
+            $color = $this->faker->unique()->hslaColor();
             preg_match($regex, $color, $matches);
 
             // HUE
@@ -364,12 +334,10 @@ final class ColorsExtensionTest extends TestCase
     }
 
     public function testHslaCssColor(): void
-    {
-        $faker = new Container(false);
-        $regex = '/^hsla\((\d+),(\d+),(\d+),([01]|0\.\d+)\)$/';
+    {$regex = '/^hsla\((\d+),(\d+),(\d+),([01]|0\.\d+)\)$/';
 
         for ($i = 0; $i < 100; $i++) {
-            $color = $faker->unique()->hslaCssColor();
+            $color = $this->faker->unique()->hslaCssColor();
             preg_match($regex, $color, $matches);
 
             // HUE
