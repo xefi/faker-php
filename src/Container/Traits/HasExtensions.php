@@ -53,10 +53,7 @@ trait HasExtensions
         $instance = $extension instanceof Extension ? $extension : new $extension(new Randomizer());
 
         // If the extension supports locale variations
-        if (in_array(
-            HasLocale::class,
-            array_keys((new ReflectionClass($instance::class))->getTraits())
-        )) {
+        if (method_exists($instance, 'getLocale')) {
             return $this->addLocaleExtension($instance);
         }
 

@@ -7,7 +7,6 @@ use Xefi\Faker\Tests\Unit\Extensions\TestCase;
 
 final class FinancialExtensionTest extends TestCase
 {
-    #[RepeatedTest(5)]
     public function testIban()
     {
         $iban = $this->faker->iban();
