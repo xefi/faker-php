@@ -2,17 +2,13 @@
 
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
-use Xefi\Faker\Container\Container;
-
 final class StringsExtensionTest extends TestCase
 {
     public function testLetter(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < 26; $i++) {
-            $results[] = $faker->unique()->letter();
+            $results[] = $this->faker->unique()->letter();
         }
 
         $this->assertEqualsCanonicalizing(
@@ -23,10 +19,8 @@ final class StringsExtensionTest extends TestCase
 
     public function testShuffleString(): void
     {
-        $faker = new Container(false);
-
         $string = '!?@ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-        $result = $faker->shuffle($string);
+        $result = $this->faker->shuffle($string);
 
         foreach (str_split($string) as $character) {
             $this->assertStringContainsString($character, $result);
@@ -35,10 +29,8 @@ final class StringsExtensionTest extends TestCase
 
     public function testShuffleArray(): void
     {
-        $faker = new Container(false);
-
         $array = ['!', '?', '@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-        $result = $faker->shuffle($array);
+        $result = $this->faker->shuffle($array);
 
         foreach ($array as $character) {
             $this->assertContains($character, $result);
@@ -47,9 +39,7 @@ final class StringsExtensionTest extends TestCase
 
     public function testConvertCharacters(): void
     {
-        $faker = new Container(false);
-
-        $result = $faker->convertCharacters('NotConverted|#####|?????|*****');
+        $result = $this->faker->convertCharacters('NotConverted|#####|?????|*****');
 
         $result = explode('|', $result);
 
@@ -64,12 +54,10 @@ final class StringsExtensionTest extends TestCase
 
     public function testSemVer(): void
     {
-        $faker = new Container(false);
-
         // From: https://semver.org/spec/v2.0.0.html
         $regex = '/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/';
 
-        $result = $faker->semver();
+        $result = $this->faker->semver();
 
         $this->assertMatchesRegularExpression(
             $regex,
@@ -79,9 +67,7 @@ final class StringsExtensionTest extends TestCase
 
     public function testEmoji(): void
     {
-        $faker = new Container(false);
-
-        $result = $faker->emoji();
+        $result = $this->faker->emoji();
 
         $this->assertMatchesRegularExpression('/^\p{So}$/u', $result);
     }
