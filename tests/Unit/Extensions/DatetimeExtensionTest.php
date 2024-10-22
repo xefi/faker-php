@@ -1,9 +1,8 @@
 <?php
 
-namespace Extensions;
+namespace Xefi\Faker\Tests\Unit\Extensions;
 
 use DateTime;
-use Xefi\Faker\Tests\Unit\Extensions\TestCase;
 
 final class DatetimeExtensionTest extends TestCase
 {

@@ -2,6 +2,7 @@
 
 namespace Xefi\Faker;
 
+use Xefi\Faker\Extensions\ColorsExtension;
 use Xefi\Faker\Extensions\DateTimeExtension;
 use Xefi\Faker\Extensions\FinancialExtension;
 use Xefi\Faker\Extensions\HashExtension;
@@ -23,6 +24,7 @@ class FakerServiceProvider extends Provider
             StringsExtension::class,
             HashExtension::class,
             DateTimeExtension::class,
+            ColorsExtension::class,
             PersonExtension::class,
             FinancialExtension::class,
         ]);
