@@ -3,7 +3,6 @@
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
 use ReflectionClass;
-use Xefi\Faker\Container\Container;
 
 final class LoremExtensionTest extends TestCase
 {
@@ -19,11 +18,9 @@ final class LoremExtensionTest extends TestCase
 
     public function testWord(): void
     {
-        $faker = new Container(false);
-
         $results = [];
         for ($i = 0; $i < count($this->latinWords); $i++) {
-            $results[] = $faker->unique()->word();
+            $results[] = $this->faker->unique()->word();
         }
 
         $this->assertEqualsCanonicalizing(
@@ -34,9 +31,7 @@ final class LoremExtensionTest extends TestCase
 
     public function testWords(): void
     {
-        $faker = new Container(false);
-
-        $results = $faker->words(40);
+        $results = $this->faker->words(40);
 
         $this->assertCount(40, $results);
 
@@ -47,9 +42,7 @@ final class LoremExtensionTest extends TestCase
 
     public function testSentence(): void
     {
-        $faker = new Container(false);
-
-        $result = $faker->sentence(40);
+        $result = $this->faker->sentence(40);
 
         $words = explode(' ', $result);
         $this->assertCount(40, $words);

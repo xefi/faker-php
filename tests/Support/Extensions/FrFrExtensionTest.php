@@ -14,7 +14,7 @@ class FrFrExtensionTest extends Extension
         return 'locale-extension-test';
     }
 
-    public function getLocale(): string
+    public function getLocale(): string|null
     {
         return 'fr-FR';
     }

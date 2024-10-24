@@ -9,26 +9,26 @@ trait HasLocale
      *
      * @var string
      */
-    protected string $locale;
+    protected string|null $locale;
 
     /**
      * Get the current locale.
      *
-     * @return string
+     * @return string|null
      */
-    public function getLocale(): string
+    public function getLocale(): string|null
     {
-        return $this->locale ?? 'en-US';
+        return $this->locale ?? null;
     }
 
     /**
      * Change the locale.
      *
-     * @param string $locale
+     * @param string|null $locale
      *
      * @return self
      */
-    public function locale(string $locale): self
+    public function locale(string|null $locale): self
     {
         $this->locale = $locale;
 
