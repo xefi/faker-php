@@ -76,9 +76,11 @@ class ContainerMixinManifest
         foreach ($extensionMethods as $methodName => $extensionName) {
             $extension = $extensions[$extensionName];
 
-            // If the extension is localized
+            // If the extension is localized we look for the first containing the method
             if (is_array($extension) && isset($extension['locales'])) {
-                $extension = array_values($extension['locales'])[0];
+                $extension = current(array_filter($extension['locales'], function($extensionFiltered) use ($methodName) {
+                    return method_exists($extensionFiltered, $methodName);
+                }));
             }
 
             $reflectionMethod = new \ReflectionMethod($extension, $methodName);
