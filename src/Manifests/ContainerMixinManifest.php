@@ -78,7 +78,7 @@ class ContainerMixinManifest
 
             // If the extension is localized
             if (is_array($extension) && isset($extension['locales'])) {
-                $extension = $extension['locales']['en-US'];
+                $extension = array_values($extension['locales'])[0];
             }
 
             $reflectionMethod = new \ReflectionMethod($extension, $methodName);

@@ -16,7 +16,7 @@ class EnEnExtensionTest extends Extension
 
     public function getLocale(): string|null
     {
-        return 'en-EN';
+        return 'en_EN';
     }
 
     public function returnLocale()

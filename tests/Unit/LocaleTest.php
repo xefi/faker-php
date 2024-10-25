@@ -20,9 +20,9 @@ class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
             [
                 'locales' => [
                     null    => new \Xefi\Faker\Tests\Support\Extensions\NullLocaleExtensionTest(new \Random\Randomizer()),
-                    'en-EN' => new \Xefi\Faker\Tests\Support\Extensions\EnEnExtensionTest(new \Random\Randomizer()),
-                    'en-US' => new \Xefi\Faker\Tests\Support\Extensions\EnUsExtensionTest(new \Random\Randomizer()),
-                    'fr-FR' => new \Xefi\Faker\Tests\Support\Extensions\FrFrExtensionTest(new \Random\Randomizer()),
+                    'en_EN' => new \Xefi\Faker\Tests\Support\Extensions\EnEnExtensionTest(new \Random\Randomizer()),
+                    'en_US' => new \Xefi\Faker\Tests\Support\Extensions\EnUsExtensionTest(new \Random\Randomizer()),
+                    'fr_FR' => new \Xefi\Faker\Tests\Support\Extensions\FrFrExtensionTest(new \Random\Randomizer()),
                 ],
             ],
             (new \Xefi\Faker\Container\Container())->getExtensions()['locale-extension-test']
@@ -39,30 +39,30 @@ class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
 
     public function testUsingDefaultLocale()
     {
-        $faker = new Xefi\Faker\Faker('fr-FR');
+        $faker = new Xefi\Faker\Faker('fr_FR');
         $this->assertEquals(
-            'fr-FR',
+            'fr_FR',
             $faker->returnLocale()
         );
 
         $this->assertEquals(
-            'fr-FR',
-            $faker->locale('fr-FR')->returnLocale()
+            'fr_FR',
+            $faker->locale('fr_FR')->returnLocale()
         );
 
         $this->assertEquals(
-            'en-EN',
-            $faker->locale('en-EN')->returnLocale()
+            'en_EN',
+            $faker->locale('en_EN')->returnLocale()
         );
 
         $this->assertEquals(
-            'fr-FR',
+            'fr_FR',
             $faker->returnLocale()
         );
 
         $this->assertEquals(
-            'en-US',
-            $faker->locale('en-US')->returnLocale()
+            'en_US',
+            $faker->locale('en_US')->returnLocale()
         );
     }
 
