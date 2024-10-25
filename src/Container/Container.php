@@ -46,7 +46,7 @@ class Container
      *
      * @var string
      */
-    protected static string $containerMixinManifestPath = './vendor/xefi/faker/src/Container/ContainerMixin.php';
+    protected static string $containerMixinManifestPath = './vendor/xefi/faker-php/src/Container/ContainerMixin.php';
 
     /**
      * Create the container instance.
