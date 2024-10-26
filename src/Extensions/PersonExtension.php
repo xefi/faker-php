@@ -12,50 +12,59 @@ class PersonExtension extends Extension
     public const GENDER_FEMALE = 'F';
 
     protected $firstNameMale = [
-        'John',
-        'James',
-        'Robert',
-        'Michael',
-        'David',
-        'William',
-        'Richard',
-        'Joseph',
-        'Charles',
-        'Thomas',
-        'Daniel',
+        'Marcus',
+        'Lucius',
+        'Gaius',
+        'Julius',
+        'Titus',
+        'Quintus',
+        'Octavius',
+        'Sextus',
+        'Maximus',
+        'Aurelius',
+        'Flavius',
     ];
 
     protected $firstNameFemale = [
-        'Jane',
-        'Mary',
-        'Linda',
-        'Patricia',
-        'Barbara',
-        'Elizabeth',
-        'Jennifer',
-        'Susan',
-        'Margaret',
-        'Dorothy',
-        'Sarah',
+        'Julia',
+        'Claudia',
+        'Livia',
+        'Aemilia',
+        'Cornelia',
+        'Flavia',
+        'Antonia',
+        'Octavia',
+        'Valeria',
+        'Aquila',
+        'Marcella',
     ];
 
     protected $lastName = [
-        'Doe',
-        'Smith',
-        'Johnson',
-        'Brown',
-        'Taylor',
-        'Anderson',
-        'Thomas',
-        'White',
-        'Harris',
-        'Martin',
-        'Thompson',
+        'Scipio',
+        'Brutus',
+        'Gracchus',
+        'Cicero',
+        'Sulla',
+        'Trajanus',
+        'Vespasianus',
+        'Agrippa',
+        'Lentulus',
+        'Nerva',
+        'Cato',
     ];
 
-    protected $titleMale = ['Mr.', 'Dr.', 'Prof.'];
+    protected $titleMale = [
+        'Dominus',
+        'Doctor',
+        'Professor',
+    ];
 
-    protected $titleFemale = ['Mrs.', 'Ms.', 'Miss', 'Dr.', 'Prof.'];
+    protected $titleFemale = [
+        'Domina',
+        'Virgo',
+        'Doctor',
+        'Professor',
+    ];
 
     public function name(string|null $gender = null): string
     {
