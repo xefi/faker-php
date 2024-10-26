@@ -66,6 +66,20 @@ class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
         );
     }
 
+    public function testResettingLocale()
+    {
+        $faker = new Xefi\Faker\Faker('fr_FR');
+        $this->assertEquals(
+            'fr_FR',
+            $faker->returnLocale()
+        );
+
+        $this->assertEquals(
+            null,
+            $faker->locale(null)->returnLocale()
+        );
+    }
+
     public function testUsingNotExistingLocaleFallingBackToNullLocale()
     {
         $faker = new Xefi\Faker\Faker('not-existing-locale');
