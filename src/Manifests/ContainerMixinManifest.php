@@ -37,7 +37,7 @@ class ContainerMixinManifest
     /**
      * Create a new package manifest instance.
      *
-     * @param string      $basePath
+     * @param string  $basePath
      * @param ?string $containerMixinPath
      */
     public function __construct(string $basePath, string $containerMixinPath = null)
@@ -108,7 +108,7 @@ class ContainerMixinManifest
 
                     if ($parameter->allowsNull()) {
                         $type = new Nullable($type);
-                    };
+                    }
                 }
 
                 $parameters[] = new DocBlock\Tags\MethodParameter(
