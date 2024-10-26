@@ -43,7 +43,7 @@ class ContainerMixinManifest
     {
         $this->basePath = $basePath;
         $this->vendorPath = $basePath.'/vendor';
-        $this->containerMixinPath = $containerMixinPath ?? $basePath.'/vendor/xefi/faker/src/Container/ContainerMixin.php';
+        $this->containerMixinPath = $containerMixinPath ?? $basePath.'/vendor/xefi/faker-php/src/Container/ContainerMixin.php';
     }
 
     /**
@@ -71,12 +71,16 @@ class ContainerMixinManifest
      */
     public function build(array $extensionMethods, array $extensions)
     {
+        $tags = [];
+
         foreach ($extensionMethods as $methodName => $extensionName) {
             $extension = $extensions[$extensionName];
 
-            // If the extension is localized
+            // If the extension is localized we look for the first containing the method
             if (is_array($extension) && isset($extension['locales'])) {
-                $extension = $extension['locales']['en-US'];
+                $extension = current(array_filter($extension['locales'], function ($extensionFiltered) use ($methodName) {
+                    return method_exists($extensionFiltered, $methodName);
+                }));
             }
 
             $reflectionMethod = new \ReflectionMethod($extension, $methodName);

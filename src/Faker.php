@@ -12,11 +12,11 @@ class Faker
     /**
      * The current locale format (BCP 47 Code).
      *
-     * @var string
+     * @var string|null
      */
-    protected string $locale;
+    protected string|null $locale;
 
-    public function __construct(string $locale = 'en-US')
+    public function __construct(string|null $locale = null)
     {
         $this->locale = $locale;
     }
