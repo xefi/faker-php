@@ -13,13 +13,45 @@ class PersonExtension extends Extension
 
     protected $firstNameMale = [
         'John',
+        'James',
+        'Robert',
+        'Michael',
+        'David',
+        'William',
+        'Richard',
+        'Joseph',
+        'Charles',
+        'Thomas',
+        'Daniel',
     ];
 
     protected $firstNameFemale = [
         'Jane',
+        'Mary',
+        'Linda',
+        'Patricia',
+        'Barbara',
+        'Elizabeth',
+        'Jennifer',
+        'Susan',
+        'Margaret',
+        'Dorothy',
+        'Sarah',
     ];
 
-    protected $lastName = ['Doe'];
+    protected $lastName = [
+        'Doe',
+        'Smith',
+        'Johnson',
+        'Brown',
+        'Taylor',
+        'Anderson',
+        'Thomas',
+        'White',
+        'Harris',
+        'Martin',
+        'Thompson',
+    ];
 
     protected $titleMale = ['Mr.', 'Dr.', 'Prof.'];
 
