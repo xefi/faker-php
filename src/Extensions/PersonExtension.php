@@ -80,7 +80,7 @@ class PersonExtension extends Extension
         return $this->pickArrayRandomElement($this->lastName);
     }
 
-    public function title($gender = null)
+    public function title(?string $gender = null)
     {
         if ($gender === static::GENDER_MALE) {
             return $this->pickArrayRandomElement($this->titleMale);

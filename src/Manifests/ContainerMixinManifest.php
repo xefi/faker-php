@@ -40,7 +40,7 @@ class ContainerMixinManifest
      * @param string  $basePath
      * @param ?string $containerMixinPath
      */
-    public function __construct(string $basePath, string $containerMixinPath = null)
+    public function __construct(string $basePath, ?string $containerMixinPath = null)
     {
         $this->basePath = $basePath;
         $this->vendorPath = $basePath.'/vendor';
