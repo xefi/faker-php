@@ -9,6 +9,7 @@ use phpDocumentor\Reflection\DocBlock\Tags\Method;
 use phpDocumentor\Reflection\TypeResolver;
 use phpDocumentor\Reflection\Types\Intersection;
 use phpDocumentor\Reflection\Types\Mixed_;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class ContainerMixinManifest
 {
@@ -37,7 +38,7 @@ class ContainerMixinManifest
      * Create a new package manifest instance.
      *
      * @param string      $basePath
-     * @param string|null $containerMixinPath
+     * @param ?string $containerMixinPath
      */
     public function __construct(string $basePath, string $containerMixinPath = null)
     {
@@ -104,6 +105,10 @@ class ContainerMixinManifest
                     } else {
                         $type = $typeResolver->resolve($type->getName());
                     }
+
+                    if ($parameter->allowsNull()) {
+                        $type = new Nullable($type);
+                    };
                 }
 
                 $parameters[] = new DocBlock\Tags\MethodParameter(

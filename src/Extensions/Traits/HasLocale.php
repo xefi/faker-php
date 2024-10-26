@@ -7,9 +7,9 @@ trait HasLocale
     /**
      * The extension locale (BCP 47 Code).
      *
-     * @return string | null
+     * @return ?string
      */
-    public function getLocale(): string|null
+    public function getLocale(): ?string
     {
         return null;
     }

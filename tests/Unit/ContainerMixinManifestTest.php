@@ -53,6 +53,11 @@ final class ContainerMixinManifestTest extends TestCase
             $containerMixinContent
         );
 
+        $this->assertStringContainsString(
+            '@method string withNullableParameter(?string $one)',
+            $containerMixinContent
+        );
+
         unlink('/tmp/ContainerMixin.php');
     }
 

@@ -26,4 +26,9 @@ class MixinTestExtension extends Extension
     {
         return 'string';
     }
+
+    public function withNullableParameter(?string $one = 'default value'): string
+    {
+        return 'string';
+    }
 }
