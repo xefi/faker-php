@@ -22,7 +22,7 @@ class PersonExtension extends Extension
         'Joseph',
         'Charles',
         'Thomas',
-        'Daniel'
+        'Daniel',
     ];
 
     protected $firstNameFemale = [
@@ -36,7 +36,7 @@ class PersonExtension extends Extension
         'Susan',
         'Margaret',
         'Dorothy',
-        'Sarah'
+        'Sarah',
     ];
 
     protected $lastName = [
@@ -50,7 +50,7 @@ class PersonExtension extends Extension
         'White',
         'Harris',
         'Martin',
-        'Thompson'
+        'Thompson',
     ];
 
     protected $titleMale = ['Mr.', 'Dr.', 'Prof.'];
