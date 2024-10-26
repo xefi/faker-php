@@ -78,7 +78,7 @@ class ContainerMixinManifest
 
             // If the extension is localized we look for the first containing the method
             if (is_array($extension) && isset($extension['locales'])) {
-                $extension = current(array_filter($extension['locales'], function($extensionFiltered) use ($methodName) {
+                $extension = current(array_filter($extension['locales'], function ($extensionFiltered) use ($methodName) {
                     return method_exists($extensionFiltered, $methodName);
                 }));
             }

@@ -96,21 +96,23 @@ final class NumbersExtensionTest extends TestCase
     }
 
     /**
-     * Used to cut numbers without round
+     * Used to cut numbers without round.
      *
-     * @param float $number
-     * @param int $precision
+     * @param float  $number
+     * @param int    $precision
      * @param string $separator
+     *
      * @return string
      */
     protected function numberFormatPrecision(float $number, int $precision = 2, string $separator = '.')
     {
         $numberParts = explode($separator, $number);
         $response = $numberParts[0];
-        if (count($numberParts)>1 && $precision > 0) {
+        if (count($numberParts) > 1 && $precision > 0) {
             $response .= $separator;
             $response .= substr($numberParts[1], 0, $precision);
         }
+
         return $response;
     }
 }
