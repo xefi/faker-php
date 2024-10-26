@@ -6,21 +6,22 @@ class NumbersExtension extends Extension
 {
     public function digit(): int
     {
-        return $this->numberBetween(0, 9);
+        return $this->number(0, 9);
     }
 
-    public function numberBetween(int $min, int $max): int
+    public function number(int $min, int $max): int
     {
         return $this->randomizer->getInt($min, $max);
     }
 
-    public function floatBetween(float $min, float $max): float
+    public function float(float $min, float $max, int $decimals = 1): float
     {
-        return $this->randomizer->getFloat($min, $max);
-    }
+        if ($min === $max) {
+            return (float)number_format($min, $decimals, '.', '');
+        }
 
-    public function float(int $min, int $max, int $decimals = 1): float
-    {
-        return $this->numberBetween($min, $max) / max(10 * $decimals, 1);
+        $factor = pow(10, $decimals);
+        $randomInt = $this->number((int) floor($min * $factor), (int) ceil($max * $factor));
+        return (float)number_format($randomInt / $factor, $decimals, '.', '');
     }
 }

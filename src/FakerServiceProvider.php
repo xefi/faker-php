@@ -6,7 +6,6 @@ use Xefi\Faker\Extensions\ColorsExtension;
 use Xefi\Faker\Extensions\DateTimeExtension;
 use Xefi\Faker\Extensions\FinancialExtension;
 use Xefi\Faker\Extensions\HashExtension;
-use Xefi\Faker\Extensions\HtmlExtension;
 use Xefi\Faker\Extensions\InternetExtension;
 use Xefi\Faker\Extensions\LoremExtension;
 use Xefi\Faker\Extensions\NumbersExtension;
@@ -19,7 +18,6 @@ class FakerServiceProvider extends Provider
     public function boot(): void
     {
         $this->extensions([
-            HtmlExtension::class,
             LoremExtension::class,
             NumbersExtension::class,
             StringsExtension::class,
