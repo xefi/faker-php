@@ -25,7 +25,7 @@ final class FileExtensionTest extends TestCase
 
         $results = [];
 
-        for ($i = 0; $i < count(array_keys($this->mimeTypes)) - 100; $i++) {
+        for ($i = 0; $i < count(array_keys($this->mimeTypes)); $i++) {
             $results[] = $faker->unique()->mimeType();
         }
 
