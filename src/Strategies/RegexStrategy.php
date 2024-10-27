@@ -2,8 +2,6 @@
 
 namespace Xefi\Faker\Strategies;
 
-use Xefi\Faker\Seeds\HasSeeds;
-
 class RegexStrategy extends Strategy
 {
     protected string $regex;

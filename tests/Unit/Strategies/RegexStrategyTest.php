@@ -6,7 +6,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use Xefi\Faker\Exceptions\MaximumTriesReached;
 use Xefi\Faker\Faker;
 use Xefi\Faker\Strategies\RegexStrategy;
-use Xefi\Faker\Strategies\UniqueStrategy;
 use Xefi\Faker\Tests\Unit\TestCase;
 
 class RegexStrategyTest extends TestCase
