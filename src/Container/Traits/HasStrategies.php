@@ -2,6 +2,7 @@
 
 namespace Xefi\Faker\Container\Traits;
 
+use Xefi\Faker\Strategies\RegexStrategy;
 use Xefi\Faker\Strategies\UniqueStrategy;
 
 trait HasStrategies
@@ -24,6 +25,20 @@ trait HasStrategies
     public function unique(string $seed = '')
     {
         $this->strategies[] = UniqueStrategy::forSeed($seed);
+
+        return $this;
+    }
+
+    /**
+     * Add a regex strategy.
+     *
+     * @param string $regex
+     *
+     * @return $this
+     */
+    public function regex(string $regex)
+    {
+        $this->strategies[] = new RegexStrategy($regex);
 
         return $this;
     }
