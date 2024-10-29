@@ -7,7 +7,7 @@ use Xefi\Faker\Extensions\DateTimeExtension;
 use Xefi\Faker\Extensions\FinancialExtension;
 use Xefi\Faker\Extensions\HashExtension;
 use Xefi\Faker\Extensions\InternetExtension;
-use Xefi\Faker\Extensions\LoremExtension;
+use Xefi\Faker\Extensions\TextExtension;
 use Xefi\Faker\Extensions\NumbersExtension;
 use Xefi\Faker\Extensions\PersonExtension;
 use Xefi\Faker\Extensions\StringsExtension;
@@ -18,7 +18,7 @@ class FakerServiceProvider extends Provider
     public function boot(): void
     {
         $this->extensions([
-            LoremExtension::class,
+            TextExtension::class,
             NumbersExtension::class,
             StringsExtension::class,
             HashExtension::class,
