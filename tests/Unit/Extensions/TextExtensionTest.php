@@ -30,7 +30,6 @@ final class TextExtensionTest extends TestCase
         }
     }
 
-
     public static function wordsProvider()
     {
         return [
@@ -43,7 +42,7 @@ final class TextExtensionTest extends TestCase
             [7],
             [8],
             [9],
-            [10]
+            [10],
         ];
     }
 
@@ -73,7 +72,6 @@ final class TextExtensionTest extends TestCase
         }
     }
 
-
     public static function sentencesProvider()
     {
         return [
@@ -86,7 +84,7 @@ final class TextExtensionTest extends TestCase
             [7],
             [8],
             [9],
-            [10]
+            [10],
         ];
     }
 
@@ -114,7 +112,6 @@ final class TextExtensionTest extends TestCase
             $this->assertContains($word, $words);
         }
     }
-
 
     public static function paragraphsProvider()
     {

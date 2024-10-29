@@ -9,7 +9,7 @@ class TextExtension extends Extension
     use HasLocale;
 
     /**
-     * Text in format => Paragraphs => Sentences => Words
+     * Text in format => Paragraphs => Sentences => Words.
      *
      * @var array|array[]
      */
@@ -20,7 +20,7 @@ class TextExtension extends Extension
             ['Curabitur', 'et', 'vestibulum', 'nulla.'],
             ['Donec', 'placerat', 'tempor', 'arcu,', 'in', 'viverra', 'sapien', 'laoreet', 'eu.'],
             ['Sed', 'vitae', 'ligula', 'eget', 'mauris', 'malesuada', 'pretium', 'in', 'at', 'lorem.'],
-            ['Integer', 'condimentum', 'urna', 'at', 'lacus', 'fermentum,', 'nec', 'sagittis', 'purus', 'venenatis.']
+            ['Integer', 'condimentum', 'urna', 'at', 'lacus', 'fermentum,', 'nec', 'sagittis', 'purus', 'venenatis.'],
         ],
         [
             ['Nunc', 'at', 'ligula', 'id', 'nisl', 'varius', 'egestas.'],
@@ -28,20 +28,20 @@ class TextExtension extends Extension
             ['Donec', 'sagittis', 'interdum', 'libero', 'non', 'ornare.'],
             ['Nam', 'non', 'massa', 'lacus.'],
             ['Etiam', 'fermentum', 'neque', 'ut', 'est', 'porttitor,', 'ut', 'tincidunt', 'risus', 'suscipit.'],
-            ['Nam', 'id', 'nisi', 'eget', 'lorem', 'vehicula', 'eleifend.']
+            ['Nam', 'id', 'nisi', 'eget', 'lorem', 'vehicula', 'eleifend.'],
         ],
         [
             ['Quisque', 'accumsan', 'nisl', 'ut', 'quam', 'pretium,', 'eget', 'lacinia', 'arcu', 'lobortis.'],
             ['Nam', 'dapibus', 'justo', 'nec', 'nibh', 'dapibus,', 'ac', 'varius', 'velit', 'varius.'],
             ['Nulla', 'facilisi.'],
             ['Praesent', 'volutpat', 'suscipit', 'nibh,', 'eget', 'congue', 'ante', 'ornare', 'a.'],
-            ['Nam', 'aliquet', 'risus', 'eget', 'leo', 'gravida', 'scelerisque.']
+            ['Nam', 'aliquet', 'risus', 'eget', 'leo', 'gravida', 'scelerisque.'],
         ],
         [
             ['Aenean', 'accumsan', 'leo', 'at', 'odio', 'vestibulum,', 'non', 'fermentum', 'nisl', 'varius.'],
             ['Suspendisse', 'in', 'quam', 'sed', 'ligula', 'convallis', 'sodales.'],
             ['Mauris', 'consequat', 'risus', 'sit', 'amet', 'libero', 'iaculis,', 'quis', 'volutpat', 'eros', 'scelerisque.'],
-            ['Pellentesque', 'habitants', 'morbi', 'tristique', 'senectus', 'et', 'netus', 'et', 'malesuada', 'fames', 'ac', 'turpis', 'egestas.']
+            ['Pellentesque', 'habitants', 'morbi', 'tristique', 'senectus', 'et', 'netus', 'et', 'malesuada', 'fames', 'ac', 'turpis', 'egestas.'],
         ],
         [
             ['Donec', 'ultricies', 'euismod', 'libero,', 'vel', 'scelerisque', 'enim', 'condimentum', 'ut.'],
@@ -49,8 +49,8 @@ class TextExtension extends Extension
             ['Proin', 'nec', 'ante', 'at', 'erat', 'pharetra', 'interdum.'],
             ['Etiam', 'nec', 'ligula', 'felis.'],
             ['Curabitur', 'sit', 'amet', 'varius', 'nisi,', 'in', 'sagittis', 'turpis.'],
-            ['Sed', 'eget', 'ex', 'quis', 'risus', 'varius', 'pharetra', 'in', 'a', 'felis.']
-        ]
+            ['Sed', 'eget', 'ex', 'quis', 'risus', 'varius', 'pharetra', 'in', 'a', 'felis.'],
+        ],
     ];
 
     protected array $flattenedWords;
@@ -85,6 +85,7 @@ class TextExtension extends Extension
     public function words(int $wordsCount = 3): string
     {
         $words = $this->wordsAsArray($wordsCount);
+
         // Remove any uppercase / comma / dots
         return strtolower(preg_replace('/[.,]/', '', implode(' ', $words)));
     }
@@ -94,11 +95,11 @@ class TextExtension extends Extension
         return $this->pickArrayRandomElements($this->flattenedSentences(), $sentencesCount);
     }
 
-
     public function sentences(int $sentencesCount = 3): string
     {
         $sentences = $this->sentencesAsArray($sentencesCount);
         $sentences = array_map(function ($sentence) { return implode(' ', $sentence); }, $sentences);
+
         return implode(' ', $sentences);
     }
 
@@ -111,6 +112,7 @@ class TextExtension extends Extension
     {
         $paragraphs = $this->paragraphsAsArray($paragraphsCount);
         $paragraphs = array_map(function ($sentences) {  return implode(' ', array_merge(...$sentences)); }, $paragraphs);
+
         return implode(PHP_EOL, $paragraphs);
     }
 }
