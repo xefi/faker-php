@@ -30,7 +30,7 @@ trait HasExtensions
      *
      * @return $this
      */
-    public function resolveExtensions(array $extensions)
+    public function resolveExtensions(array $extensions): self
     {
         foreach ($extensions as $extension) {
             $this->resolve($extension);

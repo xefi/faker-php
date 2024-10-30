@@ -18,11 +18,11 @@ class UniqueStrategy extends Strategy
     /**
      * Handle the given strategy.
      *
-     * @param $generatedValue
+     * @param mixed $generatedValue
      *
      * @return bool
      */
-    public function pass($generatedValue): bool
+    public function pass(mixed $generatedValue): bool
     {
         if (in_array($generatedValue, $this->tried, true)) {
             return false;

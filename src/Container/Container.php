@@ -5,6 +5,7 @@ namespace Xefi\Faker\Container;
 use Closure;
 use Xefi\Faker\Container\Traits\HasExtensions;
 use Xefi\Faker\Container\Traits\HasLocale;
+use Xefi\Faker\Container\Traits\HasModifiers;
 use Xefi\Faker\Container\Traits\HasStrategies;
 use Xefi\Faker\Exceptions\MaximumTriesReached;
 use Xefi\Faker\Manifests\ContainerMixinManifest;
@@ -18,6 +19,7 @@ class Container
 {
     use HasStrategies;
     use HasExtensions;
+    use HasModifiers;
     use HasLocale;
 
     /**
@@ -175,6 +177,9 @@ class Container
         $tries = 0;
         do {
             $generatedValue = $this->callExtensionMethod($method, $parameters);
+
+            // Apply modifiers
+            $generatedValue = $this->applyModifiers($generatedValue);
 
             if (++$tries > 20000) {
                 throw new MaximumTriesReached(sprintf('Maximum tries of %d reached without finding a value', 20000));

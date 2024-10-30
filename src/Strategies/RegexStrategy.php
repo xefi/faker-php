@@ -14,11 +14,11 @@ class RegexStrategy extends Strategy
     /**
      * Handle the given strategy.
      *
-     * @param $generatedValue
+     * @param mixed $generatedValue
      *
      * @return bool
      */
-    public function pass($generatedValue): bool
+    public function pass(mixed $generatedValue): bool
     {
         return (bool) preg_match($this->regex, $generatedValue);
     }

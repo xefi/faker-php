@@ -7,7 +7,9 @@ abstract class Strategy
     /**
      * Handle the given strategy.
      *
+     * @param mixed $generatedValue
+     *
      * @return bool
      */
-    abstract public function pass($generatedValue): bool;
+    abstract public function pass(mixed $generatedValue): bool;
 }
