@@ -2,13 +2,8 @@
 
 namespace Modifiers;
 
-use PHPUnit\Framework\Attributes\DataProvider;
-use Random\Randomizer;
-use Xefi\Faker\Exceptions\MaximumTriesReached;
 use Xefi\Faker\Faker;
 use Xefi\Faker\Modifiers\LowercaseModifier;
-use Xefi\Faker\Modifiers\NullableModifier;
-use Xefi\Faker\Strategies\RegexStrategy;
 use Xefi\Faker\Tests\Unit\TestCase;
 
 class LowercaseModifierTest extends TestCase
@@ -20,7 +15,7 @@ class LowercaseModifierTest extends TestCase
         $container = $faker->lowercase();
 
         $this->assertEquals(
-            [new LowercaseModifier],
+            [new LowercaseModifier()],
             $container->getModifiers()
         );
     }

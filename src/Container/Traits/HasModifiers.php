@@ -7,8 +7,6 @@ use Xefi\Faker\Modifiers\LowercaseModifier;
 use Xefi\Faker\Modifiers\Modifier;
 use Xefi\Faker\Modifiers\NullableModifier;
 use Xefi\Faker\Modifiers\UppercaseModifier;
-use Xefi\Faker\Strategies\RegexStrategy;
-use Xefi\Faker\Strategies\UniqueStrategy;
 
 trait HasModifiers
 {
@@ -28,7 +26,7 @@ trait HasModifiers
      */
     public function nullable(int $weight = 50): self
     {
-        $this->modifiers[] = new NullableModifier(new Randomizer, $weight);
+        $this->modifiers[] = new NullableModifier(new Randomizer(), $weight);
 
         return $this;
     }
