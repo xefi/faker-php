@@ -3,6 +3,7 @@
 namespace Xefi\Faker\Container\Traits;
 
 use Xefi\Faker\Strategies\RegexStrategy;
+use Xefi\Faker\Strategies\Strategy;
 use Xefi\Faker\Strategies\UniqueStrategy;
 
 trait HasStrategies
@@ -10,7 +11,7 @@ trait HasStrategies
     /**
      * The current instance strategies.
      *
-     * @var array
+     * @var Strategy[]
      */
     protected array $strategies = [];
 
@@ -18,11 +19,10 @@ trait HasStrategies
      * Add a unique strategy.
      *
      * @param string $seed
-     * @param int    $maxRetries
      *
      * @return $this
      */
-    public function unique(string $seed = '')
+    public function unique(string $seed = ''): self
     {
         $this->strategies[] = UniqueStrategy::forSeed($seed);
 
@@ -36,7 +36,7 @@ trait HasStrategies
      *
      * @return $this
      */
-    public function regex(string $regex)
+    public function regex(string $regex): self
     {
         $this->strategies[] = new RegexStrategy($regex);
 
@@ -52,7 +52,7 @@ trait HasStrategies
      */
     public function passStrategies($generatedValue): bool
     {
-        foreach ($this->strategies as $strategy) {
+        foreach ($this->getStrategies() as $strategy) {
             if (!$strategy->pass($generatedValue)) {
                 return false;
             }

@@ -10,4 +10,9 @@ class StringTestExtension extends Extension
     {
         return 'hello';
     }
+
+    public function returnHelloUppercase()
+    {
+        return 'HELLO';
+    }
 }
