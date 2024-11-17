@@ -1,6 +1,6 @@
 <?php
 
-namespace Modifiers;
+namespace Xefi\Faker\Tests\Unit\Modifiers;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use Random\Randomizer;

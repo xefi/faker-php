@@ -1,6 +1,6 @@
 <?php
 
-namespace Extensions;
+namespace Xefi\Faker\Tests\Unit\Extensions;
 
 use ReflectionClass;
 use Xefi\Faker\Container\Container;
