@@ -7,7 +7,7 @@ use Random\Randomizer;
 class NullableModifier extends Modifier
 {
     /**
-     * The weight for null to be given (60 => 60% chance of null)
+     * The weight for null to be given (60 => 60% chance of null).
      *
      * @var int
      */
@@ -25,6 +25,7 @@ class NullableModifier extends Modifier
      * Handle the given modifier.
      *
      * @param mixed $generatedValue
+     *
      * @return mixed
      */
     public function apply(mixed $generatedValue): mixed

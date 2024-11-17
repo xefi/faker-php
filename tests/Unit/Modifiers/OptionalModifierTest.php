@@ -2,12 +2,9 @@
 
 namespace Xefi\Faker\Tests\Unit\Modifiers;
 
-use PHPUnit\Framework\Attributes\DataProvider;
 use Random\Randomizer;
-use Xefi\Faker\Exceptions\MaximumTriesReached;
 use Xefi\Faker\Faker;
 use Xefi\Faker\Modifiers\NullableModifier;
-use Xefi\Faker\Strategies\RegexStrategy;
 use Xefi\Faker\Tests\Unit\TestCase;
 
 class OptionalModifierTest extends TestCase
@@ -19,7 +16,7 @@ class OptionalModifierTest extends TestCase
         $container = $faker->nullable();
 
         $this->assertEquals(
-            [new NullableModifier(new Randomizer)],
+            [new NullableModifier(new Randomizer())],
             $container->getModifiers()
         );
     }

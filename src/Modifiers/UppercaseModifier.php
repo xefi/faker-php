@@ -2,14 +2,13 @@
 
 namespace Xefi\Faker\Modifiers;
 
-use Random\Randomizer;
-
 class UppercaseModifier extends Modifier
 {
     /**
      * Handle the given modifier.
      *
      * @param mixed $generatedValue
+     *
      * @return mixed
      */
     public function apply(mixed $generatedValue): mixed
