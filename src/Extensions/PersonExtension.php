@@ -66,12 +66,12 @@ class PersonExtension extends Extension
         'Professor',
     ];
 
-    public function name(string|null $gender = null): string
+    public function name(?string $gender = null): string
     {
         return sprintf('%s %s', $this->firstName($gender), $this->lastName());
     }
 
-    public function firstName(string|null $gender = null): string
+    public function firstName(?string $gender = null): string
     {
         if ($gender === static::GENDER_MALE) {
             return $this->pickArrayRandomElement($this->firstNameMale);
@@ -89,7 +89,7 @@ class PersonExtension extends Extension
         return $this->pickArrayRandomElement($this->lastName);
     }
 
-    public function title($gender = null)
+    public function title(?string $gender = null)
     {
         if ($gender === static::GENDER_MALE) {
             return $this->pickArrayRandomElement($this->titleMale);

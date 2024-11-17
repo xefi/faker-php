@@ -10,12 +10,12 @@ class FinancialExtension extends Extension
     use HasLocale;
 
     /**
-     * @param string|null $countryCode
-     * @param string|null $format      [{d} => digit, {l} => letter, {a} => any]
+     * @param ?string $countryCode
+     * @param ?string $format      [{d} => digit, {l} => letter, {a} => any]
      *
      * @return string
      */
-    public function iban(string $countryCode = null, string $format = null): string
+    public function iban(?string $countryCode = null, ?string $format = null): string
     {
         if ($format === null) {
             $format = str_repeat('{d}', 24);

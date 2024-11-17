@@ -9,9 +9,9 @@ class PackageManifest
     /**
      * The manifest path.
      *
-     * @var string|null
+     * @var ?string
      */
-    public string|null $manifestPath;
+    public ?string $manifestPath;
 
     /**
      * The base path.

@@ -7,16 +7,16 @@ trait HasLocale
     /**
      * The current locale format (BCP 47 Code).
      *
-     * @var string
+     * @var ?string
      */
-    protected string|null $locale;
+    protected ?string $locale;
 
     /**
      * Get the current locale.
      *
-     * @return string|null
+     * @return ?string
      */
-    public function getLocale(): string|null
+    public function getLocale(): ?string
     {
         return $this->locale ?? null;
     }
@@ -24,11 +24,11 @@ trait HasLocale
     /**
      * Change the locale.
      *
-     * @param string|null $locale
+     * @param ?string $locale
      *
      * @return self
      */
-    public function locale(string|null $locale): self
+    public function locale(?string $locale): self
     {
         $this->locale = $locale;
 
