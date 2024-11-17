@@ -114,7 +114,7 @@ class ContainerMixinManifest
                 $parameters[] = new DocBlock\Tags\MethodParameter(
                     name: $parameter->getName(),
                     type: $type,
-                    defaultValue: $parameter->isDefaultValueAvailable() ? $parameter->getDefaultValue() : null
+                    defaultValue: $parameter->isDefaultValueAvailable() ? $parameter->getDefaultValue() : DocBlock\Tags\MethodParameter::NO_DEFAULT_VALUE
                 );
             }
 

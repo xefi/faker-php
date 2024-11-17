@@ -54,7 +54,7 @@ final class ContainerMixinManifestTest extends TestCase
         );
 
         $this->assertStringContainsString(
-            '@method string withNullableParameter(?string $one)',
+            '@method string withNullableParameter(?string $one = \'default value\')',
             $containerMixinContent
         );
 

@@ -1,10 +1,9 @@
 <?php
 
-namespace Extensions;
+namespace Xefi\Faker\Tests\Unit\Extensions;
 
 use ReflectionClass;
 use Xefi\Faker\Container\Container;
-use Xefi\Faker\Tests\Unit\Extensions\TestCase;
 
 final class InternetExtensionTest extends TestCase
 {

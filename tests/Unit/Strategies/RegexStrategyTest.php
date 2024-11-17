@@ -1,6 +1,6 @@
 <?php
 
-namespace Strategies;
+namespace Xefi\Faker\Tests\Unit\Strategies;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use Xefi\Faker\Exceptions\MaximumTriesReached;

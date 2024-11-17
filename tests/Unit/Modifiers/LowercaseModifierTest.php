@@ -1,6 +1,6 @@
 <?php
 
-namespace Modifiers;
+namespace Xefi\Faker\Tests\Unit\Modifiers;
 
 use Xefi\Faker\Faker;
 use Xefi\Faker\Modifiers\LowercaseModifier;
