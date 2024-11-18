@@ -25,17 +25,7 @@ class FinancialExtension extends Extension
             $countryCode = $this->randomizer->getBytesFromString(implode(range('A', 'Z')), 2);
         }
 
-        while (($pos = strpos($format, '{a}')) !== false) {
-            $format = substr_replace($format, $this->pickArrayRandomElement(['{d}', '{l}']), $pos, 3);
-        }
-
-        while (($pos = strpos($format, '{d}')) !== false) {
-            $format = substr_replace($format, (string) $this->randomizer->getInt(0, 9), $pos, 3);
-        }
-
-        while (($pos = strpos($format, '{l}')) !== false) {
-            $format = substr_replace($format, $this->randomizer->getBytesFromString(implode(range('A', 'Z')), 1), $pos, 3);
-        }
+        $format = $this->formatString($format);
 
         $checksum = Iban::checksum($countryCode.'00'.$format);
 
