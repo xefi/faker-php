@@ -61,4 +61,21 @@ class Extension
 
         return reset($elements);
     }
+
+    protected function formatString(string $string): string
+    {
+        while (($pos = strpos($string, '{a}')) !== false) {
+            $string = substr_replace($string, $this->pickArrayRandomElement(['{d}', '{l}']), $pos, 3);
+        }
+
+        while (($pos = strpos($string, '{d}')) !== false) {
+            $string = substr_replace($string, (string) $this->randomizer->getInt(0, 9), $pos, 3);
+        }
+
+        while (($pos = strpos($string, '{l}')) !== false) {
+            $string = substr_replace($string, $this->randomizer->getBytesFromString(implode(range('A', 'Z')), 1), $pos, 3);
+        }
+
+        return $string;
+    }
 }
