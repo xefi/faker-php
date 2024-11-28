@@ -61,6 +61,25 @@ final class ContainerMixinManifestTest extends TestCase
         unlink('/tmp/ContainerMixin.php');
     }
 
+    public function testContainerMixinNamespace()
+    {
+        @unlink('/tmp/ContainerMixin.php');
+        $container = new \Xefi\Faker\Container\Container(shouldBuildContainerMixin: false);
+        $manifest = new \Xefi\Faker\Manifests\ContainerMixinManifest(__DIR__.'/../Support', '/tmp/ContainerMixin.php');
+        $manifest->build($container->getExtensionMethods(), $container->getExtensions());
+
+        $this->assertFileExists('/tmp/ContainerMixin.php');
+
+        $containerMixinContent = file_get_contents('/tmp/ContainerMixin.php');
+
+        $this->assertStringContainsString(
+            'namespace Xefi\\Faker\\Container;',
+            $containerMixinContent
+        );
+
+        unlink('/tmp/ContainerMixin.php');
+    }
+
     public function testShouldRecompile()
     {
         @unlink('/tmp/ContainerMixin.php');
