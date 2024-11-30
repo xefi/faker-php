@@ -9,7 +9,8 @@ class BooleanExtension extends Extension
 {
     use HasLocale;
 
-    public function boolean(int $percentage = 50) {
+    public function boolean(int $percentage = 50)
+    {
         if ($percentage < 0 || $percentage > 100) {
             throw new BadParameterException('Percentage must be between 0 and 100');
         }

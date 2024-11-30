@@ -99,5 +99,4 @@ class ExtensionTest extends TestCase
         $this->assertArrayHasKey($result, $elements);
         $this->assertIsString($result);
     }
-
 }

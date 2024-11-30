@@ -2,7 +2,8 @@
 
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
-final class ArraysExtensionTest extends TestCase {
+final class ArraysExtensionTest extends TestCase
+{
     protected array $testArray = [];
 
     protected function setUp(): void

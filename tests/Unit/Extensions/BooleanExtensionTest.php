@@ -2,11 +2,10 @@
 
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
-use Random\Randomizer;
 use Xefi\Faker\Exceptions\BadParameterException;
-use Xefi\Faker\Extensions\ColorsExtension;
 
-final class BooleanExtensionTest extends TestCase {
+final class BooleanExtensionTest extends TestCase
+{
     public function testBoolean(): void
     {
         $results = [];
