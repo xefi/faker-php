@@ -2,6 +2,7 @@
 
 namespace Xefi\Faker;
 
+use Xefi\Faker\Extensions\ArraysExtension;
 use Xefi\Faker\Extensions\BooleanExtension;
 use Xefi\Faker\Extensions\ColorsExtension;
 use Xefi\Faker\Extensions\DateTimeExtension;
@@ -28,7 +29,8 @@ class FakerServiceProvider extends Provider
             ColorsExtension::class,
             PersonExtension::class,
             FinancialExtension::class,
-            BooleanExtension::class
+            BooleanExtension::class,
+            ArraysExtension::class,
         ]);
     }
 }

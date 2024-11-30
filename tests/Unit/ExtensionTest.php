@@ -58,4 +58,46 @@ class ExtensionTest extends TestCase
         $this->assertGreaterThanOrEqual(1, $result);
         $this->assertLessThanOrEqual(100, $result);
     }
+
+    public function testExtensionPickArrayRandomKeys(): void
+    {
+        $elements = [
+            'a' => 1,
+            'b' => 2,
+            'c' => 3,
+            'd' => 4,
+            'e' => 5,
+        ];
+
+        $method = (new ReflectionClass(Extension::class))->getMethod('pickArrayRandomKeys');
+        $result = $method->invoke(new Extension(new Randomizer()), $elements, 3);
+
+        $this->assertCount(
+            3,
+            $result
+        );
+
+        foreach ($result as $key) {
+            $this->assertArrayHasKey($key, $elements);
+            $this->assertIsString($key);
+        }
+    }
+
+    public function testExtensionPickArrayRandomKey(): void
+    {
+        $elements = [
+            'a' => 1,
+            'b' => 2,
+            'c' => 3,
+            'd' => 4,
+            'e' => 5,
+        ];
+
+        $method = (new ReflectionClass(Extension::class))->getMethod('pickArrayRandomKey');
+        $result = $method->invoke(new Extension(new Randomizer()), $elements);
+
+        $this->assertArrayHasKey($result, $elements);
+        $this->assertIsString($result);
+    }
+
 }
