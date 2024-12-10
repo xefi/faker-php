@@ -38,4 +38,14 @@ class InternetExtension extends Extension
     {
         return implode(':', str_split(substr(md5($this->randomizer->getInt(0, 2147483647)), 0, 12), 2));
     }
+
+    public function email()
+    {
+        $letters = $this->randomizer->getBytesFromString(
+            implode(range('a', 'z')),
+            $this->randomizer->getInt(4, 30)
+        );
+
+        return sprintf('%s@%s', $letters, $this->domain());
+    }
 }
