@@ -4,7 +4,7 @@ namespace Xefi\Faker\Extensions;
 
 use Xefi\Faker\Extensions\Traits\HasLocale;
 
-class ArraysExtension extends Extension
+class ArrayExtension extends Extension
 {
     use HasLocale;
 
