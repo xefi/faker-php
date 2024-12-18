@@ -62,6 +62,16 @@ class Extension
         return reset($elements);
     }
 
+    protected function pickArrayRandomKeys(array $array, int $elements = 1): array
+    {
+        return $this->randomizer->pickArrayKeys($array, $elements);
+    }
+
+    protected function pickArrayRandomKey(array $array): mixed
+    {
+        return $this->pickArrayRandomKeys($array)[0];
+    }
+
     protected function formatString(string $string): string
     {
         while (($pos = strpos($string, '{a}')) !== false) {
