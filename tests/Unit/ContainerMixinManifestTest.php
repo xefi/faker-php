@@ -59,12 +59,12 @@ final class ContainerMixinManifestTest extends TestCase
         );
 
         $this->assertStringContainsString(
-            '@method string|int withUnionType(string|int $param)',
+            '@method string|int withCompoundType(string|int $param)',
             $containerMixinContent
         );
 
         $this->assertStringNotContainsString(
-            '@method string|int withUnionType(string&int $param)',
+            '@method string|int withCompoundType(string&int $param)',
             $containerMixinContent
         );
 
