@@ -31,4 +31,9 @@ class MixinTestExtension extends Extension
     {
         return 'string';
     }
+
+    public function withCompoundType(int|string $param): int|string
+    {
+        return $param;
+    }
 }

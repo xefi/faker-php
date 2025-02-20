@@ -58,6 +58,16 @@ final class ContainerMixinManifestTest extends TestCase
             $containerMixinContent
         );
 
+        $this->assertStringContainsString(
+            '@method string|int withCompoundType(string|int $param)',
+            $containerMixinContent
+        );
+
+        $this->assertStringNotContainsString(
+            '@method string|int withCompoundType(string&int $param)',
+            $containerMixinContent
+        );
+
         unlink('/tmp/ContainerMixin.php');
     }
 

@@ -7,7 +7,7 @@ use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Serializer;
 use phpDocumentor\Reflection\DocBlock\Tags\Method;
 use phpDocumentor\Reflection\TypeResolver;
-use phpDocumentor\Reflection\Types\Intersection;
+use phpDocumentor\Reflection\Types\Compound;
 use phpDocumentor\Reflection\Types\Mixed_;
 use phpDocumentor\Reflection\Types\Nullable;
 
@@ -96,7 +96,7 @@ class ContainerMixinManifest
                     $type = $parameter->getType();
 
                     if ($type instanceof \ReflectionUnionType) {
-                        $type = new Intersection(
+                        $type = new Compound(
                             array_map(
                                 fn ($type) => $typeResolver->resolve($type),
                                 $type->getTypes()
