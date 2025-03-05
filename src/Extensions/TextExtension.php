@@ -77,40 +77,40 @@ class TextExtension extends Extension
         return array_merge(...$this->paragraphs);
     }
 
-    public function wordsAsArray(int $wordsCount = 3): array
+    public function wordsAsArray(int $words = 3): array
     {
-        return $this->pickArrayRandomElements($this->flattenedWords(), $wordsCount);
+        return $this->pickArrayRandomElements($this->flattenedWords(), $words);
     }
 
-    public function words(int $wordsCount = 3): string
+    public function words(int $words = 3): string
     {
-        $words = $this->wordsAsArray($wordsCount);
+        $words = $this->wordsAsArray($words);
 
         // Remove any uppercase / comma / dots
         return strtolower(preg_replace('/[.,]/', '', implode(' ', $words)));
     }
 
-    public function sentencesAsArray(int $sentencesCount = 3): array
+    public function sentencesAsArray(int $sentences = 3): array
     {
-        return $this->pickArrayRandomElements($this->flattenedSentences(), $sentencesCount);
+        return $this->pickArrayRandomElements($this->flattenedSentences(), $sentences);
     }
 
-    public function sentences(int $sentencesCount = 3): string
+    public function sentences(int $sentences = 3): string
     {
-        $sentences = $this->sentencesAsArray($sentencesCount);
+        $sentences = $this->sentencesAsArray($sentences);
         $sentences = array_map(function ($sentence) { return implode(' ', $sentence); }, $sentences);
 
         return implode(' ', $sentences);
     }
 
-    public function paragraphsAsArray(int $paragraphsCount = 3): array
+    public function paragraphsAsArray(int $paragraphs = 3): array
     {
-        return $this->pickArrayRandomElements($this->paragraphs, $paragraphsCount);
+        return $this->pickArrayRandomElements($this->paragraphs, $paragraphs);
     }
 
-    public function paragraphs(int $paragraphsCount = 3): string
+    public function paragraphs(int $paragraphs = 3): string
     {
-        $paragraphs = $this->paragraphsAsArray($paragraphsCount);
+        $paragraphs = $this->paragraphsAsArray($paragraphs);
         $paragraphs = array_map(function ($sentences) {  return implode(' ', array_merge(...$sentences)); }, $paragraphs);
 
         return implode(PHP_EOL, $paragraphs);
