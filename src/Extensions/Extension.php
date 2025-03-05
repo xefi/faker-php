@@ -69,7 +69,7 @@ class Extension
 
     protected function pickArrayRandomKey(array $array): mixed
     {
-        return $this->pickArrayRandomKeys($array)[0];
+        return key($array[$this->pickArrayRandomKeys($array)[0]]);
     }
 
     protected function formatString(string $string): string
