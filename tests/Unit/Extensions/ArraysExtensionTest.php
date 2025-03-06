@@ -2,6 +2,8 @@
 
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
+use Random\Randomizer;
+
 final class ArraysExtensionTest extends TestCase
 {
     protected array $testArray = [];
@@ -31,5 +33,18 @@ final class ArraysExtensionTest extends TestCase
         }
 
         $this->assertEqualsCanonicalizing($elements, array_keys($this->testArray));
+    }
+
+    public function testRandomKey(): void
+    {
+        $inputArray = [
+            ['firstname' => 'John'],
+            ['lastname' => 'Doe'],
+            ['nickname' => 'Johnny'],
+            ['login' => 'j.doe']
+        ];
+
+        $result = $this->faker->randomKey($inputArray);
+        $this->assertContains($result, ['firstname', 'lastname', 'nickname', 'login']);
     }
 }
