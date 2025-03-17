@@ -2,8 +2,6 @@
 
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
-use Random\Randomizer;
-
 final class ArraysExtensionTest extends TestCase
 {
     protected array $testArray = [];
