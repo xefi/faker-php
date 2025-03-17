@@ -44,7 +44,7 @@ class ContainerMixinManifest
     {
         $this->basePath = $basePath;
         $this->vendorPath = $basePath.'/vendor';
-        $this->containerMixinPath = $containerMixinPath ?? $basePath.'/vendor/xefi/faker-php/src/Container/ContainerMixin.php';
+        $this->containerMixinPath = $containerMixinPath ?? $basePath.'/faker_mixin.php';
     }
 
     /**
