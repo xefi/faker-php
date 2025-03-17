@@ -52,7 +52,7 @@ final class TextExtensionTest extends TestCase
         $sentences = array_merge(...$this->paragraphs);
         $words = array_merge(...$sentences);
         $wordsWithoutPunctuationAndLowercased = array_map(function (string $word) { return strtolower(preg_replace('/[.,]/', '', $word)); }, $words);
-        $result = $this->faker->unique()->words($count);
+        $result = $this->faker->unique()->words(words: $count);
 
         $this->assertCount($count, explode(' ', $result));
         foreach (explode(' ', $result) as $word) {
@@ -93,7 +93,7 @@ final class TextExtensionTest extends TestCase
     {
         $sentences = array_merge(...$this->paragraphs);
         $words = array_merge(...$sentences);
-        $result = $this->faker->unique()->sentences($count);
+        $result = $this->faker->unique()->sentences(sentences: $count);
 
         $this->assertCount($count, array_filter(explode('.', $result)));
         foreach (explode(' ', $result) as $word) {
@@ -129,7 +129,7 @@ final class TextExtensionTest extends TestCase
     {
         $sentences = array_merge(...$this->paragraphs);
         $words = array_merge(...$sentences);
-        $result = $this->faker->unique()->paragraphs($count);
+        $result = $this->faker->unique()->paragraphs(paragraphs: $count);
 
         $this->assertCount($count, array_filter(explode(PHP_EOL, $result)));
         foreach (preg_split('/\s+/', $result) as $word) {
