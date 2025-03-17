@@ -41,7 +41,7 @@ final class ArraysExtensionTest extends TestCase
             ['firstname' => 'John'],
             ['lastname'  => 'Doe'],
             ['nickname'  => 'Johnny'],
-            ['login'     => 'j.doe']
+            ['login'     => 'j.doe'],
         ];
 
         $result = $this->faker->randomKey($inputArray);
