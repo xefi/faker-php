@@ -62,7 +62,6 @@ final class CurrencyExtensionTest extends TestCase
             $this->assertArrayHasKey('name', $currency);
             $this->assertArrayHasKey('symbol', $currency);
 
-            // Ensure the currency is unique
             $this->assertNotContains($currency['code'], $uniqueCurrencies);
             $uniqueCurrencies[] = $currency['code'];
         }
