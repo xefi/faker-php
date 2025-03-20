@@ -4,7 +4,6 @@ namespace Xefi\Faker\Tests\Unit\Extensions;
 
 final class CurrencyExtensionTest extends TestCase
 {
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -12,35 +11,43 @@ final class CurrencyExtensionTest extends TestCase
 
     public function testCurrency()
     {
-        $currency = $this->faker->currency();
+        for ($i = 0; $i < 100; $i++) {
+            $currency = $this->faker->currency();
 
-        $this->assertIsArray($currency);
-        $this->assertArrayHasKey('code', $currency);
-        $this->assertArrayHasKey('name', $currency);
-        $this->assertArrayHasKey('symbol', $currency);
+            $this->assertIsArray($currency);
+            $this->assertArrayHasKey('code', $currency);
+            $this->assertArrayHasKey('name', $currency);
+            $this->assertArrayHasKey('symbol', $currency);
+        }
     }
 
     public function testCurrencyCode()
     {
-        $code = $this->faker->currencyCode();
+        for ($i = 0; $i < 100; $i++) {
+            $code = $this->faker->currencyCode();
 
-        $this->assertIsString($code);
-        $this->assertEquals(3, strlen($code));
+            $this->assertIsString($code);
+            $this->assertEquals(3, strlen($code));
+        }
     }
 
     public function testCurrencyName()
     {
-        $name = $this->faker->currencyName();
+        for ($i = 0; $i < 100; $i++) {
+            $name = $this->faker->currencyName();
 
-        $this->assertIsString($name);
-        $this->assertNotEmpty($name);
+            $this->assertIsString($name);
+            $this->assertNotEmpty($name);
+        }
     }
 
     public function testCurrencySymbol()
     {
-        $symbol = $this->faker->currencySymbol();
+        for ($i = 0; $i < 100; $i++) {
+            $symbol = $this->faker->currencySymbol();
 
-        $this->assertIsString($symbol);
-        $this->assertNotEmpty($symbol);
+            $this->assertIsString($symbol);
+            $this->assertNotEmpty($symbol);
+        }
     }
 }
