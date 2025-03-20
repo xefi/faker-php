@@ -50,4 +50,21 @@ final class CurrencyExtensionTest extends TestCase
             $this->assertNotEmpty($symbol);
         }
     }
+
+    public function testUniqueCurrency()
+    {
+        $uniqueCurrencies = [];
+
+        for ($i = 0; $i < 100; $i++) {
+            $currency = $this->faker->unique()->currency();
+            $this->assertIsArray($currency);
+            $this->assertArrayHasKey('code', $currency);
+            $this->assertArrayHasKey('name', $currency);
+            $this->assertArrayHasKey('symbol', $currency);
+
+            // Ensure the currency is unique
+            $this->assertNotContains($currency['code'], $uniqueCurrencies);
+            $uniqueCurrencies[] = $currency['code'];
+        }
+    }
 }
