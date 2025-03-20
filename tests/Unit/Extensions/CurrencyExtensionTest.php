@@ -10,7 +10,7 @@ final class CurrencyExtensionTest extends TestCase
         parent::setUp();
     }
 
-    public function testItCanGenerateARandomCurrency()
+    public function testCurrency()
     {
         $currency = $this->faker->currency();
 
@@ -20,7 +20,7 @@ final class CurrencyExtensionTest extends TestCase
         $this->assertArrayHasKey('symbol', $currency);
     }
 
-    public function testItCanGenerateACurrencyCode()
+    public function testCurrencyCode()
     {
         $code = $this->faker->currencyCode();
 
@@ -28,7 +28,7 @@ final class CurrencyExtensionTest extends TestCase
         $this->assertEquals(3, strlen($code));
     }
 
-    public function testItCanGenerateACurrencyName()
+    public function testCurrencyName()
     {
         $name = $this->faker->currencyName();
 
@@ -36,7 +36,7 @@ final class CurrencyExtensionTest extends TestCase
         $this->assertNotEmpty($name);
     }
 
-    public function testItCanGenerateACurrencySymbol()
+    public function testCurrencySymbol()
     {
         $symbol = $this->faker->currencySymbol();
 
