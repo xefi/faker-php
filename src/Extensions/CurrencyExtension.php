@@ -121,7 +121,7 @@ class CurrencyExtension extends Extension
 
     public function currency(): array
     {
-        return $this->currencies[array_rand($this->currencies)];
+        return $this->pickArrayRandomElement($this->currencies);
     }
 
     public function currencyCode(): string
