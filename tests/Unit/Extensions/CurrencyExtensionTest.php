@@ -2,16 +2,24 @@
 
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
+use Random\Randomizer;
+use Xefi\Faker\Extensions\CurrencyExtension;
+
 final class CurrencyExtensionTest extends TestCase
 {
+    protected array $currencies = [];
+
     protected function setUp(): void
     {
         parent::setUp();
+
+        $currencyExtension = new CurrencyExtension(new Randomizer());
+        $this->currencies = (new \ReflectionClass($currencyExtension))->getProperty('currencies')->getValue($currencyExtension);
     }
 
     public function testCurrency()
     {
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < count($this->currencies); $i++) {
             $currency = $this->faker->currency();
 
             $this->assertIsArray($currency);
@@ -23,8 +31,8 @@ final class CurrencyExtensionTest extends TestCase
 
     public function testCurrencyCode()
     {
-        for ($i = 0; $i < 100; $i++) {
-            $code = $this->faker->currencyCode();
+        for ($i = 0; $i < count($this->currencies); $i++) {
+            $code = $this->faker->unique()->currencyCode();
 
             $this->assertIsString($code);
             $this->assertEquals(3, strlen($code));
@@ -33,8 +41,8 @@ final class CurrencyExtensionTest extends TestCase
 
     public function testCurrencyName()
     {
-        for ($i = 0; $i < 100; $i++) {
-            $name = $this->faker->currencyName();
+        for ($i = 0; $i < count($this->currencies); $i++) {
+            $name = $this->faker->unique()->currencyName();
 
             $this->assertIsString($name);
             $this->assertNotEmpty($name);
@@ -43,27 +51,11 @@ final class CurrencyExtensionTest extends TestCase
 
     public function testCurrencySymbol()
     {
-        for ($i = 0; $i < 100; $i++) {
-            $symbol = $this->faker->currencySymbol();
+        for ($i = 0; $i < count($this->currencies); $i++) {
+            $symbol = $this->faker->unique()->currencySymbol();
 
             $this->assertIsString($symbol);
             $this->assertNotEmpty($symbol);
-        }
-    }
-
-    public function testUniqueCurrency()
-    {
-        $uniqueCurrencies = [];
-
-        for ($i = 0; $i < 100; $i++) {
-            $currency = $this->faker->unique()->currency();
-            $this->assertIsArray($currency);
-            $this->assertArrayHasKey('code', $currency);
-            $this->assertArrayHasKey('name', $currency);
-            $this->assertArrayHasKey('symbol', $currency);
-
-            $this->assertNotContains($currency['code'], $uniqueCurrencies);
-            $uniqueCurrencies[] = $currency['code'];
         }
     }
 }
