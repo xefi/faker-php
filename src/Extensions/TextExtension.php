@@ -57,8 +57,6 @@ class TextExtension extends Extension
 
     protected array $flattenedSentences;
 
-    protected array $flattenedParahraphs;
-
     protected function flattenedWords(): array
     {
         if (isset($this->flattenedWords)) {
