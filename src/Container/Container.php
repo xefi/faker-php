@@ -12,9 +12,6 @@ use Xefi\Faker\Manifests\ContainerMixinManifest;
 use Xefi\Faker\Manifests\PackageManifest;
 use Xefi\Faker\Providers\ProviderRepository;
 
-/**
- * @mixin ContainerMixin
- */
 class Container
 {
     use HasStrategies;
