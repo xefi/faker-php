@@ -12,9 +12,6 @@ use Xefi\Faker\Manifests\ContainerMixinManifest;
 use Xefi\Faker\Manifests\PackageManifest;
 use Xefi\Faker\Providers\ProviderRepository;
 
-/**
- * @mixin ContainerMixin
- */
 class Container
 {
     use HasStrategies;
@@ -48,7 +45,7 @@ class Container
      *
      * @var string
      */
-    protected static string $containerMixinManifestPath = './vendor/xefi/faker-php/src/Container/ContainerMixin.php';
+    protected static string $containerMixinManifestPath = './faker_mixin.php';
 
     /**
      * Create the container instance.

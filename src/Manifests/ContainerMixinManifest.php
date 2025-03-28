@@ -44,7 +44,7 @@ class ContainerMixinManifest
     {
         $this->basePath = $basePath;
         $this->vendorPath = $basePath.'/vendor';
-        $this->containerMixinPath = $containerMixinPath ?? $basePath.'/vendor/xefi/faker-php/src/Container/ContainerMixin.php';
+        $this->containerMixinPath = $containerMixinPath ?? $basePath.'/_faker_helper.php';
     }
 
     /**
@@ -161,7 +161,7 @@ class ContainerMixinManifest
 
         file_put_contents(
             $this->containerMixinPath,
-            "<?php namespace Xefi\\Faker\\Container;\n{$docComment}\n\tclass ContainerMixin{}"
+            "<?php namespace Xefi\\Faker\\Container;\n{$docComment}\n\tclass Container{}"
         );
     }
 }
