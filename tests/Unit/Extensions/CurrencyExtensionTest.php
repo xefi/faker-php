@@ -8,6 +8,7 @@ use Xefi\Faker\Extensions\CurrencyExtension;
 final class CurrencyExtensionTest extends TestCase
 {
     protected array $currencies = [];
+    protected array $currenciesWithUniqueSymbols = [];
 
     protected function setUp(): void
     {
@@ -15,6 +16,7 @@ final class CurrencyExtensionTest extends TestCase
 
         $currencyExtension = new CurrencyExtension(new Randomizer());
         $this->currencies = (new \ReflectionClass($currencyExtension))->getProperty('currencies')->getValue($currencyExtension);
+        $this->currenciesWithUniqueSymbols = (array_unique(array_column($this->currencies, 'symbol')));
     }
 
     public function testCurrency()
@@ -51,7 +53,7 @@ final class CurrencyExtensionTest extends TestCase
 
     public function testCurrencySymbol()
     {
-        for ($i = 0; $i < count($this->currencies); $i++) {
+        for ($i = 0; $i < count($this->currenciesWithUniqueSymbols); $i++) {
             $symbol = $this->faker->unique()->currencySymbol();
 
             $this->assertIsString($symbol);

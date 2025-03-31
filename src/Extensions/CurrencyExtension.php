@@ -119,10 +119,6 @@ class CurrencyExtension extends Extension
         ['code' => 'PGK', 'name' => 'Papua New Guinean Kina', 'symbol' => 'K'],
     ];
 
-    protected array $symbols = [
-        ['€' => ['EUR']]
-    ];
-
     public function currency(): array
     {
         return $this->pickArrayRandomElement($this->currencies);
