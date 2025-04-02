@@ -67,9 +67,14 @@ class Extension
         return $this->randomizer->pickArrayKeys($array, $elements);
     }
 
-    protected function pickArrayRandomKey(array $array): mixed
+    protected function pickArrayRandomKeyNumber(array $array): mixed
     {
         return $this->pickArrayRandomKeys($array)[0];
+    }
+
+    protected function pickArrayRandomKey(array $array): mixed
+    {
+        return key($array[$this->pickArrayRandomKeys($array)[0]]);
     }
 
     protected function formatString(string $string): string

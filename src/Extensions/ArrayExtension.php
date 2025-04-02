@@ -17,4 +17,9 @@ class ArrayExtension extends Extension
     {
         return $this->pickArrayRandomKey($array);
     }
+
+    public function randomKeyNumber(array $array): mixed
+    {
+        return $this->pickArrayRandomKeyNumber($array);
+    }
 }
