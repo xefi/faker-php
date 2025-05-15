@@ -93,7 +93,7 @@ class ExtensionTest extends TestCase
             'e' => 5,
         ];
 
-        $method = (new ReflectionClass(Extension::class))->getMethod('pickArrayRandomKey');
+        $method = (new ReflectionClass(Extension::class))->getMethod('pickArrayRandomKeyNumber');
         $result = $method->invoke(new Extension(new Randomizer()), $elements);
 
         $this->assertArrayHasKey($result, $elements);
