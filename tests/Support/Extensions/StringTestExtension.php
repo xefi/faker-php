@@ -15,4 +15,14 @@ class StringTestExtension extends Extension
     {
         return 'HELLO';
     }
+
+    public function returnAccentsLowercase()
+    {
+        return 'éèàùâêîôûëïüç';
+    }
+
+    public function returnAccentsUppercase()
+    {
+        return 'ÉÈÀÙÂÊÎÔÛËÏÜÇ';
+    }
 }
