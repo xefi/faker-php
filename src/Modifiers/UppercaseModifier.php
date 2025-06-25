@@ -18,7 +18,7 @@ class UppercaseModifier extends Modifier
                 return mb_strtoupper($generatedValue);
             }
 
-            trigger_error('You do not have the `mbstring` extension enable, FakerPHP might not handle not common characters.', E_USER_WARNING);
+            trigger_error('You do not have the `mbstring` extension enabled; FakerPHP might not handle uncommon characters correctly.', E_USER_WARNING);
 
             return strtoupper($generatedValue);
         }
