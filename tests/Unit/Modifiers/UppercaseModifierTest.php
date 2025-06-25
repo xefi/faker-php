@@ -29,4 +29,14 @@ class UppercaseModifierTest extends TestCase
             $faker->uppercase()->returnHello()
         );
     }
+
+    public function testUppercaseModifierWithAccent(): void
+    {
+        $faker = new Faker();
+
+        $this->assertEquals(
+            'ÉÈÀÙÂÊÎÔÛËÏÜÇ',
+            $faker->uppercase()->returnAccentsLowercase()
+        );
+    }
 }
