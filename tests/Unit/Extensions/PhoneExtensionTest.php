@@ -39,7 +39,7 @@ final class PhoneExtensionTest extends TestCase
 
     public function testPhoneNumberWithFormat(): void
     {
-        for ($i = 0; $i < 10; ++$i) {
+        for ($i = 0; $i < 10; $i++) {
             $number = $this->faker->phoneNumber('{d}{d}{d}-{d}{d}{d}');
 
             $this->assertMatchesRegularExpression(
