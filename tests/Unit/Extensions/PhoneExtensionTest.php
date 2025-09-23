@@ -3,8 +3,6 @@
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
 use Random\Randomizer;
-use Xefi\Faker\Calculators\Iban;
-use Xefi\Faker\Extensions\ColorsExtension;
 use Xefi\Faker\Extensions\PhoneExtension;
 
 final class PhoneExtensionTest extends TestCase
@@ -29,7 +27,7 @@ final class PhoneExtensionTest extends TestCase
 
     public function testPhoneNumberWithoutFormat(): void
     {
-        for ($i = 0; $i < 100; ++$i) {
+        for ($i = 0; $i < 100; $i++) {
             $number = $this->faker->phoneNumber();
 
             $this->assertMatchesRegularExpression(

@@ -11,7 +11,7 @@ class PhoneExtension extends Extension
     protected array $formats = [
         '+{d}{d}{d}{d}{d}{d}{d}{d}{d}',
         '0{d}{d}{d}{d}{d}{d}{d}{d}{d}',
-        '{d}{d}{d}'
+        '{d}{d}{d}',
     ];
 
     public function phoneNumber($format = null): string
