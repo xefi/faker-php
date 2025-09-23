@@ -14,9 +14,12 @@ class PhoneExtension extends Extension
         '{d}{d}{d}'
     ];
 
-    public function phoneNumber(): string
+    public function phoneNumber($format = null): string
     {
-        $format = $this->pickArrayRandomElement($this->formats);
+        if (!$format) {
+            $format = $this->pickArrayRandomElement($this->formats);
+        }
+
         return $this->formatString($format);
     }
 }

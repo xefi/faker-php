@@ -27,13 +27,25 @@ final class PhoneExtensionTest extends TestCase
         $this->assertNotEmpty($number);
     }
 
-    public function testPhoneNumberFormat(): void
+    public function testPhoneNumberWithoutFormat(): void
     {
         for ($i = 0; $i < 100; ++$i) {
             $number = $this->faker->phoneNumber();
 
             $this->assertMatchesRegularExpression(
                 '/^(\d{3}|\d{10}|\+\d{9})$/',
+                $number
+            );
+        }
+    }
+
+    public function testPhoneNumberWithFormat(): void
+    {
+        for ($i = 0; $i < 10; ++$i) {
+            $number = $this->faker->phoneNumber('{d}{d}{d}-{d}{d}{d}');
+
+            $this->assertMatchesRegularExpression(
+                '/^\d{3}-\d{3}$/',
                 $number
             );
         }
