@@ -11,12 +11,13 @@ class PhoneExtension extends Extension
     protected array $formats = [
         '+{d}{d}{d}{d}{d}{d}{d}{d}{d}',
         '0{d}{d}{d}{d}{d}{d}{d}{d}{d}',
-        '{d}{d}{d}'
+        '{d}{d}{d}',
     ];
 
     public function phoneNumber(): string
     {
         $format = $this->pickArrayRandomElement($this->formats);
+
         return $this->formatString($format);
     }
 }
