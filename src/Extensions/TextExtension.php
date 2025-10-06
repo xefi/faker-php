@@ -3,6 +3,7 @@
 namespace Xefi\Faker\Extensions;
 
 use Xefi\Faker\Extensions\Traits\HasLocale;
+use function PHPSTORM_META\map;
 
 class TextExtension extends Extension
 {
@@ -52,6 +53,8 @@ class TextExtension extends Extension
             ['Sed', 'eget', 'ex', 'quis', 'risus', 'varius', 'pharetra', 'in', 'a', 'felis.'],
         ],
     ];
+
+    private array $uuidChar = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd'];
 
     protected array $flattenedWords;
 
@@ -112,5 +115,29 @@ class TextExtension extends Extension
         $paragraphs = array_map(function ($sentences) {  return implode(' ', array_merge(...$sentences)); }, $paragraphs);
 
         return implode(PHP_EOL, $paragraphs);
+    }
+
+    public function uuid(int $version = 4) : string{
+        $uuid = "";
+
+        switch($version){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                for($i = 0; $i<32; $i++){
+                    $uuid .= $this->uuidChar[rand(0, 12)];
+                    if(in_array($i++, [8, 12, 16, 20])){
+                        $uuid .= '-';
+                    }
+                }
+            case 5:
+                break;
+        }
+
+        return $uuid;
     }
 }
