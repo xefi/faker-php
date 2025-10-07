@@ -129,8 +129,9 @@ class TextExtension extends Extension
                 break;
             case 4:
                 for($i = 0; $i<32; $i++){
-                    $uuid .= $this->uuidChar[rand(0, 12)];
-                    if(in_array($i++, [8, 12, 16, 20])){
+                    ($i == 12) ? $this->uuidChar[3] : $this->uuidChar[rand(0, 12)];
+
+                    if(in_array($i++, [7, 11, 15, 19])){
                         $uuid .= '-';
                     }
                 }
