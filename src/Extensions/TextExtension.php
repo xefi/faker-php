@@ -3,7 +3,6 @@
 namespace Xefi\Faker\Extensions;
 
 use Xefi\Faker\Extensions\Traits\HasLocale;
-use function PHPSTORM_META\map;
 
 class TextExtension extends Extension
 {
