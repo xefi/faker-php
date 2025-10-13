@@ -76,7 +76,8 @@ final class DatetimeExtensionTest extends TestCase
         }
     }
 
-    public function testTimezone(): void{
+    public function testTimezone(): void
+    {
         $this->assertMatchesRegularExpression('/^[a-zA-Z]*\/[a-zA-Z]*/u', $this->faker->timezone());
     }
 }
