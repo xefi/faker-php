@@ -71,4 +71,7 @@ final class StringsExtensionTest extends TestCase
 
         $this->assertMatchesRegularExpression('/^\p{So}$/u', $result);
     }
+    public function testuuid() : void{
+        $this->assertMatchesRegularExpression('/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[8, 9, a, b][0-9a-f]{3}-[0-9a-f]{12}/u', $this->faker->uuid());
+    }
 }

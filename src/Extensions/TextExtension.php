@@ -54,8 +54,6 @@ class TextExtension extends Extension
         ],
     ];
 
-    private array $uuidChar = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd'];
-
     protected array $flattenedWords;
 
     protected array $flattenedSentences;
@@ -115,30 +113,5 @@ class TextExtension extends Extension
         $paragraphs = array_map(function ($sentences) {  return implode(' ', array_merge(...$sentences)); }, $paragraphs);
 
         return implode(PHP_EOL, $paragraphs);
-    }
-
-    public function uuid(int $version = 4) : string{
-        $uuid = "";
-
-        switch($version){
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                for($i = 0; $i<32; $i++){
-                    ($i == 12) ? $this->uuidChar[3] : $this->uuidChar[rand(0, 12)];
-
-                    if(in_array($i++, [7, 11, 15, 19])){
-                        $uuid .= '-';
-                    }
-                }
-            case 5:
-                break;
-        }
-
-        return $uuid;
     }
 }

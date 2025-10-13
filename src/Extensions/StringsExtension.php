@@ -27,6 +27,8 @@ class StringsExtension extends Extension
         "\u{1F64C}", "\u{1F64D}", "\u{1F64E}", "\u{1F64F}",
     ];
 
+    private array $uuidChar = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+
     public function letter()
     {
         return chr($this->randomizer->getInt(97, 122));
@@ -77,5 +79,21 @@ class StringsExtension extends Extension
     public function emoji(): string
     {
         return $this->pickArrayRandomElement($this->emojis);
+    }
+
+    public function uuid() : string{
+        $uuid = "";
+
+        for ($i = 0; $i < 32; $i++) {
+            $uuid .= ($i == 12)
+                ? $this->uuidChar[4]
+                : (($i == 16)
+                    ? $this->pickArrayRandomElement(['8', '9', 'a', 'b'])
+                    : $this->uuidChar[rand(0, 15)]);
+
+            if (in_array($i, [7, 11, 15, 19])) $uuid .= '-';
+        }
+
+        return $uuid;
     }
 }
