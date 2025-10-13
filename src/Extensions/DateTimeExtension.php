@@ -35,7 +35,7 @@ class DateTimeExtension extends Extension
         'Pacific/Honolulu',
         'Europe/Warsaw',
         'Australia/Perth',
-        'America/Toronto'
+        'America/Toronto',
     ];
 
     protected function formatTimestamp(DateTime|int|string $timestamp): int
