@@ -110,13 +110,13 @@ class StringsExtension extends Extension
             }
         }
 
-        for ($i = 0; $i < 10; $i++) {
-            $ulid = $ulidChar[$time % 32].$ulid;
-            $time = floor($time / 32);
-        }
-
-        for ($i = 0; $i < 16; $i++) {
-            $ulid .= $ulidChar[rand(0, 31)];
+        for ($i = 0; $i < 26; $i++) {
+            if ($i < 10){
+                $ulid = $ulidChar[$time % 32].$ulid;
+                $time = floor($time / 32);
+            }else{
+                $ulid .= $ulidChar[rand(0, 31)];
+            }
         }
 
         return $ulid;
