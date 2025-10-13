@@ -74,6 +74,11 @@ final class StringsExtensionTest extends TestCase
 
     public function testUuid(): void
     {
-        $this->assertMatchesRegularExpression('/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[8, 9, a, b][0-9a-f]{3}-[0-9a-f]{12}/u', $this->faker->uuid());
+        $this->assertMatchesRegularExpression('/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[8, 9, a, b][0-9a-f]{3}-[0-9a-f]{12}$/u', $this->faker->uuid());
+    }
+
+    public function testUlid(): void
+    {
+        $this->assertMatchesRegularExpression('/^[0-9A-HJKMNP-TV-Z]{26}$/u', $this->faker->ulid());
     }
 }

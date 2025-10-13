@@ -97,4 +97,32 @@ class StringsExtension extends Extension
 
         return $uuid;
     }
+
+    public function ulid(): string
+    {
+        $ulid = '';
+        $time = round(microtime(true) * 1000);
+        $ulidChar = [];
+
+        for($i = 48; $i<= 90; $i++)
+        {
+            if(!($i >= 58 && $i <= 64) && !in_array($i, [73, 76, 79, 85])) {
+                array_push($ulidChar, chr($i));
+            }
+        }
+
+        for($i = 0; $i<10; $i++)
+        {
+            $ulid = $ulidChar[$time % 32] . $ulid;
+            $time = floor($time / 32);
+        }
+
+        for ($i = 0; $i < 16; $i++)
+        {
+            $ulid .= $ulidChar[rand(0, 31)];
+        }
+
+        return $ulid;
+    }
+
 }
