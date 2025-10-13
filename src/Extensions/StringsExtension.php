@@ -78,4 +78,23 @@ class StringsExtension extends Extension
     {
         return $this->pickArrayRandomElement($this->emojis);
     }
+
+    public function uuid(): string
+    {
+        $uuid = '';
+
+        for ($i = 0; $i < 32; $i++) {
+            $uuid .= ($i == 12)
+                ? '4'
+                : (($i == 16)
+                    ? $this->pickArrayRandomElement(['8', '9', 'a', 'b'])
+                    : $this->pickArrayRandomElement([chr(rand(48, 57)), chr(rand(97, 102))]));
+
+            if (in_array($i, [7, 11, 15, 19])) {
+                $uuid .= '-';
+            }
+        }
+
+        return $uuid;
+    }
 }
