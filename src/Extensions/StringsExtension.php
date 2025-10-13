@@ -121,4 +121,5 @@ class StringsExtension extends Extension
 
         return $ulid;
     }
+    
 }
