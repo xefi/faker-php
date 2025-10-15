@@ -2,6 +2,8 @@
 
 namespace Xefi\Faker\Extensions;
 
+use Random\RandomException;
+
 class StringsExtension extends Extension
 {
     protected $emojis = [
@@ -79,6 +81,9 @@ class StringsExtension extends Extension
         return $this->pickArrayRandomElement($this->emojis);
     }
 
+    /**
+     * @throws RandomException
+     */
     public function uuid(): string
     {
         $uuid = '';
@@ -88,7 +93,7 @@ class StringsExtension extends Extension
                 ? '4'
                 : (($i == 16)
                     ? $this->pickArrayRandomElement(['8', '9', 'a', 'b'])
-                    : $this->pickArrayRandomElement([chr(rand(48, 57)), chr(rand(97, 102))]));
+                    : bin2hex(random_bytes(1))[0]);
 
             if (in_array($i, [7, 11, 15, 19])) {
                 $uuid .= '-';
@@ -106,7 +111,7 @@ class StringsExtension extends Extension
 
         for ($i = 48; $i <= 90; $i++) {
             if (!($i >= 58 && $i <= 64) && !in_array($i, [73, 76, 79, 85])) {
-                array_push($ulidChar, chr($i));
+                $ulidChar[] = chr($i);
             }
         }
 
