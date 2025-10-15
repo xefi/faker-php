@@ -123,8 +123,9 @@ final class InternetExtensionTest extends TestCase
 
     public function testGetLocation(): void
     {
-        for($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $this->assertMatchesRegularExpression('/^(-?(?:[0-8]?\d(?:\.\d+)?|90(?:\.0+)?)),\s*(-?(?:1[0-7]\d(?:\.\d+)?|180(?:\.0+)?|[0-9]?\d(?:\.\d+)?))$/', $this->faker->unique()->geoLocation());
         }
     }
+
 }
