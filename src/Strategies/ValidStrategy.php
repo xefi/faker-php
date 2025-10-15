@@ -10,10 +10,19 @@ class ValidStrategy extends Strategy
      * @throws \ReflectionException
      * @throws \ErrorException
      */
-    public function __construct(object $callable){
-        if(!is_callable($callable)) throw new \ErrorException('The callable must be a callable');
-        if(count((new \ReflectionFunction($callable))->getParameters()) != 1) throw new \ErrorException('The callable must have 1 parameter');
-        if(!is_bool($callable(5))) throw new \ErrorException('The callable must return a value of type bool');
+    public function __construct(object $callable)
+    {
+        if (!is_callable($callable)) {
+            throw new \ErrorException('The callable must be a callable');
+        }
+
+        if (count((new \ReflectionFunction($callable))->getParameters()) != 1) {
+            throw new \ErrorException('The callable must have 1 parameter');
+        }
+
+        if (!is_bool($callable(5))) {
+            throw new \ErrorException('The callable must return a value of type bool');
+        }
         $this->callable = $callable;
     }
 

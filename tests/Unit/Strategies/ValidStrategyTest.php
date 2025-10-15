@@ -3,10 +3,8 @@
 namespace Strategies;
 
 use Xefi\Faker\Faker;
-use Xefi\Faker\Strategies\RegexStrategy;
 use Xefi\Faker\Strategies\ValidStrategy;
 use Xefi\Faker\Tests\Unit\TestCase;
-use function PHPUnit\Framework\isCallable;
 
 class ValidStrategyTest extends TestCase
 {
@@ -17,7 +15,7 @@ class ValidStrategyTest extends TestCase
     {
         $faker = new Faker();
 
-        $function = function($number) {return ($number % 2 === 0);};
+        $function = function ($number) {return ($number % 2 === 0); };
 
         $container = $faker->valid($function);
 
@@ -31,10 +29,10 @@ class ValidStrategyTest extends TestCase
     {
         $faker = new Faker();
 
-        $function = function($number) {return ($number % 2 === 0);};
+        $function = function ($number) {return ($number % 2 === 0); };
 
         $intArray = [];
-        for($i = 0; $i<10; $i++){
+        for ($i = 0; $i < 10; $i++) {
             $intArray[] = $faker->valid($function)->returnNumberBetween(0, 10);
         }
 
@@ -45,10 +43,10 @@ class ValidStrategyTest extends TestCase
     {
         $faker = new Faker();
 
-        $function = function($number) {return ($number > 5);};
+        $function = function ($number) {return ($number > 5); };
 
         $intArray = [];
-        for($i = 0; $i<10; $i++){
+        for ($i = 0; $i < 10; $i++) {
             $intArray[] = $faker->valid($function)->returnNumberBetween(0, 10);
         }
 
@@ -74,7 +72,7 @@ class ValidStrategyTest extends TestCase
 
         $faker = new Faker();
 
-        $function = function() {return 0;};
+        $function = function () {return 0; };
 
         $faker->valid($function)->returnNumberBetween(0, 10);
 
@@ -87,7 +85,7 @@ class ValidStrategyTest extends TestCase
 
         $faker = new Faker();
 
-        $function = function($number) {return '';};
+        $function = function ($number) {return ''; };
 
         $faker->valid($function)->returnNumberBetween(0, 10);
     }

@@ -49,8 +49,9 @@ trait HasStrategies
      *
      * @param object $callable
      *
+     *@throws \ErrorException
+     *
      * @return $this
-     * @throws \ErrorException
      */
     public function valid(object $callable): self
     {
