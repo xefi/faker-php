@@ -17,16 +17,25 @@ class CountryExtension extends Extension
         ['name' => 'Netherlands',     'code2' => 'NL', 'code3' => 'NLD'],
     ];
 
+    /**
+     * Returns a random country
+     */
     public function country(): string
     {
         return $this->pickArrayRandomElement($this->countryName)['name'];
     }
 
+    /**
+     * Returns the country code in ISO format 3166-1 alpha-2 (FR, NL, US)
+     */
     public function countryCodeISOAlpha2(): string
     {
         return $this->pickArrayRandomElement($this->countryName)['code2'];
     }
 
+    /**
+     * Returns the country code in ISO format 3166-1 alpha-3 (FRA, NLD, USA)
+     */
     public function countryCodeISOAlpha3(): string
     {
         return $this->pickArrayRandomElement($this->countryName)['code3'];
