@@ -14,22 +14,22 @@ class CountryExtension extends Extension
         ['name' => 'Portugal',        'code2' => 'PT', 'code3' => 'PRT'],
         ['name' => 'Switzerland',     'code2' => 'CH', 'code3' => 'CHE'],
         ['name' => 'Belgium',         'code2' => 'BE', 'code3' => 'BEL'],
-        ['name' => 'Netherlands',     'code2' => 'NL', 'code3' => 'NLD']
+        ['name' => 'Netherlands',     'code2' => 'NL', 'code3' => 'NLD'],
     ];
 
 
     public function country(): string
     {
-        return $this->pickArrayRandomElement($this->countryName)["name"];
+        return $this->pickArrayRandomElement($this->countryName)['name'];
     }
 
     public function countryCodeISOAlpha2(): string
     {
-        return $this->pickArrayRandomElement($this->countryName)["code2"];
+        return $this->pickArrayRandomElement($this->countryName)['code2'];
     }
 
     public function countryCodeISOAlpha3(): string
     {
-        return $this->pickArrayRandomElement($this->countryName)["code3"];
+        return $this->pickArrayRandomElement($this->countryName)['code3'];
     }
 }

@@ -2,9 +2,8 @@
 
 namespace Extensions;
 
-use Random\Randomizer;
 use Xefi\Faker\Tests\Unit\Extensions\TestCase;
-use \Xefi\Faker\Extensions\CountryExtension;
+
 final class CountryExtensionTest extends TestCase
 {
     public function testCountry(): void
