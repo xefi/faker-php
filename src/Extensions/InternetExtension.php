@@ -57,5 +57,4 @@ class InternetExtension extends Extension
             round($this->randomizer->getFloat(-180, 180), 8) //long
         );
     }
-
 }
