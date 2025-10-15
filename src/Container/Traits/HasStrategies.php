@@ -5,6 +5,7 @@ namespace Xefi\Faker\Container\Traits;
 use Xefi\Faker\Strategies\RegexStrategy;
 use Xefi\Faker\Strategies\Strategy;
 use Xefi\Faker\Strategies\UniqueStrategy;
+use Xefi\Faker\Strategies\ValidStrategy;
 
 trait HasStrategies
 {
@@ -39,6 +40,21 @@ trait HasStrategies
     public function regex(string $regex): self
     {
         $this->strategies[] = new RegexStrategy($regex);
+
+        return $this;
+    }
+
+    /**
+     * Add a valid strategy.
+     *
+     * @param object $callable
+     *
+     * @return $this
+     * @throws \ErrorException
+     */
+    public function valid(object $callable): self
+    {
+        $this->strategies[] = new ValidStrategy($callable);
 
         return $this;
     }
