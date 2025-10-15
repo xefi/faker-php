@@ -27,7 +27,7 @@ class ValidStrategyTest extends TestCase
         );
     }
 
-    public function testValidStrategyMultipleValuesWithMod(): void
+    public function testValidStrategyWithMultiplesValuesWithModOperator(): void
     {
         $faker = new Faker();
 
@@ -41,7 +41,7 @@ class ValidStrategyTest extends TestCase
         $this->assertEquals(0, array_sum($intArray) % 2);
     }
 
-    public function testValidStrategyMultipleValuesWithSupOperator(): void
+    public function testValidStrategyWithMultiplesValuesWithGTOperator(): void
     {
         $faker = new Faker();
 
