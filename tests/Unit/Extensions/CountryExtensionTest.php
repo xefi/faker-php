@@ -20,4 +20,5 @@ final class CountryExtensionTest extends TestCase
     {
         $this->assertMatchesRegularExpression('/^[A-Z]{3}$/', $this->faker->countryCodeISOAlpha3());
     }
+    
 }

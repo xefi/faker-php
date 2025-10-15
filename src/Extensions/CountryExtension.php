@@ -17,7 +17,6 @@ class CountryExtension extends Extension
         ['name' => 'Netherlands',     'code2' => 'NL', 'code3' => 'NLD'],
     ];
 
-
     public function country(): string
     {
         return $this->pickArrayRandomElement($this->countryName)['name'];
@@ -32,4 +31,5 @@ class CountryExtension extends Extension
     {
         return $this->pickArrayRandomElement($this->countryName)['code3'];
     }
+
 }
