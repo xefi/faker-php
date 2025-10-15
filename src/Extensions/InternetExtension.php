@@ -48,4 +48,11 @@ class InternetExtension extends Extension
 
         return sprintf('%s@%s', $letters, $this->domain());
     }
+
+    public function geoLocation(): string
+    {
+        return sprintf('%s, %s',
+            round($this->randomizer->getFloat(-90, 90), 8), //lat
+            round($this->randomizer->getFloat(-180, 180), 8)); //long
+    }
 }
