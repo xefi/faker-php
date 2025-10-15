@@ -68,4 +68,5 @@ class InternetExtension extends Extension
 
         return sprintf('https://%s%s', $url, $this->domain());
     }
+    
 }
