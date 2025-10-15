@@ -15,7 +15,7 @@ class ValidStrategyTest extends TestCase
     {
         $faker = new Faker();
 
-        $function = function ($number) {return ($number % 2 === 0); };
+        $function = function ($number) {return $number % 2 === 0; };
 
         $container = $faker->valid($function);
 
@@ -29,7 +29,7 @@ class ValidStrategyTest extends TestCase
     {
         $faker = new Faker();
 
-        $function = function ($number) {return ($number % 2 === 0); };
+        $function = function ($number) {return $number % 2 === 0; };
 
         $intArray = [];
         for ($i = 0; $i < 10; $i++) {
@@ -43,7 +43,7 @@ class ValidStrategyTest extends TestCase
     {
         $faker = new Faker();
 
-        $function = function ($number) {return ($number > 5); };
+        $function = function ($number) {return $number > 5; };
 
         $intArray = [];
         for ($i = 0; $i < 10; $i++) {
