@@ -49,7 +49,7 @@ trait HasStrategies
      *
      * @param object $callable
      *
-     *@throws \ErrorException
+     * @throws \ErrorException
      *
      * @return $this
      */

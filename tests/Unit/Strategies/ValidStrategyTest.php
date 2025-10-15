@@ -75,7 +75,6 @@ class ValidStrategyTest extends TestCase
         $function = function () {return 0; };
 
         $faker->valid($function)->returnNumberBetween(0, 10);
-
     }
 
     public function testValidStrategyWithCallableWithBadReturnType(): void
@@ -89,4 +88,5 @@ class ValidStrategyTest extends TestCase
 
         $faker->valid($function)->returnNumberBetween(0, 10);
     }
+
 }

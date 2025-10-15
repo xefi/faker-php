@@ -37,4 +37,5 @@ class ValidStrategy extends Strategy
     {
         return ($this->callable)($generatedValue);
     }
+
 }
