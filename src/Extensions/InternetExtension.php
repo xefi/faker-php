@@ -49,7 +49,7 @@ class InternetExtension extends Extension
         return sprintf('%s@%s', $letters, $this->domain());
     }
 
-    public function url(): string
+    public function url($secure = true): string
     {
         $generateLetter = function (): string {
             return $this->randomizer->getBytesFromString(
@@ -66,7 +66,7 @@ class InternetExtension extends Extension
             }
         }
 
-        return sprintf('https://%s%s', $url, $this->domain());
+        return sprintf('http%s://%s%s', $secure ? 's': '', $url, $this->domain());
     }
-    
+
 }
