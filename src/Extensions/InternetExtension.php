@@ -49,6 +49,10 @@ class InternetExtension extends Extension
         return sprintf('%s@%s', $letters, $this->domain());
     }
 
+    /**
+     * Generating a random URL
+     * @param bool $secure
+    */
     public function url($secure = true): string
     {
         $generateLetter = function (): string {
