@@ -117,15 +117,16 @@ class StringsExtension extends Extension
         }
 
         for ($i = 0; $i < 26; $i++) {
-            if ($i < 10){
+            if ($i < 10) {
                 // 32 because ulid use base32 "Crockford"
                 $ulid = $ulidChar[$time % 32].$ulid;
                 $time = floor($time / 32);
-            }else{
+            } else {
                 $ulid .= $ulidChar[rand(0, 31)];
             }
         }
 
         return $ulid;
     }
+
 }
