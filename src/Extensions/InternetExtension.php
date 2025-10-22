@@ -50,9 +50,10 @@ class InternetExtension extends Extension
     }
 
     /**
-     * Generating a random URL
+     * Generating a random URL.
+     *
      * @param bool $secure
-    */
+     */
     public function url($secure = true): string
     {
         $generateLetter = function (): string {
@@ -70,7 +71,7 @@ class InternetExtension extends Extension
             }
         }
 
-        return sprintf('http%s://%s%s', $secure ? 's': '', $url, $this->domain());
+        return sprintf('http%s://%s%s', $secure ? 's' : '', $url, $this->domain());
     }
 
 }
