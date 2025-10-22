@@ -5,16 +5,16 @@ namespace Xefi\Faker\Extensions;
 class CountryExtension extends Extension
 {
     protected array $countryName = [
-        ['name' => 'France',          'code2' => 'FR', 'code3' => 'FRA'],
-        ['name' => 'Spain',           'code2' => 'ES', 'code3' => 'ESP'],
-        ['name' => 'Italy',           'code2' => 'IT', 'code3' => 'ITA'],
-        ['name' => 'Germany',         'code2' => 'DE', 'code3' => 'DEU'],
-        ['name' => 'United Kingdom',  'code2' => 'GB', 'code3' => 'GBR'],
-        ['name' => 'United States',   'code2' => 'US', 'code3' => 'USA'],
-        ['name' => 'Portugal',        'code2' => 'PT', 'code3' => 'PRT'],
-        ['name' => 'Switzerland',     'code2' => 'CH', 'code3' => 'CHE'],
-        ['name' => 'Belgium',         'code2' => 'BE', 'code3' => 'BEL'],
-        ['name' => 'Netherlands',     'code2' => 'NL', 'code3' => 'NLD'],
+        ['name' => 'France',          'iso_country_code_alpha2' => 'FR', 'iso_country_code_alpha3' => 'FRA'],
+        ['name' => 'Spain',           'iso_country_code_alpha2' => 'ES', 'iso_country_code_alpha3' => 'ESP'],
+        ['name' => 'Italy',           'iso_country_code_alpha2' => 'IT', 'iso_country_code_alpha3' => 'ITA'],
+        ['name' => 'Germany',         'iso_country_code_alpha2' => 'DE', 'iso_country_code_alpha3' => 'DEU'],
+        ['name' => 'United Kingdom',  'iso_country_code_alpha2' => 'GB', 'iso_country_code_alpha3' => 'GBR'],
+        ['name' => 'United States',   'iso_country_code_alpha2' => 'US', 'iso_country_code_alpha3' => 'USA'],
+        ['name' => 'Portugal',        'iso_country_code_alpha2' => 'PT', 'iso_country_code_alpha3' => 'PRT'],
+        ['name' => 'Switzerland',     'iso_country_code_alpha2' => 'CH', 'iso_country_code_alpha3' => 'CHE'],
+        ['name' => 'Belgium',         'iso_country_code_alpha2' => 'BE', 'iso_country_code_alpha3' => 'BEL'],
+        ['name' => 'Netherlands',     'iso_country_code_alpha2' => 'NL', 'iso_country_code_alpha3' => 'NLD'],
     ];
 
     /**
@@ -30,7 +30,7 @@ class CountryExtension extends Extension
      */
     public function countryCodeISOAlpha2(): string
     {
-        return $this->pickArrayRandomElement($this->countryName)['code2'];
+        return $this->pickArrayRandomElement($this->countryName)['iso_country_code_alpha2'];
     }
 
     /**
@@ -38,6 +38,6 @@ class CountryExtension extends Extension
      */
     public function countryCodeISOAlpha3(): string
     {
-        return $this->pickArrayRandomElement($this->countryName)['code3'];
+        return $this->pickArrayRandomElement($this->countryName)['iso_country_code_alpha3'];
     }
 }
