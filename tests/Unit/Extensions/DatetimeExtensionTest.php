@@ -75,4 +75,9 @@ final class DatetimeExtensionTest extends TestCase
             $this->assertLessThanOrEqual($toDateTime->getTimestamp(), $result->getTimestamp());
         }
     }
+
+    public function testTimezone(): void
+    {
+        $this->assertMatchesRegularExpression('/^[a-zA-Z]*\/[a-zA-Z]*/u', $this->faker->timezone());
+    }
 }
