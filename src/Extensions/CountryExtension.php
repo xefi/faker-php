@@ -40,6 +40,4 @@ class CountryExtension extends Extension
     {
         return $this->pickArrayRandomElement($this->countryName)['code3'];
     }
-
-
 }
