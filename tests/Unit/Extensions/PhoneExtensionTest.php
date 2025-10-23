@@ -2,9 +2,6 @@
 
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
-use Random\Randomizer;
-use Xefi\Faker\Extensions\PhoneExtension;
-
 final class PhoneExtensionTest extends TestCase
 {
     public function testPhoneNumberReturnsString(): void
