@@ -21,7 +21,8 @@ class PhoneExtension extends Extension
         '{d}{d}{separator}{d}{d}',
     ];
 
-    public function phoneNumber($format = null, $separator = '', $prefix = null): string
+    // Global phone number
+    public function phoneNumber(?string $format = null, string $separator = '', ?string $prefix = null): string
     {
         if (!$format) {
             $format = $this->pickArrayRandomElement(rand(0, 1) ? $this->landlineFormats : $this->cellFormats);
@@ -38,27 +39,29 @@ class PhoneExtension extends Extension
         return $prefix.$this->formatString($format);
     }
 
-    public function cellPhoneNumber($separator = '', $prefix = null): string
-    {
-        return $this->phoneNumber(format: $this->pickArrayRandomElement($this->cellFormats), separator: $separator, prefix: $prefix);
-    }
-
-    public function landlinePhoneNumber($separator = '', $prefix = null): string
-    {
-        return $this->phoneNumber(format: $this->pickArrayRandomElement($this->landlineFormats), separator: $separator, prefix: $prefix);
-    }
-
-    public function indicatoredPhoneNumber($format = null, $separator = ''): string
+    public function indicatoredPhoneNumber(?string $format = null, string $separator = ''): string
     {
         return $this->phoneNumber(format: $format, separator: $separator, prefix: $this->indicator);
     }
 
-    public function indicatoredCellPhoneNumber($separator = ''): string
+    // Cell phone numbers
+    public function cellPhoneNumber(string $separator = '', ?string $prefix = null): string
+    {
+        return $this->phoneNumber(format: $this->pickArrayRandomElement($this->cellFormats), separator: $separator, prefix: $prefix);
+    }
+
+    public function indicatoredCellPhoneNumber(string $separator = ''): string
     {
         return $this->cellPhoneNumber(separator: $separator, prefix: $this->indicator);
     }
 
-    public function indicatoredLandlinePhoneNumber($separator = ''): string
+    // Landline phone numbers
+    public function landlinePhoneNumber(string $separator = '', ?string $prefix = null): string
+    {
+        return $this->phoneNumber(format: $this->pickArrayRandomElement($this->landlineFormats), separator: $separator, prefix: $prefix);
+    }
+
+    public function indicatoredLandlinePhoneNumber(string $separator = ''): string
     {
         return $this->landlinePhoneNumber(separator: $separator, prefix: $this->indicator);
     }
