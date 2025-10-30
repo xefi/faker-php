@@ -53,7 +53,7 @@ trait HasStrategies
      *
      * @return $this
      */
-    public function valid(object $callable): self
+    public function valid(callable $callable): self
     {
         $this->strategies[] = new ValidStrategy($callable);
 

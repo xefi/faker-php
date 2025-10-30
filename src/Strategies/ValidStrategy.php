@@ -4,18 +4,14 @@ namespace Xefi\Faker\Strategies;
 
 class ValidStrategy extends Strategy
 {
-    protected object $callable;
+    protected $callable;
 
     /**
      * @throws \ReflectionException
      * @throws \ErrorException
      */
-    public function __construct(object $callable)
+    public function __construct(callable $callable)
     {
-        if (!is_callable($callable)) {
-            throw new \ErrorException('The callable must be a callable');
-        }
-
         if (count((new \ReflectionFunction($callable))->getParameters()) != 1) {
             throw new \ErrorException('The callable must have 1 parameter');
         }

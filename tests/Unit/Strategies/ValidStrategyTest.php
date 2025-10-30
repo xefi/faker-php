@@ -53,18 +53,6 @@ class ValidStrategyTest extends TestCase
         $this->assertTrue(min($intArray) > 5);
     }
 
-    public function testValidStrategyWithBadCallable(): void
-    {
-        $this->expectException(\ErrorException::class);
-        $this->expectExceptionMessage('The callable must be a callable');
-
-        $faker = new Faker();
-
-        $function = new Faker();
-
-        $faker->valid($function)->returnNumberBetween(0, 10);
-    }
-
     public function testValidStrategyWithCallableWithoutParameter(): void
     {
         $this->expectException(\ErrorException::class);
