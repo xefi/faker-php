@@ -88,5 +88,4 @@ class ValidStrategyTest extends TestCase
 
         $faker->valid($function)->returnNumberBetween(0, 10);
     }
-
 }
