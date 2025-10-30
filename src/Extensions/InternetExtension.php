@@ -73,5 +73,4 @@ class InternetExtension extends Extension
 
         return sprintf('http%s://%s%s', $secure ? 's' : '', $url, $this->domain());
     }
-
 }
