@@ -13,11 +13,13 @@ class GeographicalExtension extends Extension
         );
     }
 
-    public function latitude() : float {
+    public function latitude(): float
+    {
         return round($this->randomizer->getFloat(-90, 90), 8);
     }
 
-    public function longitude() : float {
+    public function longitude(): float
+    {
         return round($this->randomizer->getFloat(-180, 180), 8);
     }
 }

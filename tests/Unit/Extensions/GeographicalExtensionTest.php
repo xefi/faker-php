@@ -27,5 +27,3 @@ final class GeographicalExtensionTest extends TestCase
         }
     }
 }
-
-
