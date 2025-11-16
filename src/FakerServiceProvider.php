@@ -7,6 +7,7 @@ use Xefi\Faker\Extensions\BooleanExtension;
 use Xefi\Faker\Extensions\ColorsExtension;
 use Xefi\Faker\Extensions\DateTimeExtension;
 use Xefi\Faker\Extensions\FinancialExtension;
+use Xefi\Faker\Extensions\GeographicalExtension;
 use Xefi\Faker\Extensions\HashExtension;
 use Xefi\Faker\Extensions\InternetExtension;
 use Xefi\Faker\Extensions\NumbersExtension;
@@ -33,6 +34,7 @@ class FakerServiceProvider extends Provider
             BooleanExtension::class,
             ArrayExtension::class,
             PhoneExtension::class,
+            GeographicalExtension::class,
         ]);
     }
 }
