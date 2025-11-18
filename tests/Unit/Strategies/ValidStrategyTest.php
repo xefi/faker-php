@@ -50,6 +50,7 @@ class ValidStrategyTest extends TestCase
             $intArray[] = $faker->valid($function)->returnNumberBetween(0, 10);
         }
 
+        //Checks that the minimum value of the returned values is greater than 5 because in our strategy we want values greater than 5.
         $this->assertTrue(min($intArray) > 5);
     }
 
