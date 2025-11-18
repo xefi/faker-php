@@ -59,14 +59,14 @@ class InternetExtension extends Extension
         $generateLetter = function (): string {
             return $this->randomizer->getBytesFromString(
                 implode(range('a', 'z')),
-                $this->randomizer->getInt(4, 30)
+                rand(4, 30)
             );
         };
 
         $url = $generateLetter();
 
         for ($i = 0; $i < 3; $i++) {
-            if ($this->randomizer->getInt(0, 1) < 0.5) {
+            if (rand(0, 1) < 0.5) {
                 $url .= '/'.$generateLetter();
             }
         }
