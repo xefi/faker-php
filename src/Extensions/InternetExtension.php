@@ -63,14 +63,14 @@ class InternetExtension extends Extension
             );
         };
 
-        $url = '';
+        $route = '';
 
         for ($i = 0; $i < 3; $i++) {
             if (rand(0, 1)) {
-                $url .= '/'.$generateLetter();
+                $route .= '/'.$generateLetter();
             }
         }
 
-        return sprintf('http%s://%s%s', $secure ? 's' : '', $this->domain(), $url);
+        return sprintf('http%s://%s%s', $secure ? 's' : '', $this->domain(), $route);
     }
 }
