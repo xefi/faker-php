@@ -124,7 +124,7 @@ final class InternetExtensionTest extends TestCase
     public function testUrl(): void
     {
         for ($i = 0; $i < 100; $i++) {
-            $this->assertMatchesRegularExpression('/^https:\/\/([a-zA-Z0-9]+(\/[a-zA-Z0-9]+)*)?\.[a-zA-Z]+$/', $this->faker->unique()->url());
+            $this->assertMatchesRegularExpression('/^https?:\/\/[a-zA-Z0-9]+\.[a-zA-Z]+(?:\/[a-zA-Z0-9]+){0,3}$/', $this->faker->unique()->url(!rand(0, 1)));
         }
     }
 }

@@ -59,18 +59,18 @@ class InternetExtension extends Extension
         $generateLetter = function (): string {
             return $this->randomizer->getBytesFromString(
                 implode(range('a', 'z')),
-                rand(4, 30)
+                rand(4, 15)
             );
         };
 
-        $url = $generateLetter();
+        $url = '';
 
         for ($i = 0; $i < 3; $i++) {
-            if (rand(0, 1) < 0.5) {
+            if (rand(0, 1)) {
                 $url .= '/'.$generateLetter();
             }
         }
 
-        return sprintf('http%s://%s%s', $secure ? 's' : '', $url, $this->domain());
+        return sprintf('http%s://%s%s', $secure ? 's' : '', $this->domain(), $url);
     }
 }
