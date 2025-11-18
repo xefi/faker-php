@@ -121,10 +121,17 @@ final class InternetExtensionTest extends TestCase
         }
     }
 
-    public function testUrl(): void
+    public function testUnsecureUrl(): void
     {
         for ($i = 0; $i < 100; $i++) {
-            $this->assertMatchesRegularExpression('/^https?:\/\/[a-zA-Z0-9]+\.[a-zA-Z]+(?:\/[a-zA-Z0-9]+){0,3}$/', $this->faker->unique()->url(!rand(0, 1)));
+            $this->assertMatchesRegularExpression('/^http:\/\/[a-zA-Z0-9]+\.[a-zA-Z]+(?:\/[a-zA-Z0-9]+){0,3}$/', $this->faker->unique()->url(false));
+        }
+    }
+
+    public function testSecureUrl(): void
+    {
+        for ($i = 0; $i < 100; $i++) {
+            $this->assertMatchesRegularExpression('/^https:\/\/[a-zA-Z0-9]+\.[a-zA-Z]+(?:\/[a-zA-Z0-9]+){0,3}$/', $this->faker->unique()->url());
         }
     }
 }
