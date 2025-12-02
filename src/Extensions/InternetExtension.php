@@ -48,4 +48,29 @@ class InternetExtension extends Extension
 
         return sprintf('%s@%s', $letters, $this->domain());
     }
+
+    /**
+     * Generating a random URL.
+     *
+     * @param bool $secure
+     */
+    public function url($secure = true): string
+    {
+        $generateLetter = function (): string {
+            return $this->randomizer->getBytesFromString(
+                implode(range('a', 'z')),
+                rand(4, 15)
+            );
+        };
+
+        $route = '';
+
+        for ($i = 0; $i < 3; $i++) {
+            if (rand(0, 1)) {
+                $route .= '/'.$generateLetter();
+            }
+        }
+
+        return sprintf('http%s://%s%s', $secure ? 's' : '', $this->domain(), $route);
+    }
 }

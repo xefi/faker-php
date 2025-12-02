@@ -2,6 +2,8 @@
 
 namespace Xefi\Faker\Extensions;
 
+use Random\RandomException;
+
 class StringsExtension extends Extension
 {
     protected $emojis = [
@@ -77,5 +79,53 @@ class StringsExtension extends Extension
     public function emoji(): string
     {
         return $this->pickArrayRandomElement($this->emojis);
+    }
+
+    /**
+     * @throws RandomException
+     */
+    public function uuid(): string
+    {
+        $uuid = '';
+
+        for ($i = 0; $i < 32; $i++) {
+            $uuid .= ($i == 12)
+                ? '4'
+                : (($i == 16)
+                    ? $this->pickArrayRandomElement(['8', '9', 'a', 'b'])
+                    : bin2hex(random_bytes(1))[0]);
+
+            if (in_array($i, [7, 11, 15, 19])) {
+                $uuid .= '-';
+            }
+        }
+
+        return $uuid;
+    }
+
+    public function ulid(): string
+    {
+        $ulid = '';
+        $time = round(microtime(true) * 1000);
+        $ulidChar = [];
+
+        // All these numbers are ASCII ranges.
+        for ($i = 48; $i <= 90; $i++) {
+            if (!($i >= 58 && $i <= 64) && !in_array($i, [73, 76, 79, 85])) {
+                $ulidChar[] = chr($i);
+            }
+        }
+
+        for ($i = 0; $i < 26; $i++) {
+            if ($i < 10) {
+                // 32 because ulid use base32 "Crockford"
+                $ulid = $ulidChar[$time % 32].$ulid;
+                $time = floor($time / 32);
+            } else {
+                $ulid .= $ulidChar[rand(0, 31)];
+            }
+        }
+
+        return $ulid;
     }
 }
