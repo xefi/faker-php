@@ -165,7 +165,7 @@ final class PhoneExtensionTest extends TestCase
             $number = $this->faker->indicatoredPhoneNumber();
 
             $this->assertMatchesRegularExpression(
-                '/^00(\d{4}|\d{8}|\d{10})$/',
+                '/^\+00(\d{4}|\d{8}|\d{10})$/',
                 $number
             );
         }
@@ -177,7 +177,7 @@ final class PhoneExtensionTest extends TestCase
             $number = $this->faker->indicatoredPhoneNumber(format: '{d}{d}{d}{d}{d}{d}');
 
             $this->assertMatchesRegularExpression(
-                '/^00(\d{6})$/',
+                '/^\+00(\d{6})$/',
                 $number
             );
         }
@@ -189,7 +189,7 @@ final class PhoneExtensionTest extends TestCase
             $number = $this->faker->indicatoredPhoneNumber(format: '{d}{d}{separator}{d}{d}{separator}{d}{d}', separator: '-');
 
             $this->assertMatchesRegularExpression(
-                '/^00(\d{2}-\d{2}-\d{2})$/',
+                '/^\+00(\d{2}-\d{2}-\d{2})$/',
                 $number
             );
         }
@@ -201,7 +201,7 @@ final class PhoneExtensionTest extends TestCase
             $number = $this->faker->indicatoredCellPhoneNumber();
 
             $this->assertMatchesRegularExpression(
-                '/^00\d{4}$/',
+                '/^\+00\d{4}$/',
                 $number
             );
         }
@@ -213,7 +213,7 @@ final class PhoneExtensionTest extends TestCase
             $number = $this->faker->indicatoredCellPhoneNumber('.');
 
             $this->assertMatchesRegularExpression(
-                '/^00\d{2}\.\d{2}$/',
+                '/^\+00\d{2}\.\d{2}$/',
                 $number
             );
         }
@@ -225,7 +225,7 @@ final class PhoneExtensionTest extends TestCase
             $number = $this->faker->indicatoredLandlinePhoneNumber();
 
             $this->assertMatchesRegularExpression(
-                '/^00(\d{8}|\d{10})$/',
+                '/^\+00(\d{8}|\d{10})$/',
                 $number
             );
         }
@@ -237,7 +237,7 @@ final class PhoneExtensionTest extends TestCase
             $number = $this->faker->indicatoredLandlinePhoneNumber('.');
 
             $this->assertMatchesRegularExpression(
-                '/^00\d{2}\.\d{2}\.\d{2}\.\d{2}(\.\d{2})?$/',
+                '/^\+00\d{2}\.\d{2}\.\d{2}\.\d{2}(\.\d{2})?$/',
                 $number
             );
         }
