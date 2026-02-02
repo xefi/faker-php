@@ -4,7 +4,6 @@ namespace Xefi\Faker\Tests\Unit\Modifiers;
 
 use Xefi\Faker\Faker;
 use Xefi\Faker\Modifiers\UcfirstModifier;
-use Xefi\Faker\Modifiers\UppercaseModifier;
 use Xefi\Faker\Tests\Unit\TestCase;
 
 class UcfirstModifierTest extends TestCase
