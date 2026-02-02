@@ -7,7 +7,7 @@ use Xefi\Faker\Faker;
 use Xefi\Faker\Modifiers\NullableModifier;
 use Xefi\Faker\Tests\Unit\TestCase;
 
-class OptionalModifierTest extends TestCase
+class NullableModifierTest extends TestCase
 {
     public function testOptionalModifierRegistered(): void
     {

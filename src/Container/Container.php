@@ -179,7 +179,7 @@ class Container
             $generatedValue = $this->applyModifiers($generatedValue);
 
             if (++$tries > 20000) {
-                throw new MaximumTriesReached(sprintf('Maximum tries of %d reached without finding a value', 20000));
+                throw new MaximumTriesReached(sprintf('Maximum tries of %d reached without finding a value. Faker cannot generate more data. Maybe look at your unique constraints.', 20000));
             }
         } while (!$this->passStrategies($generatedValue));
 
