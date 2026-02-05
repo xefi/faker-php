@@ -30,7 +30,7 @@ class NullableModifier extends Modifier
      */
     public function apply(mixed $generatedValue): mixed
     {
-        if ($this->randomizer->getInt(0, 100) < $this->weight) {
+        if ($this->randomizer->getInt(1, 100) <= $this->weight) {
             return null;
         }
 
