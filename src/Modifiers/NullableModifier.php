@@ -18,7 +18,7 @@ class NullableModifier extends Modifier
     public function __construct(Randomizer $randomizer, int $weight = 50)
     {
         $this->randomizer = $randomizer;
-        $this->weight = $weight;
+        $this->weight = max(0, min(100, $weight));
     }
 
     /**

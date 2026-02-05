@@ -41,6 +41,16 @@ class NullableModifierTest extends TestCase
         );
     }
 
+    public function testOptionalModifierWithLessThanZeroValue(): void
+    {
+        $faker = new Faker();
+
+        $this->assertEquals(
+            'hello',
+            $faker->nullable(-10)->returnHello()
+        );
+    }
+
     public function testOptionalModifierWithHundredValue(): void
     {
         $faker = new Faker();
@@ -48,6 +58,16 @@ class NullableModifierTest extends TestCase
         $this->assertEquals(
             null,
             $faker->nullable(100)->returnHello()
+        );
+    }
+
+    public function testOptionalModifierWithMoreThanHundredValue(): void
+    {
+        $faker = new Faker();
+
+        $this->assertEquals(
+            null,
+            $faker->nullable(101)->returnHello()
         );
     }
 }
