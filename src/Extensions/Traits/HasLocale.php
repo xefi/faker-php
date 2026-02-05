@@ -11,6 +11,6 @@ trait HasLocale
      */
     public function getLocale(): ?string
     {
-        return null;
+        return 'default';
     }
 }

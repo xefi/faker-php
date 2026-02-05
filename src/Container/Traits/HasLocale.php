@@ -18,7 +18,7 @@ trait HasLocale
      */
     public function getLocale(): ?string
     {
-        return $this->locale ?? null;
+        return $this->locale ?? 'default';
     }
 
     /**

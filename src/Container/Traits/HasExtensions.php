@@ -189,10 +189,10 @@ trait HasExtensions
         // We assume we here have multiple extensions declined by locale, we will try
         // to get the extension with the current locale, defaulting to first element
         if (is_array($extension) && isset($extension['locales'])) {
-            if (!isset($extension['locales'][$this->getLocale()]) && !isset($extension['locales'][null])) {
-                throw new NoExtensionLocaleFound(sprintf('Locale \'%s\' and \'null\' for method \'%s\' was not found', $this->getLocale(), $method));
+            if (!isset($extension['locales'][$this->getLocale()]) && !isset($extension['locales']['default'])) {
+                throw new NoExtensionLocaleFound(sprintf('Locale \'%s\' and \'default\' for method \'%s\' was not found', $this->getLocale(), $method));
             }
-            $extension = $extension['locales'][$this->getLocale()] ?? $extension['locales'][null];
+            $extension = $extension['locales'][$this->getLocale()] ?? $extension['locales']['default'];
         }
 
         return $extension->$method(...$parameters);
