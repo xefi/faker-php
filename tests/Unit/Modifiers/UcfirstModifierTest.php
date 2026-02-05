@@ -20,7 +20,7 @@ class UcfirstModifierTest extends TestCase
         );
     }
 
-    public function testUppercaseModifier(): void
+    public function testUcfirstModifier(): void
     {
         $faker = new Faker();
 
@@ -30,13 +30,20 @@ class UcfirstModifierTest extends TestCase
         );
     }
 
-    public function testUppercaseModifierWithAccent(): void
+    public function testUcfirstModifierWithAccent(): void
     {
         $faker = new Faker();
 
-        $this->assertEquals(
-            'Éèàùâêîôûëïüç',
-            $faker->ucfirst()->returnAccentsLowercase()
-        );
+        if (PHP_VERSION_ID >= 80400) {
+            $this->assertEquals(
+                'Éèàùâêîôûëïüç',
+                $faker->ucfirst()->returnAccentsLowercase()
+            );
+        } else {
+            $this->assertEquals(
+                'éèàùâêîôûëïüç',
+                $faker->ucfirst()->returnAccentsLowercase()
+            );
+        }
     }
 }
