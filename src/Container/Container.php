@@ -179,17 +179,17 @@ class Container
             $generatedValue = $this->applyModifiers($generatedValue);
 
             if (++$tries > 20000) {
-    throw new MaximumTriesReached(
-        sprintf(
-            'Maximum of %d tries reached while generating a value for "%s". '
-            . 'This usually means the active constraints (e.g. unique, valid, or custom strategies) '
-            . 'have exhausted the available pool of values. '
-            . 'Consider relaxing your constraints, broadening the input range, '
-            . 'or removing the unique requirement if the data set is too small.',
-            20000,
-            $method
-        )
-    );
+                throw new MaximumTriesReached(
+                    sprintf(
+                        'Maximum of %d tries reached while generating a value for "%s". '
+                        .'This usually means the active constraints (e.g. unique, valid, or custom strategies) '
+                        .'have exhausted the available pool of values. '
+                        .'Consider relaxing your constraints, broadening the input range, '
+                        .'or removing the unique requirement if the data set is too small.',
+                        20000,
+                        $method
+                    )
+                );
             }
         } while (!$this->passStrategies($generatedValue));
 
