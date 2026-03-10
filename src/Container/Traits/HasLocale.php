@@ -2,6 +2,8 @@
 
 namespace Xefi\Faker\Container\Traits;
 
+use Xefi\Faker\Container\Enum\Locales;
+
 trait HasLocale
 {
     /**
@@ -18,7 +20,7 @@ trait HasLocale
      */
     public function getLocale(): ?string
     {
-        return $this->locale ?? null;
+        return $this->locale ?? Locales::DEFAULT;
     }
 
     /**
