@@ -41,7 +41,7 @@ class UniqueStrategyTest extends TestCase
         );
 
         $this->expectException(MaximumTriesReached::class);
-        $this->expectExceptionMessage('Maximum tries of 20000 reached without finding a value');
+        $this->expectExceptionMessage('Maximum of 20000 tries reached while generating a value for "returnHello". This usually means the active constraints (e.g. unique, valid, or custom strategies) have exhausted the available pool of values. Consider relaxing your constraints, broadening the input range, or removing the unique requirement if the data set is too small.');
 
         $faker->unique()->returnHello();
     }

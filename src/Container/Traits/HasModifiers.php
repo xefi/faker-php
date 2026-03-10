@@ -6,6 +6,7 @@ use Random\Randomizer;
 use Xefi\Faker\Modifiers\LowercaseModifier;
 use Xefi\Faker\Modifiers\Modifier;
 use Xefi\Faker\Modifiers\NullableModifier;
+use Xefi\Faker\Modifiers\UcfirstModifier;
 use Xefi\Faker\Modifiers\UppercaseModifier;
 
 trait HasModifiers
@@ -51,6 +52,18 @@ trait HasModifiers
     public function lowercase(): self
     {
         $this->modifiers[] = new LowercaseModifier();
+
+        return $this;
+    }
+
+    /**
+     * Add a ucfirst modifier.
+     **
+     * @return $this
+     */
+    public function ucfirst(): self
+    {
+        $this->modifiers[] = new UcfirstModifier();
 
         return $this;
     }
