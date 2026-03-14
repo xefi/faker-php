@@ -44,5 +44,16 @@
         "Xefi\\Faker\\FakerServiceProvider"
       ]
     }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "composer run generate-mixin"
+    ],
+    "post-update-cmd": [
+      "composer run generate-mixin"
+    ],
+    "generate-mixin": [
+      "php -r 'require \"vendor/autoload.php\"; (new Xefi\\Faker\\Container\\Container());'"
+    ]
   }
 }
