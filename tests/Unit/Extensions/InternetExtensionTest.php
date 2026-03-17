@@ -60,6 +60,17 @@ final class InternetExtensionTest extends TestCase
         }
     }
 
+    public function testIp(): void
+    {
+        $faker = new Container(false);
+
+        for ($i = 0; $i < 50; $i++) {
+            $result = $faker->ip();
+
+            $this->assertNotFalse(filter_var($result, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) || filter_var($result, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6));
+        }
+    }
+
     public function testIpv4(): void
     {
         $faker = new Container(false);
