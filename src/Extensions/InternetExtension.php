@@ -24,6 +24,11 @@ class InternetExtension extends Extension
         return sprintf('%s.%s', $this->sdl(), $this->tld());
     }
 
+    public function ip(): string
+    {
+        return $this->randomizer->getInt(0, 1) ? $this->ipv4() : $this->ipv6();
+    }
+
     public function ipv4(): string
     {
         return long2ip($this->randomizer->getInt(0, PHP_INT_MAX));
