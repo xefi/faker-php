@@ -36,6 +36,7 @@
     }
   },
   "config": {
+    "optimize-autoloader": true,
     "sort-packages": true
   },
   "extra": {
@@ -53,7 +54,7 @@
       "composer run generate-mixin"
     ],
     "generate-mixin": [
-      "@php -r 'require \"vendor/autoload.php\"; (new Xefi\\Faker\\Container\\Container());'"
+      "@php -r \"require 'vendor/autoload.php'; (new Xefi\\Faker\\Container\\Container());\""
     ],
     "test": [
       "@php vendor/bin/phpunit --colors=always"
