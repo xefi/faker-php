@@ -23,7 +23,7 @@
     "psr/container": "^2.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^11"
+    "phpunit/phpunit": "^12.5.23"
   },
   "autoload": {
     "psr-4": {
@@ -54,6 +54,9 @@
     ],
     "generate-mixin": [
       "php -r 'require \"vendor/autoload.php\"; (new Xefi\\Faker\\Container\\Container());'"
+    ],
+    "test": [
+      "php vendor/bin/phpunit --colors=always"
     ]
   }
 }
