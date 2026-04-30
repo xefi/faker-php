@@ -2,8 +2,6 @@
 
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
-use Xefi\Faker\Tests\Unit\Extensions\TestCase;
-
 final class GeographicalExtensionTest extends TestCase
 {
     public function testLatitude(): void

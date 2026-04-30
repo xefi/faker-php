@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Xefi\Faker\Tests\Unit;
 
 use Xefi\Faker\Manifests\PackageManifest;
-use Xefi\Faker\Tests\Unit\TestCase;
 
 final class PackageManifestTest extends TestCase
 {
