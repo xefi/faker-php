@@ -35,11 +35,6 @@
       "Xefi\\Faker\\Tests\\": "tests/"
     }
   },
-  "config": {
-    "optimize-autoloader": true,
-    "preferred-install": "dist",
-    "sort-packages": true
-  },
   "extra": {
     "faker": {
       "providers": [
@@ -49,16 +44,27 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "composer run generate-mixin"
+      "@composer run generate-mixin"
     ],
     "post-update-cmd": [
-      "composer run generate-mixin"
+      "@composer run generate-mixin"
     ],
     "generate-mixin": [
-      "@php -r \"require 'vendor/autoload.php'; (new Xefi\\Faker\\Container\\Container());\""
+      "@php scripts/generate-mixin.php"
     ],
     "test": [
       "@php vendor/bin/phpunit --colors=always"
     ]
-  }
+  },
+  "scripts-descriptions": {
+    "test": "Run the PHPUnit tests.",
+    "generate-mixin": "Generates the IDE mixin during package installation to enable autocompletion support."
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
 }
