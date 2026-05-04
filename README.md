@@ -19,7 +19,7 @@ You'll be able to generate fake data for your applications, making your test env
 Here is a quick look at what you can do:
 
 ```php
-$faker = new Xefi\Faker\Faker();
+$faker = new \Xefi\Faker\Faker();
 
 $faker->name() // John Doe
 $faker->name() // Charles Brown
