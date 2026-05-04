@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: [ '8.3', '8.4', '8.5' ]
+        php-version: [ "8.3", "8.4", "8.5" ]
 
     name: Tests on PHP ${{ matrix.php-version }}
 
@@ -42,7 +42,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer i --prefer-dist --no-progress
+        run: composer i --no-progress
 
       - name: Run test suite
         run: vendor/bin/phpunit
