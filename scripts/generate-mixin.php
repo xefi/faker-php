@@ -11,6 +11,6 @@
  * when working with xefi/faker-php in their projects.
  */
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
-new \Xefi\Faker\Container\Container;
+new \Xefi\Faker\Container\Container();
