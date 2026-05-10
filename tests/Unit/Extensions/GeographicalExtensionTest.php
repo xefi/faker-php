@@ -1,8 +1,6 @@
 <?php
 
-namespace Extensions;
-
-use Xefi\Faker\Tests\Unit\Extensions\TestCase;
+namespace Xefi\Faker\Tests\Unit\Extensions;
 
 final class GeographicalExtensionTest extends TestCase
 {

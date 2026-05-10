@@ -1,5 +1,7 @@
 <?php
 
+namespace Xefi\Faker\Tests\Unit;
+
 class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
 {
     protected function setUp(): void
@@ -39,7 +41,7 @@ class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
 
     public function testUsingDefaultLocale()
     {
-        $faker = new Xefi\Faker\Faker('fr_FR');
+        $faker = new \Xefi\Faker\Faker('fr_FR');
         $this->assertEquals(
             'fr_FR',
             $faker->returnLocale()
@@ -68,7 +70,7 @@ class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
 
     public function testResettingLocale()
     {
-        $faker = new Xefi\Faker\Faker('fr_FR');
+        $faker = new \Xefi\Faker\Faker('fr_FR');
         $this->assertEquals(
             'fr_FR',
             $faker->returnLocale()
@@ -87,7 +89,7 @@ class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
 
     public function testUsingNotExistingLocaleFallingBackToNullLocale()
     {
-        $faker = new Xefi\Faker\Faker('not-existing-locale');
+        $faker = new \Xefi\Faker\Faker('not-existing-locale');
         $this->assertEquals(
             'default',
             $faker->returnLocale()
@@ -108,7 +110,7 @@ class LocaleTest extends \Xefi\Faker\Tests\Unit\TestCase
         $this->expectException(\Xefi\Faker\Exceptions\NoExtensionLocaleFound::class);
         $this->expectExceptionMessage('Locale \'not-existing-locale\' and \'default\' for method \'returnLocale\' was not found');
 
-        $faker = new Xefi\Faker\Faker('not-existing-locale');
+        $faker = new \Xefi\Faker\Faker('not-existing-locale');
         $faker->returnLocale();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Strategies;
+namespace Xefi\Faker\Tests\Unit\Strategies;
 
 use Xefi\Faker\Faker;
 use Xefi\Faker\Strategies\ValidStrategy;

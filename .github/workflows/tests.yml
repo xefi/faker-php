@@ -14,13 +14,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: [ '8.3', '8.4', '8.5' ]
+        php-version: [ "8.3", "8.4", "8.5" ]
 
     name: Tests on PHP ${{ matrix.php-version }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -33,7 +33,7 @@ jobs:
 
       - name: Cache Composer packages
         id: composer-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
@@ -42,7 +42,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer i --prefer-dist --no-progress
+        run: composer i --no-progress
 
       - name: Run test suite
         run: vendor/bin/phpunit
