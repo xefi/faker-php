@@ -2,6 +2,7 @@
 
 namespace Xefi\Faker;
 
+use Random\Engine;
 use Xefi\Faker\Container\Container;
 
 /**
@@ -16,14 +17,22 @@ class Faker
      */
     protected ?string $locale;
 
-    public function __construct(?string $locale = null)
+    /**
+     * The current Randomizer engine.
+     *
+     * @var Engine|null
+     */
+    protected ?Engine $engine;
+
+    public function __construct(?string $locale = null, ?Engine $engine = null)
     {
         $this->locale = $locale;
+        $this->engine = $engine;
     }
 
     public function __call(string $method, array $parameters)
     {
         // We simply redirect calls to container to create a new container for each faker call
-        return (new Container())->locale($this->locale)->{$method}(...$parameters);
+        return (new Container($this->engine))->locale($this->locale)->{$method}(...$parameters);
     }
 }
