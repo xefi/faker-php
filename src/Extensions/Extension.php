@@ -4,14 +4,18 @@ namespace Xefi\Faker\Extensions;
 
 use Random\Randomizer;
 use ReflectionClass;
+use Xefi\Faker\Container\Container;
 
 class Extension
 {
     protected Randomizer $randomizer;
 
-    public function __construct(Randomizer $randomizer)
+    protected Container $container;
+
+    final public function __construct(Randomizer $randomizer, Container $container)
     {
         $this->randomizer = $randomizer;
+        $this->container = $container;
     }
 
     /**
