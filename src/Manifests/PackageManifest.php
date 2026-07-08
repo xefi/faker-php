@@ -120,6 +120,14 @@ class PackageManifest
             }
         }
 
+        if (is_file($path = $this->basePath.'/composer.json')) {
+            $package = json_decode(file_get_contents($path), true);
+
+            if (isset($package['extra']['faker'])) {
+                $packagesToProvide[$package['name'] ?? 'root'] = $package['extra']['faker'];
+            }
+        }
+
         $this->write(
             $packagesToProvide
         );
@@ -133,8 +141,9 @@ class PackageManifest
     public function shouldRecompile(): bool
     {
         return !is_file($this->manifestPath) ||
-            // We check here if the manifest has been generated before changing the installed.json composer file
-            filemtime($this->manifestPath) <= filemtime($this->vendorPath.'/composer/installed.json');
+            // We check here if the manifest has been generated before changing the installed.json composer file or the project composer.json
+            filemtime($this->manifestPath) <= filemtime($this->vendorPath.'/composer/installed.json') ||
+            filemtime($this->manifestPath) <= filemtime($this->basePath.'/composer.json');
     }
 
     /**
