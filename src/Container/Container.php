@@ -80,7 +80,7 @@ class Container
     /**
      * Set the container mixin manifest path.
      *
-     * @param string $manifestPath
+     * @param string $containerMixinManifestPath
      *
      * @return void
      */
