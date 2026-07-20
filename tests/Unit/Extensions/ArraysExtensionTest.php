@@ -20,7 +20,7 @@ final class ArraysExtensionTest extends TestCase
             $elements[] = $this->faker->unique()->randomElement($this->testArray);
         }
 
-        $this->assertEqualsCanonicalizing($elements, $this->testArray);
+        $this->assertEqualsCanonicalizing(array_values($this->testArray), $elements);
     }
 
     public function testRandomKeyIndex(): void
