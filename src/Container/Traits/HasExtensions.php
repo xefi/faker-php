@@ -64,7 +64,7 @@ trait HasExtensions
      *
      * @param \Xefi\Faker\Extensions\Extension $extension
      *
-     * @return \Xefi\Faker\Extensions\Extension
+     * @return \Xefi\Faker\Container\Container
      */
     protected function addExtension(Extension $extension): Container
     {
@@ -96,7 +96,7 @@ trait HasExtensions
      *
      * @param \Xefi\Faker\Extensions\Extension $extension
      *
-     * @return \Xefi\Faker\Extensions\Extension
+     * @return \Xefi\Faker\Container\Container
      */
     protected function addLocaleExtension(Extension $extension): Container
     {

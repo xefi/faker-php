@@ -15,8 +15,9 @@ jobs:
       fail-fast: false
       matrix:
         php-version: [ "8.3", "8.4", "8.5" ]
+        dependencies: [ "lowest", "highest" ]
 
-    name: Tests on PHP ${{ matrix.php-version }}
+    name: PHP ${{ matrix.php-version }} - ${{ matrix.dependencies }} deps
 
     steps:
       - name: Checkout
@@ -28,21 +29,13 @@ jobs:
           php-version: ${{ matrix.php-version }}
           coverage: none
 
-      - name: Validate composer.json and composer.lock
-        run: composer validate
-
-      - name: Cache Composer packages
-        id: composer-cache
-        uses: actions/cache@v5
-        with:
-          path: vendor
-          key: ${{ runner.os }}-php-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-${{ matrix.php-version }}-
+      - name: Validate composer.json
+        run: composer validate --no-check-lock
 
       - name: Install dependencies
-        if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer i --no-progress
+        uses: ramsey/composer-install@v3
+        with:
+          dependency-versions: ${{ matrix.dependencies }}
 
       - name: Run test suite
         run: vendor/bin/phpunit
