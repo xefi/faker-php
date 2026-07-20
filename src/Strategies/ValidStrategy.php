@@ -27,7 +27,7 @@ class ValidStrategy extends Strategy
      *
      * @param mixed $generatedValue
      *
-     * @return object
+     * @return bool
      */
     public function pass(mixed $generatedValue): bool
     {
