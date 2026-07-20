@@ -120,8 +120,8 @@ class ContainerMixinManifest
 
             $tags[] = new Method(
                 $methodName,
-                returnType: $reflectionMethod->hasReturnType() ? (new TypeResolver())->resolve($reflectionMethod->getReturnType()) : new Mixed_(),
                 parameters: $parameters,
+                returnType: $reflectionMethod->hasReturnType() ? (new TypeResolver())->resolve($reflectionMethod->getReturnType()) : new Mixed_(),
             );
         }
 
@@ -142,8 +142,9 @@ class ContainerMixinManifest
     public function shouldRecompile(): bool
     {
         return !is_file($this->containerMixinPath) ||
-            // We check here if the manifest has been generated before changing the installed.json composer file
-            filemtime($this->containerMixinPath) <= filemtime($this->vendorPath.'/composer/installed.json');
+            // We check here if the manifest has been generated before changing the installed.json composer file or the project composer.json
+            filemtime($this->containerMixinPath) <= filemtime($this->vendorPath.'/composer/installed.json') ||
+            filemtime($this->containerMixinPath) <= filemtime($this->basePath.'/composer.json');
     }
 
     /**
