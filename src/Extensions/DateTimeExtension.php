@@ -3,6 +3,8 @@
 namespace Xefi\Faker\Extensions;
 
 use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
 
 class DateTimeExtension extends Extension
 {
@@ -38,25 +40,30 @@ class DateTimeExtension extends Extension
         'America/Toronto',
     ];
 
-    protected function formatTimestamp(DateTime|int|string $timestamp): int
+    protected function formatTimestamp(DateTimeInterface|int|string $timestamp): int
     {
         if (is_int($timestamp)) {
             return $timestamp;
         }
 
-        if ($timestamp instanceof DateTime) {
+        if ($timestamp instanceof DateTimeInterface) {
             return $timestamp->getTimestamp();
         }
 
         return strtotime($timestamp);
     }
 
-    public function dateTime(DateTime|int|string $fromTimestamp = '-30 years', DateTime|int|string $toTimestamp = 'now'): DateTime
+    public function dateTime(DateTimeInterface|int|string $fromTimestamp = '-30 years', DateTimeInterface|int|string $toTimestamp = 'now'): DateTime
     {
         return new DateTime('@'.$this->timestamp($fromTimestamp, $toTimestamp));
     }
 
-    public function timestamp(DateTime|int|string $fromTimestamp = '-30 years', DateTime|int|string $toTimestamp = 'now'): int
+    public function dateTimeImmutable(DateTimeInterface|int|string $fromTimestamp = '-30 years', DateTimeInterface|int|string $toTimestamp = 'now'): DateTimeImmutable
+    {
+        return new DateTimeImmutable('@'.$this->timestamp($fromTimestamp, $toTimestamp));
+    }
+
+    public function timestamp(DateTimeInterface|int|string $fromTimestamp = '-30 years', DateTimeInterface|int|string $toTimestamp = 'now'): int
     {
         return $this->randomizer->getInt($this->formatTimestamp($fromTimestamp), $this->formatTimestamp($toTimestamp));
     }

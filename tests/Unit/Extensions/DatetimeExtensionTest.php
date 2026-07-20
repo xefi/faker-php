@@ -3,6 +3,7 @@
 namespace Xefi\Faker\Tests\Unit\Extensions;
 
 use DateTime;
+use DateTimeImmutable;
 
 final class DatetimeExtensionTest extends TestCase
 {
@@ -71,6 +72,25 @@ final class DatetimeExtensionTest extends TestCase
         $toDateTime = new DateTime('now');
 
         foreach ($results as $result) {
+            $this->assertInstanceOf(DateTime::class, $result);
+            $this->assertGreaterThanOrEqual($fromDateTime->getTimestamp(), $result->getTimestamp());
+            $this->assertLessThanOrEqual($toDateTime->getTimestamp(), $result->getTimestamp());
+        }
+    }
+
+    public function testDateTimeImmutable(): void
+    {
+        $results = [];
+
+        for ($i = 0; $i < 50; $i++) {
+            $results[] = $this->faker->dateTimeImmutable('-30 years', 'now');
+        }
+
+        $fromDateTime = new DateTimeImmutable('-30 years');
+        $toDateTime = new DateTimeImmutable('now');
+
+        foreach ($results as $result) {
+            $this->assertInstanceOf(DateTimeImmutable::class, $result);
             $this->assertGreaterThanOrEqual($fromDateTime->getTimestamp(), $result->getTimestamp());
             $this->assertLessThanOrEqual($toDateTime->getTimestamp(), $result->getTimestamp());
         }
