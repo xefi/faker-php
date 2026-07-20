@@ -161,7 +161,7 @@ class ContainerMixinManifest
 
         file_put_contents(
             $this->containerMixinPath,
-            "<?php namespace Xefi\\Faker\\Container;\n{$docComment}\n\tclass Container{}"
+            "<?php\n\nnamespace Xefi\\Faker\\Container;\n\n{$docComment}\nclass Container {}"
         );
     }
 }
