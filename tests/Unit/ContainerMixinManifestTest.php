@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Xefi\Faker\Tests\Unit;
 
+use Xefi\Faker\Tests\Support\Concerns\CreatesTemporaryProjects;
+
 final class ContainerMixinManifestTest extends TestCase
 {
+    use CreatesTemporaryProjects;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -15,6 +19,13 @@ final class ContainerMixinManifestTest extends TestCase
         $container->resolveExtensions([
             \Xefi\Faker\Tests\Support\Extensions\MixinTestExtension::class,
         ]);
+    }
+
+    protected function tearDown(): void
+    {
+        $this->deleteTemporaryProjects();
+
+        parent::tearDown();
     }
 
     public function testContainerMixinBuild()
@@ -109,6 +120,27 @@ final class ContainerMixinManifestTest extends TestCase
         $this->assertTrue($manifest->shouldRecompile());
 
         unlink('/tmp/ContainerMixin.php');
+    }
+
+    public function testShouldRecompileWhenTheProjectComposerFileChanged()
+    {
+        $projectPath = $this->createTemporaryProject(['name' => 'xefi/my-project']);
+
+        $container = new \Xefi\Faker\Container\Container(shouldBuildContainerMixin: false);
+        $manifest = new \Xefi\Faker\Manifests\ContainerMixinManifest($projectPath, $projectPath.'/ContainerMixin.php');
+        $manifest->build($container->getExtensionMethods(), $container->getExtensions());
+        touch($projectPath.'/vendor/composer/installed.json', time() - 1);
+        touch($projectPath.'/composer.json', time() - 1);
+
+        $this->assertFalse($manifest->shouldRecompile());
+
+        // Test on current time
+        touch($projectPath.'/composer.json');
+        $this->assertTrue($manifest->shouldRecompile());
+
+        // Test on future
+        touch($projectPath.'/composer.json', time() + 1);
+        $this->assertTrue($manifest->shouldRecompile());
     }
 
     public function testNoExtension()
