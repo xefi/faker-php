@@ -2,6 +2,7 @@
 
 namespace Xefi\Faker\Container\Traits;
 
+use Random\Engine;
 use Random\Randomizer;
 use Xefi\Faker\Container\Container;
 use Xefi\Faker\Container\Enum\Locales;
@@ -27,14 +28,15 @@ trait HasExtensions
     /**
      * Resolve an array of extensions through the container.
      *
-     * @param array $extensions
+     * @param array       $extensions
+     * @param Engine|null $engine
      *
      * @return $this
      */
-    public function resolveExtensions(array $extensions): self
+    public function resolveExtensions(array $extensions, ?Engine $engine = null): self
     {
         foreach ($extensions as $extension) {
-            $this->resolve($extension);
+            $this->resolve($extension, $engine);
         }
 
         return $this;
@@ -44,12 +46,13 @@ trait HasExtensions
      * Add an extension, resolving through the application.
      *
      * @param Extension|string $extension
+     * @param Engine|null      $engine
      *
      * @return Container
      */
-    protected function resolve(\Xefi\Faker\Extensions\Extension|string $extension): Container
+    protected function resolve(\Xefi\Faker\Extensions\Extension|string $extension, ?Engine $engine = null): Container
     {
-        $instance = $extension instanceof Extension ? $extension : new $extension(new Randomizer());
+        $instance = $extension instanceof Extension ? $extension : new $extension(new Randomizer($engine));
 
         // If the extension supports locale variations
         if (method_exists($instance, 'getLocale')) {

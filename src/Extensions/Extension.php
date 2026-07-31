@@ -9,7 +9,7 @@ class Extension
 {
     protected Randomizer $randomizer;
 
-    public function __construct(Randomizer $randomizer)
+    final public function __construct(Randomizer $randomizer)
     {
         $this->randomizer = $randomizer;
     }

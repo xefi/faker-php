@@ -3,6 +3,7 @@
 namespace Xefi\Faker\Container;
 
 use Closure;
+use Random\Engine;
 use Xefi\Faker\Container\Traits\HasExtensions;
 use Xefi\Faker\Container\Traits\HasLocale;
 use Xefi\Faker\Container\Traits\HasModifiers;
@@ -48,12 +49,19 @@ class Container
     protected static string $containerMixinManifestPath = './faker_mixin.php';
 
     /**
+     * @var Engine|null
+     */
+    private ?Engine $engine;
+
+    /**
      * Create the container instance.
      *
      * @return void
      */
-    public function __construct(bool $shouldBuildContainerMixin = true)
+    public function __construct(?Engine $engine = null, bool $shouldBuildContainerMixin = true)
     {
+        $this->engine = $engine;
+
         if (!$this->areExtensionsInitialized()) {
             $this->registerConfiguredProviders();
 
@@ -99,6 +107,14 @@ class Container
     public static function basePath(string $basePath)
     {
         static::$basePath = $basePath;
+    }
+
+    /**
+     * @return Engine|null
+     */
+    public function getEngine(): ?Engine
+    {
+        return $this->engine;
     }
 
     /**

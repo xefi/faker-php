@@ -16,7 +16,7 @@ class Provider
     public function extensions(array $extensions)
     {
         Container::starting(function (Container $container) use ($extensions) {
-            $container->resolveExtensions($extensions);
+            $container->resolveExtensions($extensions, $container->getEngine());
         });
     }
 
