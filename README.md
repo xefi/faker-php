@@ -71,7 +71,7 @@ The concepts map closely — most of a migration is a rename:
 | `$faker->unixTime()` / `timezone()` | `timestamp()` / `timezone()` |
 | `$faker->uuid()` | `uuid()` (and `ulid()`) |
 | `$faker->md5()` / `sha1()` / `sha256()` | same (and `sha512()`) |
-| `$faker->email()` / `url()` / `ipv4()` / `macAddress()` | `email()` / `url()` / `ip()` / `macAddress()` |
+| `$faker->email()` / `url()` / `ipv4()` / `ipv6()` / `macAddress()` | same (plus `ip()`, either family) |
 | `$faker->domainName()` / `tld()` | `domain()` / `tld()` |
 | `$faker->hexColor()` / `safeHexColor()` / `colorName()` / `rgbColor()` / `hslColor()` | same |
 | `$faker->iban($countryCode)` | `iban($countryCode, $format)` |
