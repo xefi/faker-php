@@ -89,8 +89,9 @@ Three differences worth knowing before you migrate:
   not as a generator.
 - **`unique()` remembers for the whole process.** Drawn values are kept in a seed-keyed pool that is
   never reset, which is what makes uniqueness hold across calls — but over a bounded set (an enum, a
-  short list, a small range) it will exhaust and throw `MaximumTriesReached`. Widen the range, pass a
-  distinct seed with `unique('my-seed')`, or iterate over the set yourself.
+  short list, a small range) it will exhaust and throw `MaximumTriesReached`. Widen the range or iterate over
+  the set yourself. `unique('my-seed')` opens a separate pool, which isolates one scope from
+  another, but a bounded set stays just as bounded inside it.
 - **Case modifiers are chainable.** `nullable()`, `uppercase()`, `lowercase()` and `ucfirst()` apply to
   the generated value before any strategy is checked.
 
