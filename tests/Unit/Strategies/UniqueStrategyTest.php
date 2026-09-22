@@ -57,4 +57,28 @@ class UniqueStrategyTest extends TestCase
 
         $this->assertEqualsCanonicalizing(range(1, 10), $numbers);
     }
+
+    public function testUniqueKeepsStrictComparison(): void
+    {
+        $strategy = new UniqueStrategy();
+
+        $this->assertTrue($strategy->pass(1));
+        $this->assertTrue($strategy->pass(1.0));
+        $this->assertTrue($strategy->pass('1'));
+        $this->assertTrue($strategy->pass(true));
+        $this->assertTrue($strategy->pass(null));
+
+        $this->assertFalse($strategy->pass(1));
+        $this->assertFalse($strategy->pass('1'));
+        $this->assertFalse($strategy->pass(null));
+    }
+
+    public function testUniqueComparesObjectsByValue(): void
+    {
+        $strategy = new UniqueStrategy();
+
+        $this->assertTrue($strategy->pass(new \DateTime('2020-01-01 00:00:00')));
+        $this->assertFalse($strategy->pass(new \DateTime('2020-01-01 00:00:00')));
+        $this->assertTrue($strategy->pass(new \DateTime('2020-01-02 00:00:00')));
+    }
 }

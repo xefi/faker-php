@@ -9,9 +9,9 @@ class UniqueStrategy extends Strategy
     use HasSeeds;
 
     /**
-     * The element already tried.
+     * The values already drawn, keyed by their serialized form.
      *
-     * @var array
+     * @var array<string, true>
      */
     protected array $tried = [];
 
@@ -24,11 +24,15 @@ class UniqueStrategy extends Strategy
      */
     public function pass(mixed $generatedValue): bool
     {
-        if (in_array($generatedValue, $this->tried, true)) {
+        // A serialized key gives a constant-time lookup where in_array() scanned every value drawn so
+        // far, and keeps its strictness: 1, 1.0 and '1' serialize differently and stay distinct.
+        $key = serialize($generatedValue);
+
+        if (isset($this->tried[$key])) {
             return false;
         }
 
-        $this->tried[] = $generatedValue;
+        $this->tried[$key] = true;
 
         return true;
     }
