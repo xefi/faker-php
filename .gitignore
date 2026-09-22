@@ -4,3 +4,4 @@ composer.lock
 .idea
 faker_mixin.php
 packages.php
+/benchmarks/results

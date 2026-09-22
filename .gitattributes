@@ -1,7 +1,8 @@
 /.gitattributes     export-ignore
-/.gitignore         export-ignore
 /.github            export-ignore
+/.gitignore         export-ignore
 /Dockerfile         export-ignore
+/benchmarks         export-ignore
 /docker-compose.yml export-ignore
 /phpunit.xml        export-ignore
 /scripts            export-ignore
