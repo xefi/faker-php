@@ -2,6 +2,7 @@
 
 namespace Xefi\Faker\Container\Traits;
 
+use Random\Engine\Xoshiro256StarStar;
 use Random\Randomizer;
 use Xefi\Faker\Container\Container;
 use Xefi\Faker\Container\Enum\Locales;
@@ -49,7 +50,9 @@ trait HasExtensions
      */
     protected function resolve(\Xefi\Faker\Extensions\Extension|string $extension): Container
     {
-        $instance = $extension instanceof Extension ? $extension : new $extension(new Randomizer());
+        // Fake data needs speed, not unpredictability: the default Secure engine is a CSPRNG that costs a
+        // system call per draw, where Xoshiro256** (randomly seeded) is several times faster.
+        $instance = $extension instanceof Extension ? $extension : new $extension(new Randomizer(new Xoshiro256StarStar()));
 
         // If the extension supports locale variations
         if (method_exists($instance, 'getLocale')) {

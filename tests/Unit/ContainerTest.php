@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Xefi\Faker\Tests\Unit;
 
+use Random\Engine\Xoshiro256StarStar;
 use Random\Randomizer;
 use Xefi\Faker\Container\Container;
 use Xefi\Faker\Tests\Support\Extensions\NumberTestExtension;
@@ -30,8 +31,8 @@ final class ContainerTest extends TestCase
 
         $this->assertEquals(
             [
-                'number-test-extension' => new NumberTestExtension(new Randomizer()),
-                'string-test-extension' => new StringTestExtension(new Randomizer()),
+                'number-test-extension' => new NumberTestExtension(new Randomizer(new Xoshiro256StarStar())),
+                'string-test-extension' => new StringTestExtension(new Randomizer(new Xoshiro256StarStar())),
             ],
             $container->getExtensions()
         );

@@ -19,6 +19,20 @@ class ExtensionTest extends TestCase
         );
     }
 
+    public function testResolvedExtensionsDrawFromAFastEngine(): void
+    {
+        $container = new Container();
+
+        $extensions = array_filter($container->getExtensions(), fn ($extension) => $extension instanceof Extension);
+        $this->assertNotEmpty($extensions);
+
+        foreach ($extensions as $extension) {
+            $randomizer = (new ReflectionClass($extension))->getProperty('randomizer')->getValue($extension);
+
+            $this->assertInstanceOf(\Random\Engine\Xoshiro256StarStar::class, $randomizer->engine);
+        }
+    }
+
     public function testExtensionReturnOne(): void
     {
         $container = new Container();

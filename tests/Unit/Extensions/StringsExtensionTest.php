@@ -77,6 +77,14 @@ final class StringsExtensionTest extends TestCase
         $this->assertMatchesRegularExpression('/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[8, 9, a, b][0-9a-f]{3}-[0-9a-f]{12}$/u', $this->faker->uuid());
     }
 
+    public function testUuidDrawsFromTheInjectedRandomizer(): void
+    {
+        $uuid = fn () => (new \Xefi\Faker\Extensions\StringsExtension(new \Random\Randomizer(new \Random\Engine\Mt19937(42))))->uuid();
+
+        $this->assertSame($uuid(), $uuid());
+        $this->assertMatchesRegularExpression('/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/', $uuid());
+    }
+
     public function testUlid(): void
     {
         $this->assertMatchesRegularExpression('/^[0-9A-HJKMNP-TV-Z]{26}$/u', $this->faker->ulid());

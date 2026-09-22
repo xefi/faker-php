@@ -86,21 +86,13 @@ class StringsExtension extends Extension
      */
     public function uuid(): string
     {
-        $uuid = '';
+        $bytes = $this->randomizer->getBytes(16);
 
-        for ($i = 0; $i < 32; $i++) {
-            $uuid .= ($i == 12)
-                ? '4'
-                : (($i == 16)
-                    ? $this->pickArrayRandomElement(['8', '9', 'a', 'b'])
-                    : bin2hex(random_bytes(1))[0]);
+        // RFC 4122 version 4: the version in the high nibble of byte 6, the variant in the two high bits of byte 8.
+        $bytes[6] = chr((ord($bytes[6]) & 0x0F) | 0x40);
+        $bytes[8] = chr((ord($bytes[8]) & 0x3F) | 0x80);
 
-            if (in_array($i, [7, 11, 15, 19])) {
-                $uuid .= '-';
-            }
-        }
-
-        return $uuid;
+        return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($bytes), 4));
     }
 
     public function ulid(): string
