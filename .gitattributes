@@ -5,5 +5,4 @@
 /benchmarks         export-ignore
 /docker-compose.yml export-ignore
 /phpunit.xml        export-ignore
-/scripts            export-ignore
 /tests              export-ignore
