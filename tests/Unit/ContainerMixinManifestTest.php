@@ -154,4 +154,26 @@ final class ContainerMixinManifestTest extends TestCase
 
         $this->assertFileExists('/tmp/ContainerMixin.php');
     }
+
+    public function testContainerMixinIsOnlyCheckedWhenExtensionsAreInitialized()
+    {
+        $container = new \Xefi\Faker\Container\Container(shouldBuildContainerMixin: false);
+        $container->forgetExtensions();
+        $container->forgetBootstrappers();
+        @unlink('/tmp/ContainerMixin.php');
+
+        new \Xefi\Faker\Container\Container();
+        $this->assertFileExists('/tmp/ContainerMixin.php');
+
+        unlink('/tmp/ContainerMixin.php');
+        new \Xefi\Faker\Container\Container();
+        $this->assertFileDoesNotExist('/tmp/ContainerMixin.php');
+
+        $container->forgetExtensions();
+        $container->forgetBootstrappers();
+        new \Xefi\Faker\Container\Container();
+        $this->assertFileExists('/tmp/ContainerMixin.php');
+
+        unlink('/tmp/ContainerMixin.php');
+    }
 }

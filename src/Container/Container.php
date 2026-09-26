@@ -58,10 +58,12 @@ class Container
             $this->registerConfiguredProviders();
 
             $this->bootstrap();
-        }
 
-        if ($shouldBuildContainerMixin) {
-            $this->buildContainerMixinManifest();
+            // The mixin describes the registered extensions, so it only needs checking when they are
+            // initialized: checking it on every call costs several filesystem stats per generated value.
+            if ($shouldBuildContainerMixin) {
+                $this->buildContainerMixinManifest();
+            }
         }
     }
 
