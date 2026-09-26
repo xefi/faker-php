@@ -51,15 +51,21 @@ Faker ──(__call, one fresh Container per call)──▶ Container
 
 ## Conventions
 
-- No `declare(strict_types=1)` — the codebase does not use it, do not introduce it.
-- Native parameter and return types on every method, plus a full docblock (`@param`, `@return`),
-  matching the surrounding style.
-- Randomness always goes through the injected `Random\Randomizer` (`$this->randomizer`), never
-  `rand()`, `mt_rand()`, `array_rand()` or `shuffle()`. Use the `Extension` helpers
-  (`pickArrayRandomElement`, `pickArrayRandomKeys`, `formatString`, ...) when they fit.
-- Method names are **globally unique across all extensions**, including third-party ones. A collision
-  triggers an `E_USER_WARNING` and the first registration wins. Pick names that are unlikely to clash
-  with an extension package, and never rename an existing method without a major version bump.
+- No `declare(strict_types=1)` in `src/`: do not introduce it there. A few test files do declare it;
+  follow the file you are editing.
+- Native parameter and return types plus a full docblock (`@param`, `@return`) on every new or modified
+  method. Some older methods (`email()`, `macAddress()`, `letter()`, ...) still lack a return type; add
+  one when you touch them, do not copy them.
+- Randomness goes through the injected `Random\Randomizer` (`$this->randomizer`), never `rand()`,
+  `mt_rand()`, `random_bytes()`, `array_rand()` or `shuffle()`, so a seeded engine gives reproducible
+  output. Use the `Extension` helpers (`pickArrayRandomElement`, `pickArrayRandomKeys`, `formatString`,
+  ...) when they fit. `uuid()`, `ulid()`, `phoneNumber()` and `url()` still break this rule; they are
+  known debt, not examples.
+- Method names are **globally unique across all extensions**, including third-party ones. For a regular
+  extension, a collision triggers an `E_USER_WARNING` and the **last** registration overwrites the
+  method; for locale variants, the method already mapped is kept silently. Pick names that are unlikely
+  to clash with an extension package, and never rename an existing method without a major version
+  bump.
 
 ### Adding a generator
 
@@ -85,6 +91,10 @@ Faker ──(__call, one fresh Container per call)──▶ Container
 
 - **`Container::$extensions` and `$extensionsMethods` are static**, so the registered extension set is
   process-global and survives between tests. `forgetExtensions()` exists for that reason.
+- **Bootstrappers are static too, and they accumulate.** Every provider boot appends a
+  `Container::starting()` callback. To re-initialize extensions through the constructor in a test, call
+  `forgetExtensions()` *and* `forgetBootstrappers()`, otherwise the providers register twice and every
+  extension triggers an "already registered" warning.
 - **`unique()` draws from a process-global, seed-keyed pool that is never reset** (`Seeds\HasSeeds`).
   Over a bounded set — an enum, a fixed list, a small integer range — it exhausts and then throws
   `MaximumTriesReached` in every later call of the same process. Never suggest `unique()` on a bounded
