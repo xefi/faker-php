@@ -85,7 +85,15 @@ class TextExtension extends Extension
         $words = $this->wordsAsArray($words);
 
         // Remove any uppercase / comma / dots
-        return strtolower(preg_replace('/[.,]/', '', implode(' ', $words)));
+        $words = preg_replace('/[.,]/', '', implode(' ', $words));
+
+        if (function_exists('mb_strtolower')) {
+            return mb_strtolower($words);
+        }
+
+        trigger_error('You do not have the `mbstring` extension enabled; FakerPHP might not handle uncommon characters correctly.', E_USER_WARNING);
+
+        return strtolower($words);
     }
 
     public function sentencesAsArray(int $sentences = 3): array

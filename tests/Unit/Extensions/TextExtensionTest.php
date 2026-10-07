@@ -30,6 +30,14 @@ final class TextExtensionTest extends TestCase
         }
     }
 
+    public function testWordsLowercasesNonAsciiCharacters(): void
+    {
+        $extension = new \Xefi\Faker\Extensions\TextExtension(new \Random\Randomizer());
+        (new ReflectionClass($extension))->getProperty('paragraphs')->setValue($extension, [[['Ёлка', 'Écrit', 'Über.']]]);
+
+        $this->assertEqualsCanonicalizing(['ёлка', 'écrit', 'über'], explode(' ', $extension->words(3)));
+    }
+
     public static function wordsProvider()
     {
         return [
