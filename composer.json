@@ -1,13 +1,25 @@
 {
   "name": "xefi/faker-php",
   "type": "library",
-  "description": "Faker allows you to generate realistic fake data for your php applications",
+  "description": "Lightweight, modular fake data generator for PHP 8.3+: tests, fixtures and database seeding, with installable locales and extensions.",
   "keywords": [
     "faker",
-    "data",
+    "fake data",
+    "test data",
+    "mock data",
+    "dummy data",
+    "fixtures",
     "seeding",
-    "fixtures"
+    "factories",
+    "testing",
+    "lorem ipsum"
   ],
+  "homepage": "https://faker-php.xefi.com",
+  "support": {
+    "docs": "https://faker-php.xefi.com",
+    "issues": "https://github.com/xefi/faker-php/issues",
+    "source": "https://github.com/xefi/faker-php"
+  },
   "license": "MIT",
   "authors": [
     {
