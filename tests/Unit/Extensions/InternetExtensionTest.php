@@ -19,7 +19,7 @@ final class InternetExtensionTest extends TestCase
 
     public function testSdl(): void
     {
-        $faker = new Container(false);
+        $faker = new Container(null, false);
 
         $results = [];
 
@@ -34,7 +34,7 @@ final class InternetExtensionTest extends TestCase
 
     public function testTld(): void
     {
-        $faker = new Container(false);
+        $faker = new Container(null, false);
 
         $results = [];
 
@@ -47,7 +47,7 @@ final class InternetExtensionTest extends TestCase
 
     public function testDomain(): void
     {
-        $faker = new Container(false);
+        $faker = new Container(null, false);
 
         $results = [];
 
@@ -62,7 +62,7 @@ final class InternetExtensionTest extends TestCase
 
     public function testIp(): void
     {
-        $faker = new Container(false);
+        $faker = new Container(null, false);
 
         for ($i = 0; $i < 50; $i++) {
             $result = $faker->ip();
@@ -73,7 +73,7 @@ final class InternetExtensionTest extends TestCase
 
     public function testIpv4(): void
     {
-        $faker = new Container(false);
+        $faker = new Container(null, false);
 
         $results = [];
 
@@ -88,7 +88,7 @@ final class InternetExtensionTest extends TestCase
 
     public function testIpv6(): void
     {
-        $faker = new Container(false);
+        $faker = new Container(null, false);
 
         $results = [];
 
@@ -103,7 +103,7 @@ final class InternetExtensionTest extends TestCase
 
     public function testMacAddress(): void
     {
-        $faker = new Container(false);
+        $faker = new Container(null, false);
 
         $results = [];
 
@@ -118,7 +118,7 @@ final class InternetExtensionTest extends TestCase
 
     public function testEmail(): void
     {
-        $faker = new Container(false);
+        $faker = new Container(null, false);
 
         $results = [];
 
