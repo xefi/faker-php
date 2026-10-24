@@ -3,6 +3,7 @@
 namespace Xefi\Faker\Container;
 
 use Closure;
+use Composer\InstalledVersions;
 use Xefi\Faker\Container\Traits\HasExtensions;
 use Xefi\Faker\Container\Traits\HasLocale;
 use Xefi\Faker\Container\Traits\HasModifiers;
@@ -27,25 +28,25 @@ class Container
     protected static array $bootstrappers = [];
 
     /**
-     * The base path of the application.
+     * The base path of the application, defaulting to the Composer root package.
      *
-     * @var string
+     * @var ?string
      */
-    protected static string $basePath = './';
+    protected static ?string $basePath = null;
 
     /**
-     * The manifest path where the providers will be stored.
+     * The manifest path where the providers will be stored, defaulting to the base path.
      *
-     * @var string
+     * @var ?string
      */
-    protected static string $packageManifestPath = 'packages.php';
+    protected static ?string $packageManifestPath = null;
 
     /**
-     * The manifest path where the providers will be stored.
+     * The container mixin manifest path, defaulting to the base path.
      *
-     * @var string
+     * @var ?string
      */
-    protected static string $containerMixinManifestPath = './faker_mixin.php';
+    protected static ?string $containerMixinManifestPath = null;
 
     /**
      * Create the container instance.
@@ -104,11 +105,41 @@ class Container
     }
 
     /**
+     * Get the base path, defaulting to the Composer root package install path.
+     *
+     * @return string
+     */
+    public static function getBasePath(): string
+    {
+        return static::$basePath ?? realpath(InstalledVersions::getRootPackage()['install_path']);
+    }
+
+    /**
+     * Get the package manifest path, defaulting to the base path.
+     *
+     * @return string
+     */
+    public static function getPackageManifestPath(): string
+    {
+        return static::$packageManifestPath ?? static::getBasePath().'/packages.php';
+    }
+
+    /**
+     * Get the container mixin manifest path, defaulting to the base path.
+     *
+     * @return string
+     */
+    public static function getContainerMixinManifestPath(): string
+    {
+        return static::$containerMixinManifestPath ?? static::getBasePath().'/faker_mixin.php';
+    }
+
+    /**
      * Build container mixin manifest.
      */
     protected function buildContainerMixinManifest()
     {
-        $containerMixinManifest = new ContainerMixinManifest(static::$basePath, static::$containerMixinManifestPath);
+        $containerMixinManifest = new ContainerMixinManifest(static::getBasePath(), static::getContainerMixinManifestPath());
         $containerMixinManifest->buildIfShould($this->getExtensionMethods(), $this->getExtensions());
     }
 
@@ -119,7 +150,7 @@ class Container
      */
     protected function registerConfiguredProviders()
     {
-        $packageManifest = new PackageManifest(static::$basePath, static::$packageManifestPath);
+        $packageManifest = new PackageManifest(static::getBasePath(), static::getPackageManifestPath());
 
         $providers = $packageManifest->providers();
 
