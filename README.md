@@ -36,7 +36,8 @@ built from scratch for PHP 8.3+:
 
 - **Modular by design.** The core package ships 13 extensions and *no* locale data. Locales
   (`xefi/faker-php-locales-fr-fr`, `-en-us`, `-de-de`, `-es-es`, ...), extra generators
-  (`xefi/faker-php-images`, `xefi/faker-php-files`, `xefi/faker-php-currencies`) and framework bridges
+  (`xefi/faker-php-images`, `xefi/faker-php-files`, `xefi/faker-php-currencies`,
+  `xefi/faker-php-countries`, `xefi/faker-php-bank`) and framework bridges
   (`xefi/faker-php-laravel`, `xefi/faker-php-symfony`) are opt-in packages, auto-discovered through
   Composer. You install what you use.
 - **Autocompletion that matches your install.** A `faker_mixin.php` stub is regenerated on every
@@ -80,6 +81,8 @@ The concepts map closely — most of a migration is a rename:
 | `$faker->optional()->x()` | `$faker->nullable()->x()` |
 | `$faker->unique()->x()` / `valid($callback)->x()` | same |
 | `$faker->imageUrl()` | install `xefi/faker-php-images` |
+| `$faker->country()` / `countryCode()` / `countryISOAlpha3()` | install `xefi/faker-php-countries`: `country()` / `countryCodeISOAlpha2()` / `countryCodeISOAlpha3()` |
+| `$faker->creditCardNumber()` / `creditCardExpirationDateString()` / `swiftBicNumber()` | install `xefi/faker-php-bank`: `creditCardNumber()` / `creditCardExpirationDate()` / `swiftCode()` (plus `bankName()`, `cvv()`) |
 | `Faker\Factory::create('fr_FR')` | install `xefi/faker-php-locales-fr-fr`, then `new Faker('fr_FR')` |
 
 Three differences worth knowing before you migrate:
