@@ -49,7 +49,7 @@ trait HasExtensions
      */
     protected function resolve(\Xefi\Faker\Extensions\Extension|string $extension): Container
     {
-        $instance = $extension instanceof Extension ? $extension : new $extension(new Randomizer());
+        $instance = $extension instanceof Extension ? $extension : new $extension(new Randomizer(), $this);
 
         // If the extension supports locale variations
         if (method_exists($instance, 'getLocale')) {
