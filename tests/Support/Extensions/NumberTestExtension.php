@@ -13,6 +13,6 @@ class NumberTestExtension extends Extension
 
     public function returnNumberBetween($min, $max)
     {
-        return rand($min, $max);
+        return $this->randomizer->getInt($min, $max);
     }
 }

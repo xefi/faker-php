@@ -27,7 +27,7 @@ trait HasModifiers
      */
     public function nullable(int $weight = 50): self
     {
-        $this->modifiers[] = new NullableModifier(new Randomizer(), $weight);
+        $this->modifiers[] = new NullableModifier(new Randomizer($this->engine), $weight);
 
         return $this;
     }
